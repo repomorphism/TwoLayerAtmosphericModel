@@ -1,0 +1,465 @@
+<!DOCTYPE html><html><head>    
+    <meta charset="UTF-8">
+    <!-- generator meta tag -->
+    <!-- leave this for stats and Silex version check -->
+    <meta name="generator" content="Silex v2.2.5">
+    <!-- End of generator meta tag -->
+    <!--CSS-->
+    <link data-silex-static="true" href="https://cdn.ctat.cs.cmu.edu/html-editor/css/silex/normalize.css" rel="stylesheet">
+    <link data-silex-static="true" href="https://cdn.ctat.cs.cmu.edu/html-editor/css/silex/front-end.css" rel="stylesheet">
+    <link data-silex-static="true" href="https://cdn.ctat.cs.cmu.edu/releases/latest/CTAT.css" rel="stylesheet">
+    <!--JS-->
+    <script data-silex-static="true" type="text/javascript" src="https://cdn.ctat.cs.cmu.edu/html-editor/js/jquery.js"></script>
+    <script data-silex-static="true" type="text/javascript" src="https://cdn.ctat.cs.cmu.edu/html-editor/js/jquery-ui.js"></script>
+    <script data-silex-static="true" type="text/javascript" src="https://cdn.ctat.cs.cmu.edu/releases/latest/ctatloader.js"></script>
+    <script data-silex-static="true" type="text/javascript" src="https://cdn.ctat.cs.cmu.edu/html-editor/js/ctat/ctat.min.js"></script>
+    
+    
+    
+    <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' async></script>
+    
+    <script>
+        function ctatOnload() {
+            initTutor({ "question_file": 'two-layer.brd' });
+
+            // Render text elements that has MathML
+            $('#step2_solved_solution').on('CTAT_EXECUTE_SAI', function (e) {
+                MathJax.Hub.Queue(['Typeset', MathJax.Hub, $('#step2_solved_solution')[0]]);
+            });
+            $('#step3_previous_results').on('CTAT_EXECUTE_SAI', function (e) {
+                MathJax.Hub.Queue(['Typeset', MathJax.Hub, $('#step3_previous_results')[0]]);
+            });
+            $('#step3_reference_answer').on('CTAT_EXECUTE_SAI', function (e) {
+                MathJax.Hub.Queue(['Typeset', MathJax.Hub, $('#step3_reference_answer')[0]]);
+            });
+        };
+    </script> 
+
+    
+
+
+
+    <style type="text/css" class="silex-style"></style>
+    
+    <meta name="interface-id" content="two_layer">
+
+    
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script type="text/javascript" id="custom_math.js" data-file-id="1B5PALXVc7IYJ-y_MC9KqMvnPCxHhz2eJ" class="user-script" src="Assets/custom_math.js"></script>
+
+
+
+            <style id="current-page-style">
+                .page-page-1{display:inherit; }
+            </style>
+            <!-- Silex HEAD tag do not remove -->
+            <!-- End of Silex HEAD tag do not remove -->
+<link rel="stylesheet" href="Assets/two_layer-styles.css"></head><body class="body-initial prevent-draggable silex-runtime silex-published">
+    <a id="page-page-1" data-silex-type="page" class="page-element">Page 1</a>
+    <div data-silex-id="background-initial" class="background background-initial editable-style container-element prevent-draggable" data-silex-type="container">
+        <div data-silex-type="text" class="CTATTextField editable-style text-element CTATComponent silex-id-1574989777726-16 page-page-1 paged-element" data-silex-id="silex-id-1574989777726-16" id="eq4_right" data-ctat-component="CTATTextBasedComponent" data-ctat-enabled="true" contenteditable="false"></div>
+        <div data-silex-type="text" class="CTATTextField editable-style text-element CTATComponent silex-id-1574989777719-15 page-page-1 paged-element" data-silex-id="silex-id-1574989777719-15" id="eq4_left" data-ctat-component="CTATTextBasedComponent" data-ctat-enabled="true" contenteditable="false"></div>
+        <div data-silex-type="text" class="CTATTextField editable-style text-element CTATComponent silex-id-1574989775407-12 page-page-1 paged-element" data-silex-id="silex-id-1574989775407-12" id="eq3_left" data-ctat-component="CTATTextBasedComponent" data-ctat-enabled="true" contenteditable="false"></div>
+        <div data-silex-type="text" class="CTATTextField editable-style text-element CTATComponent silex-id-1574989775415-13 page-page-1 paged-element" data-silex-id="silex-id-1574989775415-13" id="eq3_right" data-ctat-component="CTATTextBasedComponent" data-ctat-enabled="true" contenteditable="false"></div>
+        <div data-silex-type="text" class="CTATTextField editable-style text-element CTATComponent silex-id-1574989768100-10 page-page-1 paged-element" data-silex-id="silex-id-1574989768100-10" id="eq2_right" data-ctat-component="CTATTextBasedComponent" data-ctat-enabled="true" contenteditable="false"></div>
+        <div data-silex-type="text" class="CTATTextField editable-style text-element CTATComponent silex-id-1574989768093-9 page-page-1 paged-element" data-silex-id="silex-id-1574989768093-9" id="eq2_left" data-ctat-component="CTATTextBasedComponent" data-ctat-enabled="true" contenteditable="false"></div>
+        <div data-silex-type="image" class="editable-style silex-id-1574553509046-2 image-element page-page-1 paged-element" data-silex-id="silex-id-1574553509046-2"><img class="silex-element-content" src="Assets/diagram_base.png"></div>
+        <div data-silex-type="text" class="CTATTextField editable-style silex-id-1574552993516-1 text-element page-page-1 paged-element CTATComponent" data-silex-id="silex-id-1574552993516-1" id="ctatdiv7" data-ctat-component="CTATTextBasedComponent" data-ctat-enabled="true" contenteditable="false">Let's solve the 2-layer atmospheric model! Problem descriptions here.</div>
+
+        <div data-silex-type="text" class="CTATTextField editable-style silex-id-1574553529932-3 text-element page-page-1 paged-element CTATComponent" data-silex-id="silex-id-1574553529932-3" id="ctatdiv10" data-ctat-component="CTATTextBasedComponent" data-ctat-enabled="true" contenteditable="false">Layer 1</div>
+        <div data-silex-type="text" class="CTATTextField editable-style silex-id-1574553557725-4 text-element page-page-1 paged-element CTATComponent" data-silex-id="silex-id-1574553557725-4" id="ctatdiv13" data-ctat-component="CTATTextBasedComponent" data-ctat-enabled="true" contenteditable="false">Layer 2</div>
+        <div data-silex-type="ctat" class="CTATHintWidget undefined editable-style silex-id-1574553601110-5 page-page-1 paged-element" data-ctat-tabindex="1" data-silex-id="silex-id-1574553601110-5">
+            <table style="width: 100%; height: 100%;">
+                <tbody>
+                    <tr height="125">
+                        <td>
+                            <div class="CTATHintWindow CTATComponent" id="ctatdiv13" data-ctat-component="CTATHintWindow" onkeypress="return noenter(event)" data-ctat-enabled="true"></div>
+                        </td>
+                        <td width="64" style="padding-top: 0px; padding-bottom: 0px;">
+                            <div id="hint" style="margin-bottom: 2px" class="CTATHintButton CTATComponent" data-ctat-component="CTATHintButton" data-ctat-enabled="true"></div>
+                            <div id="done" class="CTATDoneButton CTATComponent" data-ctat-component="CTATDoneButton" data-ctat-enabled="true"></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div data-silex-type="ctat" class="CTATSkillWindow editable-style silex-id-1574553616823-6 page-page-1 paged-element CTATComponent" data-ctat-tabindex="1" data-silex-id="silex-id-1574553616823-6" id="ctatdiv16" data-ctat-component="CTATSkillWindow" data-ctat-enabled="true"></div>
+        <div data-silex-type="text" class="CTATTextField editable-style silex-id-1574553633650-7 text-element page-page-1 paged-element CTATComponent"
+        data-silex-id="silex-id-1574553633650-7"
+        id="ctatdiv19" data-ctat-component="CTATTextBasedComponent" data-ctat-enabled="true" contenteditable="false"><strong>Step 1: </strong> Let's complete the diagram by identify all the heat transfers between objects.
+            <br>
+            <br>As you fill in each value, it will appear in the diagram.</div>
+        <div data-silex-type="ctat" class="CTATTable editable-style silex-id-1574553794168-8 page-page-1 paged-element CTATComponent" data-ctat-tabindex="1" data-silex-id="silex-id-1574553794168-8" id="heat_transfers_table" data-ctat-component="CTATTable" data-ctat-enabled="true"
+        data-ctat-num-cols="3"
+        data-ctat-num-rows="7" data-ctat-has-header="true" tabindex="1"></div>
+        <div data-silex-type="ctat" class="CTATComboBox editable-style silex-id-1574554681222-10 page-page-1 paged-element CTATComponent" data-ctat-tabindex="1" data-silex-id="silex-id-1574554681222-10" id="step1_1" data-ctat-component="CTATComboBox" data-ctat-enabled="true" data-ctat-labels="Select,S,S(1-⍺)/4,Ts,σTs^4,T1,σT1^4,T2σT2^4"></div>
+        <div data-silex-type="ctat" class="CTATComboBox editable-style CTATComponent silex-id-1574556106039-5 page-page-1 paged-element" data-ctat-tabindex="1" data-silex-id="silex-id-1574556106039-5" id="step1_2" data-ctat-component="CTATComboBox" data-ctat-enabled="true" data-ctat-labels="Select,S,S(1-⍺)/4,Ts,σTs^4,T1,σT1^4,T2,σT2^4"></div>
+        <div data-silex-type="ctat" class="CTATComboBox editable-style CTATComponent silex-id-1574556119619-6 page-page-1 paged-element" data-ctat-tabindex="1" data-silex-id="silex-id-1574556119619-6" id="step1_3" data-ctat-component="CTATComboBox" data-ctat-enabled="true" data-ctat-labels="Select,S,S(1-⍺)/4,Ts,σTs^4,T1,σT1^4,T2,σT2^4"></div>
+        <div data-silex-type="ctat" class="CTATComboBox editable-style CTATComponent silex-id-1574556125410-7 page-page-1 paged-element" data-ctat-tabindex="1" data-silex-id="silex-id-1574556125410-7" id="step1_4" data-ctat-component="CTATComboBox" data-ctat-enabled="true" data-ctat-labels="Select,S,S(1-⍺)/4,Ts,σTs^4,T1,σT1^4,T2,σT2^4"></div>
+        <div data-silex-type="ctat" class="CTATComboBox editable-style CTATComponent silex-id-1574556127071-8 page-page-1 paged-element" data-ctat-tabindex="1" data-silex-id="silex-id-1574556127071-8" id="step1_5"
+        data-ctat-component="CTATComboBox"
+        data-ctat-enabled="true" data-ctat-labels="Select,S,S(1-⍺)/4,Ts,σTs^4,T1,σT1^4,T2,σT2^4"></div>
+        <div data-silex-type="ctat" class="CTATComboBox editable-style CTATComponent silex-id-1574556129047-9 page-page-1 paged-element" data-ctat-tabindex="1" data-silex-id="silex-id-1574556129047-9" id="step1_6" data-ctat-component="CTATComboBox" data-ctat-enabled="true" data-ctat-labels="Select,S,S(1-⍺)/4,Ts,σTs^4,T1,σT1^4,T2,σT2^4"></div>
+        <div data-silex-type="ctat" class="CTATImageButton editable-style silex-id-1574557932783-11 page-page-1 paged-element CTATComponent CTAT-button" data-ctat-tabindex="1" data-silex-id="silex-id-1574557932783-11" id="diagram_button_1" data-ctat-component="CTATImageButton" data-ctat-enabled="true" data-ctat-img="Assets/diagram_label_1.png" role="button" style="background-size: cover; background-image: url(&quot;Assets/diagram_label_1.png&quot;);" data-ctat-image-default="Assets/diagram_label_1.png" tabindex="1"></div>
+        <div data-silex-type="ctat" class="CTATImageButton editable-style silex-id-1574559067074-12 page-page-1 paged-element CTATComponent CTAT-button" data-ctat-tabindex="1" data-silex-id="silex-id-1574559067074-12" id="diagram_button_2" data-ctat-component="CTATImageButton" data-ctat-enabled="true" data-ctat-img="Assets/diagram_label_2.png" role="button" style="background-size: cover; background-image: url(&quot;Assets/diagram_label_2.png&quot;);" data-ctat-image-default="Assets/diagram_label_2.png" tabindex="1"></div>
+        <div data-silex-type="ctat" class="CTATImageButton editable-style silex-id-1574559156964-13 page-page-1 paged-element CTATComponent CTAT-button" data-ctat-tabindex="1" data-silex-id="silex-id-1574559156964-13" id="diagram_button_3" data-ctat-component="CTATImageButton" data-ctat-enabled="true" data-ctat-img="Assets/diagram_label_3.png" role="button" style="background-size: cover; background-image: url(&quot;Assets/diagram_label_3.png&quot;);" data-ctat-image-default="Assets/diagram_label_3.png" tabindex="1"></div>
+        <div data-silex-type="ctat" class="CTATImageButton editable-style silex-id-1574559233073-14 page-page-1 paged-element CTATComponent CTAT-button" data-ctat-tabindex="1" data-silex-id="silex-id-1574559233073-14" id="diagram_button_4" data-ctat-component="CTATImageButton" data-ctat-enabled="true" data-ctat-img="Assets/diagram_label_4.png" role="button" style="background-size: cover; background-image: url(&quot;Assets/diagram_label_4.png&quot;);" data-ctat-image-default="Assets/diagram_label_4.png" tabindex="1"></div>
+        <div data-silex-type="ctat" class="CTATImageButton editable-style silex-id-1574559305690-15 page-page-1 paged-element CTATComponent CTAT-button" data-ctat-tabindex="1" data-silex-id="silex-id-1574559305690-15" id="diagram_button_5" data-ctat-component="CTATImageButton" data-ctat-enabled="true" data-ctat-img="Assets/diagram_label_5.png" role="button" style="background-size: cover; background-image: url(&quot;Assets/diagram_label_5.png&quot;);" data-ctat-image-default="Assets/diagram_label_5.png" tabindex="1"></div>
+        <div data-silex-type="ctat" class="CTATImageButton editable-style silex-id-1574559368378-16 page-page-1 paged-element CTATComponent CTAT-button" data-ctat-tabindex="1" data-silex-id="silex-id-1574559368378-16" id="diagram_button_6" data-ctat-component="CTATImageButton" data-ctat-enabled="true" data-ctat-img="Assets/diagram_label_6.png" role="button" style="background-size: cover; background-image: url(&quot;Assets/diagram_label_6.png&quot;);" data-ctat-image-default="Assets/diagram_label_6.png" tabindex="1"></div>
+
+        <div data-silex-type="text" class="CTATTextField editable-style silex-id-1574658743838-0 text-element page-page-1 paged-element CTATComponent" data-silex-id="silex-id-1574658743838-0" id="ctatdiv114" data-ctat-component="CTATTextBasedComponent" data-ctat-enabled="true" contenteditable="false"><strong>Step 2:</strong> The system is in equilibrium.
+            <br> For each of the following control volumes, find the heat balance equations.</div>
+        <div data-silex-type="text" class="CTATTextField editable-style silex-id-1574658916680-1 text-element page-page-1 paged-element CTATComponent" data-silex-id="silex-id-1574658916680-1" id="eq1_label" data-ctat-component="CTATTextBasedComponent" data-ctat-enabled="true" contenteditable="false">The surface:</div>
+        <div data-silex-type="text" class="CTATTextField editable-style silex-id-1574658984616-2 text-element page-page-1 paged-element CTATComponent" data-silex-id="silex-id-1574658984616-2" id="ctatdiv118" data-ctat-component="CTATTextBasedComponent" data-ctat-enabled="true" contenteditable="false"><strong>Energy IN</strong></div>
+        <div data-silex-type="text" class="CTATTextField editable-style silex-id-1574659020811-3 text-element page-page-1 paged-element CTATComponent" data-silex-id="silex-id-1574659020811-3"
+        id="ctatdiv121"
+        data-ctat-component="CTATTextBasedComponent"
+        data-ctat-enabled="true"
+        contenteditable="false"
+      >
+        <strong>Energy OUT</strong>
+      </div>
+      <div
+        data-silex-type="text"
+        class="CTATTextField editable-style silex-id-1574659186209-4 text-element page-page-1 paged-element CTATComponent"
+        data-silex-id="silex-id-1574659186209-4"
+        id="eq1_equal_sign"
+        data-ctat-component="CTATTextBasedComponent"
+        data-ctat-enabled="true"
+        contenteditable="false"
+      >
+        =
+      </div>
+      <div
+        data-silex-type="ctat"
+        class="CTATButton editable-style silex-id-1574659294776-5 page-page-1 paged-element CTATComponent"
+        data-ctat-tabindex="1"
+        data-silex-id="silex-id-1574659294776-5"
+        id="eq1_left_done"
+        data-ctat-component="CTATButton"
+        data-ctat-enabled="true"
+        data-ctat-label="That's All"
+      ></div>
+      <div
+        data-silex-type="ctat"
+        class="CTATButton editable-style silex-id-1574659336241-6 page-page-1 paged-element CTATComponent"
+        data-ctat-tabindex="1"
+        data-silex-id="silex-id-1574659336241-6"
+        id="eq1_right_done"
+        data-ctat-component="CTATButton"
+        data-ctat-enabled="true"
+        data-ctat-label="That's All"
+      ></div>
+      <div
+        data-silex-type="text"
+        class="CTATTextField editable-style silex-id-1574659359878-7 text-element page-page-1 paged-element CTATComponent"
+        data-silex-id="silex-id-1574659359878-7"
+        id="eq1_left"
+        data-ctat-component="CTATTextBasedComponent"
+        data-ctat-enabled="true"
+        contenteditable="false"
+      ></div>
+
+      <div
+        data-silex-type="text"
+        class="CTATTextField editable-style silex-id-1574660115856-12 text-element page-page-1 paged-element CTATComponent"
+        data-silex-id="silex-id-1574660115856-12"
+        id="step2_instruction"
+        data-ctat-component="CTATTextBasedComponent"
+        data-ctat-enabled="true"
+        contenteditable="false"
+      ></div>
+      <div
+        data-silex-type="text"
+        class="CTATTextField editable-style silex-id-1574661803249-0 text-element page-page-1 paged-element CTATComponent"
+        data-silex-id="silex-id-1574661803249-0"
+        id="eq1_right"
+        data-ctat-component="CTATTextBasedComponent"
+        data-ctat-enabled="true"
+        contenteditable="false"
+      ></div>
+      <div
+        data-silex-type="text"
+        class="CTATTextField editable-style silex-id-1574662769590-1 text-element page-page-1 paged-element CTATComponent"
+        data-silex-id="silex-id-1574662769590-1"
+        id="ctatdiv137"
+        data-ctat-component="CTATTextBasedComponent"
+        data-ctat-enabled="true"
+        contenteditable="false"
+      >
+        Surface
+      </div>
+
+      <div
+        data-silex-type="text"
+        class="CTATTextField editable-style silex-id-1574989672145-1 text-element page-page-1 paged-element CTATComponent"
+        data-silex-id="silex-id-1574989672145-1"
+        id="eq2_label"
+        data-ctat-component="CTATTextBasedComponent"
+        data-ctat-enabled="true"
+        contenteditable="false"
+      >
+        Layer 1:
+      </div>
+      <div
+        data-silex-type="text"
+        class="CTATTextField editable-style text-element CTATComponent silex-id-1574989730956-2 page-page-1 paged-element"
+        data-silex-id="silex-id-1574989730956-2"
+        id="eq3_label"
+        data-ctat-component="CTATTextBasedComponent"
+        data-ctat-enabled="true"
+        contenteditable="false"
+      >
+        Layer 2:
+      </div>
+      <div
+        data-silex-type="text"
+        class="CTATTextField editable-style text-element CTATComponent silex-id-1574989733892-3 page-page-1 paged-element"
+        data-silex-id="silex-id-1574989733892-3"
+        id="eq4_label"
+        data-ctat-component="CTATTextBasedComponent"
+        data-ctat-enabled="true"
+        contenteditable="false"
+      >
+        Surface + Layer 1 + Layer 2:
+      </div>
+      <div
+        data-silex-type="ctat"
+        class="CTATButton editable-style CTATComponent silex-id-1574989740400-4 page-page-1 paged-element"
+        data-ctat-tabindex="1"
+        data-silex-id="silex-id-1574989740400-4"
+        id="eq2_left_done"
+        data-ctat-component="CTATButton"
+        data-ctat-enabled="true"
+        data-ctat-label="That's All"
+      ></div>
+      <div
+        data-silex-type="ctat"
+        class="CTATButton editable-style CTATComponent silex-id-1574989742127-5 page-page-1 paged-element"
+        data-ctat-tabindex="1"
+        data-silex-id="silex-id-1574989742127-5"
+        id="eq2_right_done"
+        data-ctat-component="CTATButton"
+        data-ctat-enabled="true"
+        data-ctat-label="That's All"
+      ></div>
+      <div
+        data-silex-type="ctat"
+        class="CTATButton editable-style CTATComponent silex-id-1574989743925-6 page-page-1 paged-element"
+        data-ctat-tabindex="1"
+        data-silex-id="silex-id-1574989743925-6"
+        id="eq3_left_done"
+        data-ctat-component="CTATButton"
+        data-ctat-enabled="true"
+        data-ctat-label="That's All"
+      ></div>
+      <div
+        data-silex-type="ctat"
+        class="CTATButton editable-style CTATComponent silex-id-1574989745726-7 page-page-1 paged-element"
+        data-ctat-tabindex="1"
+        data-silex-id="silex-id-1574989745726-7"
+        id="eq3_right_done"
+        data-ctat-component="CTATButton"
+        data-ctat-enabled="true"
+        data-ctat-label="That's All"
+      ></div>
+      <div
+        data-silex-type="text"
+        class="CTATTextField editable-style text-element CTATComponent silex-id-1574989768087-8 page-page-1 paged-element"
+        data-silex-id="silex-id-1574989768087-8"
+        id="eq2_equal_sign"
+        data-ctat-component="CTATTextBasedComponent"
+        data-ctat-enabled="true"
+        contenteditable="false"
+      >
+        =
+      </div>
+
+      <div
+        data-silex-type="text"
+        class="CTATTextField editable-style text-element CTATComponent silex-id-1574989775388-11 page-page-1 paged-element"
+        data-silex-id="silex-id-1574989775388-11"
+        id="eq3_equal_sign"
+        data-ctat-component="CTATTextBasedComponent"
+        data-ctat-enabled="true"
+        contenteditable="false"
+      >
+        =
+      </div>
+
+      <div
+        data-silex-type="text"
+        class="CTATTextField editable-style text-element CTATComponent silex-id-1574989777714-14 page-page-1 paged-element"
+        data-silex-id="silex-id-1574989777714-14"
+        id="eq4_equal_sign"
+        data-ctat-component="CTATTextBasedComponent"
+        data-ctat-enabled="true"
+        contenteditable="false"
+      >
+        =
+      </div>
+
+      <div
+        data-silex-type="ctat"
+        class="CTATButton editable-style CTATComponent silex-id-1574989815552-17 page-page-1 paged-element"
+        data-ctat-tabindex="1"
+        data-silex-id="silex-id-1574989815552-17"
+        id="eq4_right_done"
+        data-ctat-component="CTATButton"
+        data-ctat-enabled="true"
+        data-ctat-label="That's All"
+      ></div>
+      <div
+        data-silex-type="ctat"
+        class="CTATButton editable-style CTATComponent silex-id-1574989818730-18 page-page-1 paged-element"
+        data-ctat-tabindex="1"
+        data-silex-id="silex-id-1574989818730-18"
+        id="eq4_left_done"
+        data-ctat-component="CTATButton"
+        data-ctat-enabled="true"
+        data-ctat-label="That's All"
+      ></div>
+      <div
+        data-silex-type="text"
+        class="CTATTextField editable-style silex-id-1575102120464-0 text-element page-page-1 paged-element CTATComponent"
+        data-silex-id="silex-id-1575102120464-0"
+        id="ctatdiv180"
+        data-ctat-component="CTATTextBasedComponent"
+        data-ctat-enabled="true"
+        contenteditable="false"
+      >
+        <strong>Step 3:</strong> Let's reflect on what we have found so far.
+      </div>
+      <div
+        data-silex-type="text"
+        class="CTATTextField editable-style silex-id-1575102348454-1 text-element page-page-1 paged-element CTATComponent"
+        data-silex-id="silex-id-1575102348454-1"
+        id="step2_solved_solution"
+        data-ctat-component="CTATTextBasedComponent"
+        data-ctat-enabled="true"
+        contenteditable="false"
+      ></div>
+      <div
+        data-silex-type="text"
+        class="CTATTextField editable-style silex-id-1575105305505-2 text-element page-page-1 paged-element CTATComponent"
+        data-silex-id="silex-id-1575105305505-2"
+        id="step3_previous_results"
+        data-ctat-component="CTATTextBasedComponent"
+        data-ctat-enabled="true"
+        contenteditable="false"
+      ></div>
+      <div
+        data-silex-type="ctat"
+        class="CTATTextArea editable-style silex-id-1575106458459-3 page-page-1 paged-element CTATComponent"
+        data-ctat-tabindex="1"
+        data-silex-id="silex-id-1575106458459-3"
+        id="step3_entry"
+        data-ctat-component="CTATTextArea"
+        data-ctat-enabled="true"
+      ></div>
+      <div
+        data-silex-type="ctat"
+        class="CTATSubmitButton editable-style silex-id-1575106486430-4 page-page-1 paged-element CTATComponent"
+        data-ctat-tabindex="1"
+        data-silex-id="silex-id-1575106486430-4"
+        id="step3_submit"
+        data-ctat-component="CTATSubmitButton"
+        data-ctat-enabled="true"
+        data-ctat-label="Submit"
+        data-ctat-target="step3_entry"
+      ></div>
+      <div
+        data-silex-type="text"
+        class="CTATTextField editable-style silex-id-1575107209025-5 text-element page-page-1 paged-element CTATComponent"
+        data-silex-id="silex-id-1575107209025-5"
+        id="step3_reference_answer"
+        data-ctat-component="CTATTextBasedComponent"
+        data-ctat-enabled="true"
+        contenteditable="false"
+      ></div>
+      <div
+        data-silex-type="ctat"
+        class="CTATRadioButton editable-style silex-id-1575108528019-10 page-page-1 paged-element CTATComponent"
+        data-ctat-tabindex="1"
+        data-silex-id="silex-id-1575108528019-10"
+        id="step3_self_evaluate_no"
+        data-ctat-component="CTATRadioButton"
+        data-ctat-enabled="true"
+        data-ctat-label="No"
+        name="step3_self_evaluate"
+      ></div>
+      <div
+        data-silex-type="ctat"
+        class="CTATRadioButton editable-style silex-id-1575108642746-11 page-page-1 paged-element CTATComponent"
+        data-ctat-tabindex="1"
+        data-silex-id="silex-id-1575108642746-11"
+        id="step3_self_evaluate_yes"
+        data-ctat-component="CTATRadioButton"
+        data-ctat-enabled="true"
+        name="step3_self_evaluate"
+        data-ctat-label="Yes"
+      ></div>
+      <div
+        data-silex-type="text"
+        class="CTATTextField editable-style silex-id-1575108948947-12 text-element page-page-1 paged-element CTATComponent"
+        data-silex-id="silex-id-1575108948947-12"
+        id="step3_last_instruction"
+        data-ctat-component="CTATTextBasedComponent"
+        data-ctat-enabled="true"
+        contenteditable="false"
+      >
+        <strong
+          >Thank you! You are finished. <br />
+          Please scroll up to click the green "Done" button.</strong
+        >
+      </div>
+    </div>
+  </body>
+</html>
