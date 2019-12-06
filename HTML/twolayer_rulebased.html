@@ -2,22 +2,28 @@
 <html>
 
 <head>
+    <title>Two-Layer Problem</title>
     <meta charset="UTF-8">
     <!-- generator meta tag -->
     <!-- leave this for stats and Silex version check -->
     <meta name="generator" content="Silex v2.2.5">
     <!-- End of generator meta tag -->
+
     <!--CSS-->
     <link data-silex-static="true" href="https://cdn.ctat.cs.cmu.edu/html-editor/css/silex/normalize.css"
         rel="stylesheet">
     <link data-silex-static="true" href="https://cdn.ctat.cs.cmu.edu/html-editor/css/silex/front-end.css"
         rel="stylesheet">
     <link data-silex-static="true" href="https://cdn.ctat.cs.cmu.edu/releases/latest/CTAT.css" rel="stylesheet">
+    <!-- <style type="text/css" class="silex-style"></style> -->
+    <link rel="stylesheet" href="Assets/twolayer_rulebased.css">
+
     <!--JS-->
     <script src="https://cdn.ctat.cs.cmu.edu/releases/latest/jquery.min.js"></script>
     <script src="https://cdn.ctat.cs.cmu.edu/releases/beta/ctat.min.js"></script>
     <script src="https://cdn.ctat.cs.cmu.edu/releases/beta/ctatloader.js"></script>
     <script src="https://cdn.ctat.cs.cmu.edu/releases/beta/nools.js"></script>
+    <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' async></script>
     <!-- <script src="Assets/steps.js"></script> -->
 
     <script>
@@ -27,233 +33,65 @@
             tutoring_service_communication: "javascript"
         };
         function ctatOnload() {
+                console.log("aoeuaoeuaoeu");
             initTutor(myVars);
             // initTutor();
+            $('#problem-statement-part-1').on('CTAT_EXECUTE_SAI', function (e) {
+                MathJax.Hub.Queue(['Typeset', MathJax.Hub, $('#problem-statement-part-1')[0]]);
+                console.log("aoeuaoeuaoeu");
+                
+            });
         }
     </script>
 
 
-    <style type="text/css" class="silex-style"></style>
 
     <meta name="interface-id" content="twolayer">
 
 
-    <style id="current-page-style">
+    <!-- <style id="current-page-style">
         .page-page-1 {
             display: inherit;
         }
-    </style>
+    </style> -->
     <!-- Silex HEAD tag do not remove -->
     <!-- End of Silex HEAD tag do not remove -->
-    <link rel="stylesheet" href="Assets/twolayer_rulebased.css">
 </head>
 
 <body class="body-initial prevent-draggable silex-runtime silex-published">
-    <a id="page-page-1" data-silex-type="page" class="page-element">Page 1</a>
-    <div data-silex-id="background-initial"
-        class="background background-initial editable-style container-element prevent-draggable"
-        data-silex-type="container">
-        <div data-silex-type="ctat"
-            class="CTATTextArea editable-style silex-id-1539779121431-1 page-page-1 paged-element CTATComponent"
-            data-ctat-tabindex="1" data-silex-id="silex-id-1539779121431-1" id="problemstatement"
-            data-ctat-component="CTATTextArea" data-ctat-enabled="true"></div>
-        <div data-silex-type="text"
-            class="CTATTextField editable-style silex-id-1539779160066-2 text-element page-page-1 paged-element CTATComponent"
-            data-silex-id="silex-id-1539779160066-2" id="ctatdiv7" data-ctat-component="CTATTextBasedComponent"
-            data-ctat-enabled="true" contenteditable="false">Mendel Abductive Reasoning Tutor</div>
-        <div data-silex-type="text"
-            class="CTATTextField editable-style silex-id-1539779267980-3 text-element page-page-1 paged-element CTATComponent"
-            data-silex-id="silex-id-1539779267980-3" id="ctatdiv10" data-ctat-component="CTATTextBasedComponent"
-            data-ctat-enabled="true" contenteditable="false">Strain 1:</div>
+    <header>
+        <h1 class="header-title">2-Layers</h1>
+        <div class="header-underline"></div>
+    </header>
 
-        <div data-silex-type="ctat"
-            class="CTATTextInput editable-style silex-id-1539779528605-5 page-page-1 paged-element CTATComponent"
-            data-ctat-tabindex="1" data-silex-id="silex-id-1539779528605-5" id="strain1"
-            data-ctat-component="CTATTextInput" data-ctat-enabled="true"></div>
-        <div data-silex-type="ctat"
-            class="CTATTextInput editable-style CTATComponent silex-id-1539779713969-6 page-page-1 paged-element"
-            data-ctat-tabindex="1" data-silex-id="silex-id-1539779713969-6" id="strain2"
-            data-ctat-component="CTATTextInput" data-ctat-enabled="true"></div>
-        <div data-silex-type="ctat"
-            class="CTATTextInput editable-style CTATComponent silex-id-1539779761672-7 page-page-1 paged-element"
-            data-ctat-tabindex="1" data-silex-id="silex-id-1539779761672-7" id="strain3"
-            data-ctat-component="CTATTextInput" data-ctat-enabled="true"></div>
-        <div data-silex-type="text"
-            class="CTATTextField editable-style silex-id-1539816560178-12 text-element page-page-1 paged-element CTATComponent"
-            data-silex-id="silex-id-1539816560178-12" id="ctatdiv21" data-ctat-component="CTATTextBasedComponent"
-            data-ctat-enabled="true" contenteditable="false">Strain 2:</div>
-        <div data-silex-type="text"
-            class="CTATTextField editable-style silex-id-1539816594260-13 text-element page-page-1 paged-element CTATComponent"
-            data-silex-id="silex-id-1539816594260-13" id="ctatdiv24" data-ctat-component="CTATTextBasedComponent"
-            data-ctat-enabled="true" contenteditable="false">Strain 3:</div>
-        <div data-silex-type="text"
-            class="CTATTextField editable-style silex-id-1539816957431-14 text-element page-page-1 paged-element CTATComponent"
-            data-silex-id="silex-id-1539816957431-14" id="ctatdiv27" data-ctat-component="CTATTextBasedComponent"
-            data-ctat-enabled="true" contenteditable="false">1.</div>
-        <div data-silex-type="text"
-            class="CTATTextField editable-style silex-id-1539817026262-17 text-element page-page-1 paged-element CTATComponent"
-            data-silex-id="silex-id-1539817026262-17" id="ctatdiv37" data-ctat-component="CTATTextBasedComponent"
-            data-ctat-enabled="true" contenteditable="false">2.</div>
-        <div data-silex-type="text"
-            class="CTATTextField editable-style silex-id-1539817063206-18 text-element page-page-1 paged-element CTATComponent"
-            data-silex-id="silex-id-1539817063206-18" id="ctatdiv40" data-ctat-component="CTATTextBasedComponent"
-            data-ctat-enabled="true" contenteditable="false">3.</div>
-        <div data-silex-type="text"
-            class="CTATTextField editable-style silex-id-1539817082716-19 text-element page-page-1 paged-element CTATComponent"
-            data-silex-id="silex-id-1539817082716-19" id="ctatdiv43" data-ctat-component="CTATTextBasedComponent"
-            data-ctat-enabled="true" contenteditable="false">4.</div>
-        <div data-silex-type="text"
-            class="CTATTextField editable-style silex-id-1539817102716-20 text-element page-page-1 paged-element CTATComponent"
-            data-silex-id="silex-id-1539817102716-20" id="ctatdiv46" data-ctat-component="CTATTextBasedComponent"
-            data-ctat-enabled="true" contenteditable="false">5.</div>
-        <div data-silex-type="text"
-            class="CTATTextField editable-style silex-id-1539817121887-21 text-element page-page-1 paged-element CTATComponent"
-            data-silex-id="silex-id-1539817121887-21" id="ctatdiv49" data-ctat-component="CTATTextBasedComponent"
-            data-ctat-enabled="true" contenteditable="false">6.</div>
-        <div data-silex-type="ctat"
-            class="CTATTextInput editable-style CTATComponent silex-id-1539817266452-22 page-page-1 paged-element"
-            data-ctat-tabindex="1" data-silex-id="silex-id-1539817266452-22" id="Cr1Str1"
-            data-ctat-component="CTATTextInput" data-ctat-enabled="true"></div>
-        <div data-silex-type="ctat"
-            class="CTATTextInput editable-style CTATComponent silex-id-1539817335375-23 page-page-1 paged-element"
-            data-ctat-tabindex="1" data-silex-id="silex-id-1539817335375-23" id="Cr1Str2"
-            data-ctat-component="CTATTextInput" data-ctat-enabled="true"></div>
+    <section class="left-pane">
+        <section class="problem-statement">
+            <div class="problem-label">QUESTION</div>
+            <div id="problem-statement-part-1">
+            Imagine a planet with 2-layer atmosphere, where the atmosphere is transparent to solar radiation and opaque to
+            terrestrial radiation. Given solar constant S, albedo, surface temperature Ts, the temperature of first & second
+            atmosphere layers <msub><mi>T</mi><mn>1</mn></msub> and <msub><mi>T</mi><mn>2</mn></msub>. Come up with a representation of Ts. Use the interactive diagram as you finish the problem steps on the right.</div>
+            <p>( Equations that you might wan to use: Blackbody emission is . The amount of solar energy absorbed is .)</p>
+        </section>
+        <section class="twolayer-diagram">
+            <div>Diagram here</div>
+        </section>
+    </section>
 
-        <div data-silex-type="text"
-            class="CTATTextField editable-style silex-id-1539817756587-1 text-element page-page-1 paged-element CTATComponent"
-            data-silex-id="silex-id-1539817756587-1" id="Cr1Offspring" data-ctat-component="CTATTextBasedComponent"
-            data-ctat-enabled="true" contenteditable="false" data-ctat-show-feedback="false"></div>
-        <div data-silex-type="text"
-            class="CTATTextField editable-style silex-id-1539817892070-2 text-element page-page-1 paged-element CTATComponent"
-            data-silex-id="silex-id-1539817892070-2" id="ctatdiv51" data-ctat-component="CTATTextBasedComponent"
-            data-ctat-enabled="true" contenteditable="false">Offspring</div>
-        <div data-silex-type="text"
-            class="CTATTextField editable-style silex-id-1539817933731-3 text-element page-page-1 paged-element CTATComponent"
-            data-silex-id="silex-id-1539817933731-3" id="ctatdiv54" data-ctat-component="CTATTextBasedComponent"
-            data-ctat-enabled="true" contenteditable="false">Cross</div>
-        <div data-silex-type="ctat"
-            class="CTATTextInput editable-style CTATComponent silex-id-1539818054980-4 page-page-1 paged-element"
-            data-ctat-tabindex="1" data-silex-id="silex-id-1539818054980-4" id="Cr2Str1"
-            data-ctat-component="CTATTextInput" data-ctat-enabled="true"></div>
-        <div data-silex-type="ctat"
-            class="CTATTextInput editable-style CTATComponent silex-id-1539818054984-5 page-page-1 paged-element"
-            data-ctat-tabindex="1" data-silex-id="silex-id-1539818054984-5" id="Cr2Str2"
-            data-ctat-component="CTATTextInput" data-ctat-enabled="true"></div>
-        <div data-silex-type="text"
-            class="CTATTextField editable-style text-element CTATComponent silex-id-1539818054989-6 page-page-1 paged-element"
-            data-silex-id="silex-id-1539818054989-6" id="Cr2Offspring" data-ctat-component="CTATTextBasedComponent"
-            data-ctat-enabled="true" contenteditable="false" data-ctat-show-feedback="false"></div>
-        <div data-silex-type="text"
-            class="CTATTextField editable-style silex-id-1539818167605-7 text-element page-page-1 paged-element CTATComponent"
-            data-silex-id="silex-id-1539818167605-7" id="ctatdiv58" data-ctat-component="CTATTextBasedComponent"
-            data-ctat-enabled="true" contenteditable="false">Strain 1:</div>
-        <div data-silex-type="text"
-            class="CTATTextField editable-style silex-id-1539818200412-8 text-element page-page-1 paged-element CTATComponent"
-            data-silex-id="silex-id-1539818200412-8" id="ctatdiv61" data-ctat-component="CTATTextBasedComponent"
-            data-ctat-enabled="true" contenteditable="false">Strain 2:</div>
-        <div data-silex-type="text"
-            class="CTATTextField editable-style silex-id-1539818270315-9 text-element page-page-1 paged-element CTATComponent"
-            data-silex-id="silex-id-1539818270315-9" id="ctatdiv64" data-ctat-component="CTATTextBasedComponent"
-            data-ctat-enabled="true" contenteditable="false">Strain 3:</div>
-        <div data-silex-type="ctat"
-            class="CTATComboBox editable-style silex-id-1539819870654-11 page-page-1 paged-element CTATComponent"
-            data-ctat-tabindex="3" data-silex-id="silex-id-1539819870654-11" id="concPartStr1"
-            data-ctat-component="CTATComboBox" data-ctat-enabled="true"
-            data-ctat-labels="---select ---,homozygous recessive or heterozygous,homozygous"></div>
-        <div data-silex-type="ctat"
-            class="CTATComboBox editable-style CTATComponent silex-id-1539829326344-12 page-page-1 paged-element"
-            data-ctat-tabindex="3" data-silex-id="silex-id-1539829326344-12" id="concPartStr2"
-            data-ctat-component="CTATComboBox" data-ctat-enabled="true"
-            data-ctat-labels="---select ---,homozygous recessive or heterozygous,homozygous"></div>
-        <div data-silex-type="ctat"
-            class="CTATComboBox editable-style CTATComponent silex-id-1539829343194-13 page-page-1 paged-element"
-            data-ctat-tabindex="3" data-silex-id="silex-id-1539829343194-13" id="concPartStr3"
-            data-ctat-component="CTATComboBox" data-ctat-enabled="true"
-            data-ctat-labels="---select ---,homozygous recessive or heterozygous,homozygous"></div>
-        <div data-silex-type="ctat"
-            class="CTATComboBox editable-style silex-id-1539829439657-14 page-page-1 paged-element CTATComponent"
-            data-ctat-tabindex="1" data-silex-id="silex-id-1539829439657-14" id="concFinalStr1"
-            data-ctat-component="CTATComboBox" data-ctat-enabled="true"
-            data-ctat-labels="---select ---,homozygous dominant,heterozygous,homozygous recessive"></div>
-        <div data-silex-type="ctat"
-            class="CTATComboBox editable-style CTATComponent silex-id-1539829619565-15 page-page-1 paged-element"
-            data-ctat-tabindex="1" data-silex-id="silex-id-1539829619565-15" id="concFinalStr2"
-            data-ctat-component="CTATComboBox" data-ctat-enabled="true"
-            data-ctat-labels="---select ---,homozygous dominant,heterozygous,homozygous recessive"></div>
-        <div data-silex-type="ctat"
-            class="CTATComboBox editable-style CTATComponent silex-id-1539829621385-16 page-page-1 paged-element"
-            data-ctat-tabindex="1" data-silex-id="silex-id-1539829621385-16" id="concFinalStr3"
-            data-ctat-component="CTATComboBox" data-ctat-enabled="true"
-            data-ctat-labels="---select ---,homozygous dominant,heterozygous,homozygous recessive"
-            data-ctat-tutor="true"></div>
-        <div data-silex-type="ctat"
-            class="CTATTextInput editable-style CTATComponent silex-id-1539829659307-17 page-page-1 paged-element"
-            data-ctat-tabindex="1" data-silex-id="silex-id-1539829659307-17" id="Cr3Str1"
-            data-ctat-component="CTATTextInput" data-ctat-enabled="true"></div>
-        <div data-silex-type="ctat"
-            class="CTATTextInput editable-style CTATComponent silex-id-1539829659321-18 page-page-1 paged-element"
-            data-ctat-tabindex="1" data-silex-id="silex-id-1539829659321-18" id="Cr3Str2"
-            data-ctat-component="CTATTextInput" data-ctat-enabled="true"></div>
-        <div data-silex-type="text"
-            class="CTATTextField editable-style text-element CTATComponent silex-id-1539829659326-19 page-page-1 paged-element"
-            data-silex-id="silex-id-1539829659326-19" id="Cr3Offspring" data-ctat-component="CTATTextBasedComponent"
-            data-ctat-enabled="true" contenteditable="false" data-ctat-show-feedback="false"></div>
-        <div data-silex-type="ctat"
-            class="CTATTextInput editable-style CTATComponent silex-id-1539829659331-20 page-page-1 paged-element"
-            data-ctat-tabindex="1" data-silex-id="silex-id-1539829659331-20" id="Cr4Str1"
-            data-ctat-component="CTATTextInput" data-ctat-enabled="true"></div>
-        <div data-silex-type="ctat"
-            class="CTATTextInput editable-style CTATComponent silex-id-1539829659336-21 page-page-1 paged-element"
-            data-ctat-tabindex="1" data-silex-id="silex-id-1539829659336-21" id="Cr4Str2"
-            data-ctat-component="CTATTextInput" data-ctat-enabled="true"></div>
-        <div data-silex-type="text"
-            class="CTATTextField editable-style text-element CTATComponent silex-id-1539829659339-22 page-page-1 paged-element"
-            data-silex-id="silex-id-1539829659339-22" id="Cr4Offspring" data-ctat-component="CTATTextBasedComponent"
-            data-ctat-enabled="true" contenteditable="false" data-ctat-show-feedback="false"></div>
-        <div data-silex-type="ctat"
-            class="CTATTextInput editable-style CTATComponent silex-id-1539829662103-23 page-page-1 paged-element"
-            data-ctat-tabindex="1" data-silex-id="silex-id-1539829662103-23" id="Cr5Str1"
-            data-ctat-component="CTATTextInput" data-ctat-enabled="true"></div>
-        <div data-silex-type="ctat"
-            class="CTATTextInput editable-style CTATComponent silex-id-1539829662116-24 page-page-1 paged-element"
-            data-ctat-tabindex="1" data-silex-id="silex-id-1539829662116-24" id="Cr5Str2"
-            data-ctat-component="CTATTextInput" data-ctat-enabled="true"></div>
-        <div data-silex-type="text"
-            class="CTATTextField editable-style text-element CTATComponent silex-id-1539829662120-25 page-page-1 paged-element"
-            data-silex-id="silex-id-1539829662120-25" id="Cr5Offspring" data-ctat-component="CTATTextBasedComponent"
-            data-ctat-enabled="true" contenteditable="false" data-ctat-show-feedback="false"></div>
-        <div data-silex-type="ctat"
-            class="CTATTextInput editable-style CTATComponent silex-id-1539829662125-26 page-page-1 paged-element"
-            data-ctat-tabindex="1" data-silex-id="silex-id-1539829662125-26" id="Cr6Str1"
-            data-ctat-component="CTATTextInput" data-ctat-enabled="true"></div>
-        <div data-silex-type="ctat"
-            class="CTATTextInput editable-style CTATComponent silex-id-1539829662131-27 page-page-1 paged-element"
-            data-ctat-tabindex="1" data-silex-id="silex-id-1539829662131-27" id="Cr6Str2"
-            data-ctat-component="CTATTextInput" data-ctat-enabled="true"></div>
-        <div data-silex-type="text"
-            class="CTATTextField editable-style text-element CTATComponent silex-id-1539829662134-28 page-page-1 paged-element"
-            data-silex-id="silex-id-1539829662134-28" id="Cr6Offspring" data-ctat-component="CTATTextBasedComponent"
-            data-ctat-enabled="true" contenteditable="false" data-ctat-show-feedback="false"></div>
-        <div data-silex-type="ctat" class="CTATHintWindow editable-style silex-id-1539829833385-31 CTATComponent"
-            data-ctat-tabindex="1" data-silex-id="silex-id-1539829833385-31" id="ctatdiv149"
-            data-ctat-component="CTATHintWindow" onkeypress="return noenter(event)" data-ctat-enabled="true"></div>
-        <div data-silex-type="ctat" id="hint"
-            class="CTATHintButton editable-style silex-id-1539829841356-32 page-page-1 paged-element CTATComponent"
-            data-silex-id="silex-id-1539829841356-32" data-ctat-component="CTATHintButton" data-ctat-enabled="true">
-        </div>
-        <div data-silex-type="ctat" id="done"
-            class="CTATDoneButton editable-style silex-id-1539829846527-33 page-page-1 paged-element CTATComponent"
-            data-ctat-tabindex="1" data-silex-id="silex-id-1539829846527-33" data-ctat-component="CTATDoneButton"
-            data-ctat-enabled="true"></div>
-        <div data-silex-type="text"
-            class="CTATTextField editable-style silex-id-1539829989328-34 text-element page-page-1 paged-element CTATComponent"
-            data-silex-id="silex-id-1539829989328-34" id="ctatdiv156" data-ctat-component="CTATTextBasedComponent"
-            data-ctat-enabled="true" contenteditable="false">Partial Conclusions</div>
-        <div data-silex-type="text"
-            class="CTATTextField editable-style silex-id-1539830074066-35 text-element page-page-1 paged-element CTATComponent"
-            data-silex-id="silex-id-1539830074066-35" id="ctatdiv159" data-ctat-component="CTATTextBasedComponent"
-            data-ctat-enabled="true" contenteditable="false">Final Conclusions</div>
-    </div>
+    <section class="right-pane">
+        <section class="problem-tabs">
+            <div>problem tabs</div>
+
+        </section>
+        <section class="hint-section">
+            <div id="hint-window" class="CTATHintWindow"></div>
+            <div class="buttons-group">
+                <div id="hint-button" class="CTATHintButton"></div>
+                <div id="done-button" class="CTATDoneButton"></div>
+            </div>
+        </section>
+        <div class="CTATSkillWindow"></div>
+    </section>
 
 
 

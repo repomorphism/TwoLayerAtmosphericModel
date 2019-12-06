@@ -1,0 +1,97 @@
+
+.header-title {
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+
+    color: #001423;
+
+    position: absolute;
+    width: 104px;
+    height: 28px;
+    left: 80px;
+    top: 86px;
+    margin: 0;
+}
+
+.header-underline {
+    position: absolute;
+    width: 634.79px;
+    height: 1px;
+    left: 79px;
+    top: 123px;
+    background-color: aquamarine;
+}
+
+.left-pane {
+    position: absolute;
+    width: 400px;
+    height: 600px;
+    left: 40px;
+    top: 200px;
+    background-color: aquamarine;
+}
+
+.problem-label {
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    color: #001423;
+}
+
+p {
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    color: #001423;
+}
+
+/* .twolayer-diagram {
+    position: relative; */
+    /* position: absolute; */
+    /* width: 400px;
+    height: 300px;
+    left: 40px;
+    top: 200px;
+    background-color: aquamarine;
+} */
+
+.right-pane {
+    position: absolute;
+    width: 400px;
+    height: 600px;
+    left: 500px;
+    top: 200px;
+    background-color: aquamarine;
+}
+
+.problem-tabs {
+    /* position: absolute; */
+    /* width: 400px; */
+    height: 250px;
+    /* left: 500px; */
+    /* top: 200px; */
+    /* background-color: aquamarine; */
+}
+
+.hint-section {
+    width: 100%;
+    display: flex;
+    flex-grow: 1;
+}
+
+#hint-window {
+    flex-grow: 2;
+}
+
+.CTATSkillWindow {
+    width: 100%;
+}
+
+
