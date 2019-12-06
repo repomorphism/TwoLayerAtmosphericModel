@@ -31,7 +31,9 @@
     height: 600px;
     left: 40px;
     top: 200px;
-    background-color: aquamarine;
+
+    /* border-radius: 5px;
+    border: 1px solid #73AD21; */
 }
 
 .problem-label {
@@ -41,6 +43,19 @@
     font-size: 16px;
     line-height: 19px;
     color: #001423;
+    opacity: 0.34;
+
+    margin-bottom: 10px;
+}
+
+.problem-text {
+    border: 1px solid #E8E8E8;
+    box-sizing: border-box;
+    border-radius: 4px;
+
+    padding: 0px 20px 0px 20px;
+
+    margin-bottom: 20px;
 }
 
 p {
@@ -68,7 +83,9 @@ p {
     height: 600px;
     left: 500px;
     top: 200px;
-    background-color: aquamarine;
+
+    /* border-radius: 5px;
+    border: 1px solid #73AD21; */
 }
 
 .problem-tabs {

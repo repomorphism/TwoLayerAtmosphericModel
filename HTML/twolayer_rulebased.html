@@ -17,6 +17,7 @@
     <link data-silex-static="true" href="https://cdn.ctat.cs.cmu.edu/releases/latest/CTAT.css" rel="stylesheet">
     <!-- <style type="text/css" class="silex-style"></style> -->
     <link rel="stylesheet" href="Assets/twolayer_rulebased.css">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,500&display=swap" rel="stylesheet">
 
     <!--JS-->
     <script src="https://cdn.ctat.cs.cmu.edu/releases/latest/jquery.min.js"></script>
@@ -24,6 +25,7 @@
     <script src="https://cdn.ctat.cs.cmu.edu/releases/beta/ctatloader.js"></script>
     <script src="https://cdn.ctat.cs.cmu.edu/releases/beta/nools.js"></script>
     <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' async></script>
+
     <!-- <script src="Assets/steps.js"></script> -->
 
     <script>
@@ -33,14 +35,13 @@
             tutoring_service_communication: "javascript"
         };
         function ctatOnload() {
-                console.log("aoeuaoeuaoeu");
             initTutor(myVars);
+            // MathJax.Hub.Typeset();
             // initTutor();
-            $('#problem-statement-part-1').on('CTAT_EXECUTE_SAI', function (e) {
-                MathJax.Hub.Queue(['Typeset', MathJax.Hub, $('#problem-statement-part-1')[0]]);
-                console.log("aoeuaoeuaoeu");
-                
-            });
+            // $('#problem-statement-part-1').on('CTAT_EXECUTE_SAI', function (e) {
+            //     MathJax.Hub.Queue(['Typeset', MathJax.Hub, $('#problem-statement-part-1')[0]]);
+            //     console.log("aoeuaoeuaoeu");
+            // });
         }
     </script>
 
@@ -67,11 +68,42 @@
     <section class="left-pane">
         <section class="problem-statement">
             <div class="problem-label">QUESTION</div>
-            <div id="problem-statement-part-1">
-            Imagine a planet with 2-layer atmosphere, where the atmosphere is transparent to solar radiation and opaque to
-            terrestrial radiation. Given solar constant S, albedo, surface temperature Ts, the temperature of first & second
-            atmosphere layers <msub><mi>T</mi><mn>1</mn></msub> and <msub><mi>T</mi><mn>2</mn></msub>. Come up with a representation of Ts. Use the interactive diagram as you finish the problem steps on the right.</div>
-            <p>( Equations that you might wan to use: Blackbody emission is . The amount of solar energy absorbed is .)</p>
+            <div class="problem-text">
+                <p>
+                Imagine a planet with 2-layer atmosphere, where the atmosphere is transparent to solar radiation and opaque to
+                terrestrial radiation. Given solar constant S, albedo, surface temperature Ts, the temperature of first & second
+                atmosphere layers
+                <math xmlns='http://www.w3.org/1998/Math/MathML'> <msub> <mi>T</mi> <mn>1</mn> </msub> </math>
+                and
+                <math xmlns='http://www.w3.org/1998/Math/MathML'> <msub> <mi>T</mi> <mn>2</mn> </msub> </math>
+                .  Come up with a representation of
+                <math xmlns='http://www.w3.org/1998/Math/MathML'> <msub> <mi>T</mi> <mn>S</mn> </msub> </math>
+                . Use the interactive diagram as you finish the problem steps on the right.
+                </p>
+                <p>( Equations that you might wan to use: Blackbody emission is
+                    <math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow> <mi>&#x003C3;</mi> <msup> <mi>T</mi> <mn>4</mn> </msup> </mrow> </math>
+                    . The amount of solar energy absorbed is 
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <mrow>
+                            <mfrac linethickness="1">
+                                <mrow>
+                                    <mi>S</mi>
+                                    <mrow>
+                                        <mo form="prefix">(</mo>
+                                        <mn>1</mn>
+                                        <mo>-</mo>
+                                        <mi>&#x003B1;</mi>
+                                        <mo form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <mn>4</mn>
+                            </mfrac>
+                        </mrow>
+                    </math>
+                    .)
+                </p>
+            </div>
+
         </section>
         <section class="twolayer-diagram">
             <div>Diagram here</div>
