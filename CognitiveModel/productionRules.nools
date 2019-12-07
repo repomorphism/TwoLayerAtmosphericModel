@@ -5,6 +5,8 @@ rule Bootstrap {
         bool : Boolean bool == false from false;
     }
     then {
+        console.log("*** bootstrap ***");
+        
         // // interface elements first, may help with the order of the hints
         // let ieOption1amt = assert(new TextInput("option1amt", ""));
         // let ieOption1cost = assert(new TextInput("option1cost", ""));
