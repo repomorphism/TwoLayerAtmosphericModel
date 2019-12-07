@@ -1,5 +1,6 @@
 body {
-  padding-bottom: 350px;
+  padding-bottom: 520px;
+  padding-right: 520px;
 }
 
 .header-title {
@@ -143,7 +144,7 @@ a.disabled {
   width: 185.47px;
   height: 1.88px;
   left: 102px;
-  top: 35.35px;
+  top: 36px;
 
   background: #0681ff;
   border-radius: 3px;
@@ -235,16 +236,56 @@ a.disabled {
   background-image: url("surface-active.png");
 }
 
-.hint-section {
-  width: 100%;
+.ctat-pane {
+  position: absolute;
   display: flex;
-  flex-grow: 1;
-}
-
-#hint-window {
-  flex-grow: 2;
+  width: 1207px;
+  height: 147px;
+  left: 79px;
+  top: 1172px;
 }
 
 .CTATSkillWindow {
+  flex-grow: 1;
+  flex-basis: 0;
+  margin-right: 20px;
+  height: 100%;
+}
+
+.hint-section {
+  flex-grow: 1;
+  flex-basis: 0;
+  height: 100%;
+
+  display: flex;
+  flex-direction: row;
+  flex-basis: 0;
+}
+
+#hint-window {
+  flex-grow: 1;
+  flex-basis: 0;
+  height: 100%;
+  margin-right: 12px;
+}
+
+.ctat-buttons-group {
+  display: flex;
+  flex-direction: column;
+  width: 137px;
+  height: 100%;
+}
+
+#hint-button {
   width: 100%;
+  margin-bottom: 12px;
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+#done-button {
+  width: 100%;
+  flex-grow: 1;
+  flex-basis: 0;
+  /* margin-bottom: -10px; */
 }
