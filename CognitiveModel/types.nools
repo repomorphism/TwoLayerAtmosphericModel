@@ -2,9 +2,27 @@
 define Problem {
     name: null,
     subgoal: null,
+    selectedFromBody: null,
+    selectedToBody: null,
     constructor: function(name) {
         this.name = name;
-        this.subgoal = "";
+        this.subgoal = "selectTransferBodies";
+    }
+}
+
+define Arrow {
+    name: null,
+    fromBody: null,
+    toBody: null,
+    energy: null,
+    ieEnergy: null,
+    completed: false,
+    constructor: function(name, fromBody, toBody, energy) {
+        this.name = name;
+        this.fromBody = fromBody;
+        this.toBody = toBody;
+        this.energy = energy;
+        this.ieEnergy = name + "-energy-combo-box";
     }
 }
 

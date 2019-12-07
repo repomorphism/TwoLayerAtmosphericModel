@@ -1,36 +1,185 @@
+// @ts-nocheck
+
 import("types.nools");
+
+global SUN = "sun";
+global LAYER1 = "layer1";
+global LAYER2 = "layer2";
+global SURFACE = "surface";
+
+global diagramButtons = [SUN, LAYER1, LAYER2, SURFACE];
+
+function getImageName(label, active) {
+    if (active) {
+        return "Assets/" + label + "-active.png";
+    } else {
+        return "Assets/" + label + "-inactive.png";
+    }
+}
 
 rule Bootstrap {
     when {
         bool : Boolean bool == false from false;
     }
     then {
-        // Interface elements
-        let sunButton = assert(new InterfaceElement("sun-button"));
-        let layer2Button = assert(new InterfaceElement("layer2-button"));
-        let layer1Button = assert(new InterfaceElement("layer1-button"));
-        let surfaceButton = assert(new InterfaceElement("surface-button"));
-        
-        // Create Problem and Options
-        // let option1 = assert(new Option(givenOption1.label,
-        //                                 [givenOption1.amount, givenOption1.cost],
-        //                                 [ieOption1amt.name, ieOption1cost.name, ieOption1end.name, ieOption1radio.name]));
+        // Create Problem
+        assert(new Problem("twoLayers"));
 
-        // let option2 = assert(new Option(givenOption2.label,
-        //                                 [givenOption2.amount, givenOption2.cost],
-        //                                 [ieOption2amt.name, ieOption2cost.name, ieOption2end.name, ieOption2radio.name]));
+        // Step 1 diagram buttons
+        assert(new InterfaceElement(SUN));
+        assert(new InterfaceElement(LAYER2));
+        assert(new InterfaceElement(LAYER1));
+        assert(new InterfaceElement(SURFACE));
 
-        // assert(new Problem(unit,
-        //                    factor,
-        //                    multiple,
-        //                    moreBetter,
-        //                    [option1.name, option2.name],
-        //                    commonAmountIE.name));
+        // Step 1 all arrows
+        assert(new Arrow("arrow1", SUN, SURFACE, "S(1-α)/4" )); 
+        assert(new Arrow("arrow2", SURFACE, LAYER1, "σTs^4" )); 
+        assert(new Arrow("arrow3", LAYER1, SURFACE, "σT1^4" )); 
+        assert(new Arrow("arrow4", LAYER1, LAYER2, "σT1^4" )); 
+        assert(new Arrow("arrow5", LAYER2, LAYER1, "σT2^4" )); 
+        assert(new Arrow("arrow6", LAYER2, SUN, "σT2^4" )); 
+        assert(new InterfaceElement("arrow1-energy-combo-box"));
+        assert(new InterfaceElement("arrow2-energy-combo-box"));
+        assert(new InterfaceElement("arrow3-energy-combo-box"));
+        assert(new InterfaceElement("arrow4-energy-combo-box"));
+        assert(new InterfaceElement("arrow5-energy-combo-box"));
+        assert(new InterfaceElement("arrow6-energy-combo-box"));
 
+        assert(new TPA("arrow1", "SetVisible", false));
+        assert(new TPA("arrow1-energy-combo-box", "SetVisible", false));
 
+        // CTAT settings
         setProblemAttribute("use_backtracking", true);
         setProblemAttribute("prune_old_activations", true);
         // setProblemAttribute("substitute_input", true);
         halt();
     }
 }
+
+rule SelectTransferFromBody {
+    when {
+        p: Problem p.subgoal == "selectTransferBodies" && !p.selectedFromBody;
+        ie: InterfaceElement ie.name in diagramButtons {name: selection};
+    }
+    then {
+        if (checkSAI({selection: selection, action: "ButtonPressed", input: -1})) {
+            modify(p, "selectedFromBody", selection);
+            assert(new TPA(selection, "assignImage", getImageName(selection, true)));
+            halt();
+        } else {
+            backtrack();
+        }
+    }
+}
+
+// Problem: can't click on the same button twice, even after TPA unlock
+// rule UnselectTransferFromBody {
+//     when {
+//         p: Problem p.subgoal == "selectTransferBodies" && p.selectedFromBody {selectedFromBody: selection};
+//     }
+//     then {
+//         if (checkSAI({selection: selection, action: "ButtonPressed", input: -1})) {
+//             modify(p, "selectedFromBody", null);
+//             assert(new TPA(selection, "assignImage", getImageName(selection, false)));
+//             halt();
+//         } else {
+//             backtrack();
+//         }
+//     }
+// }
+
+rule SelectTransferToBody {
+    when {
+        p: Problem p.subgoal == "selectTransferBodies" && p.selectedFromBody
+            && !p.selectedToBody {selectedFromBody: fromBody};
+        ie: InterfaceElement ie.name in diagramButtons {name: selection};
+        arrow: Arrow arrow.fromBody == fromBody && arrow.toBody == selection
+            && !arrow.completed {toBody: toBody};
+    }
+    then {
+        if (checkSAI({selection: selection, action: "ButtonPressed", input: -1})) {
+            modify(p, "selectedToBody", selection);
+            modify(p, "subgoal", "enterArrowEnergy");
+            assert(new TPA(selection, "assignImage", getImageName(selection, true)));
+            assert(new TPA(arrow.name, "SetVisible", true));
+            assert(new TPA(arrow.ieEnergy, "SetVisible", true));
+            halt();
+        } else {
+            backtrack();
+        }
+    }
+}
+
+rule DuplicateSelectTransferToBody {
+    when {
+        p: Problem p.subgoal == "selectTransferBodies" && p.selectedFromBody
+            && !p.selectedToBody {selectedFromBody: fromBody};
+        ie: InterfaceElement ie.name in diagramButtons {name: selection};
+        arrow: Arrow arrow.fromBody == fromBody && arrow.toBody == selection
+            && arrow.completed {toBody: toBody};
+    }
+    then {
+        if (checkSAI({selection: selection, action: "ButtonPressed", input: -1})) {
+            // Reset selections
+            modify(p, "selectedFromBody", null);
+            assert(new TPA(fromBody, "assignImage", getImageName(fromBody, false)));
+            setSuccessOrBugMsg("This arrow is already done.");
+            assert(new TPA(fromBody, "unlock"));
+            console.log("unlock", fromBody);
+            assert(new TPA(selection, "unlock"));
+            console.log("unlock", selection);
+            // backtrack();
+            halt();
+        }
+    }
+}
+
+rule BuggySelectTransferToBody {
+    when {
+        p: Problem p.subgoal == "selectTransferBodies" && p.selectedFromBody {selectedFromBody: fromBody};
+        ie: InterfaceElement ie.name in diagramButtons {name: selection};
+        not(arrow: Arrow arrow.fromBody == fromBody && arrow.toBody == selection {toBody: toBody});
+    }
+    then {
+        if (checkSAI({selection: selection, action: "ButtonPressed", input: -1})) {
+            // Reset the "from" selection
+            modify(p, "selectedFromBody", null);
+            assert(new TPA(fromBody, "assignImage", getImageName(fromBody, false)));
+            setSuccessOrBugMsg("There's no energy transfer between " + fromBody + " and " + selection + " in this model.");
+            assert(new TPA(fromBody, "unlock"));
+            console.log("unlock", fromBody);
+            assert(new TPA(selection, "unlock"));
+            console.log("unlock", selection);
+            // backtrack();
+            halt();
+        }
+    }
+}
+
+rule EnterArrowEnergy {
+    when {
+        p: Problem p.subgoal == "enterArrowEnergy" && p.selectedFromBody
+            && selectedToBody {selectedFromBody: fromBody, selectedToBody: toBody};
+        arrow: Arrow arrow.fromBody == fromBody && arrow.toBody == toBody;
+        ie: InterfaceElement ie.name == arrow.ieEnergy {name: selection};
+    }
+    then {
+        if (checkSAI({selection: selection, action: "UpdateComboBox", input: arrow.energy})) {
+            modify(p, "subgoal", "selectTransferBodies");
+            modify(p, "selectedFromBody", null);
+            modify(p, "selectedToBody", null);
+            modify(arrow, "completed", true);
+            assert(new TPA(fromBody, "assignImage", getImageName(fromBody, false)));
+            assert(new TPA(toBody, "assignImage", getImageName(toBody, false)));
+            assert(new TPA(fromBody, "unlock"));
+            console.log("unlock", fromBody);
+            assert(new TPA(toBody, "unlock"));
+            console.log("unlock", toBody);
+            halt();
+        } else {
+            backtrack();
+        }
+    }
+}
+
+

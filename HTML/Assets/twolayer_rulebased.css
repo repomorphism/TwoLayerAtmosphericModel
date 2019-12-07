@@ -189,18 +189,18 @@ a.disabled {
   top: 84px;
 }
 
-#sun-button {
+#sun {
   position: absolute;
   background-image: url("sun-inactive.png");
   width: 537px;
   height: 58px;
 }
 
-#sun-button.CTAT-button--clicked {
+#sun.CTAT-button--clicked {
   background-image: url("sun-active.png");
 }
 
-#layer2-button {
+#layer2 {
   position: absolute;
   background-image: url("layer2-inactive.png");
   width: 537px;
@@ -208,11 +208,11 @@ a.disabled {
   top: 178px;
 }
 
-#layer2-button.CTAT-button--clicked {
+#layer2.CTAT-button--clicked {
   background-image: url("layer2-active.png");
 }
 
-#layer1-button {
+#layer1 {
   position: absolute;
   background-image: url("layer1-inactive.png");
   width: 537px;
@@ -220,20 +220,35 @@ a.disabled {
   top: 303px;
 }
 
-#layer1-button.CTAT-button--clicked {
+#layer1.CTAT-button--clicked {
   background-image: url("layer1-active.png");
 }
 
-#surface-button {
+#surface {
   position: absolute;
   background-image: url("surface-inactive.png");
   width: 537px;
   height: 73px;
-  top: 420px;
+  top: 428px;
 }
 
-#surface-button.CTAT-button--clicked {
+#surface.CTAT-button--clicked {
   background-image: url("surface-active.png");
+}
+
+#arrow1 {
+  position: absolute;
+  background-image: url("arrow1.png");
+  width: 16px;
+  height: 391px;
+  left: 70px;
+  top: 37px;
+}
+
+#arrow1-energy-combo-box {
+  position: absolute;
+  left: 84px;
+  top: 110px;
 }
 
 .ctat-pane {

@@ -1,1 +1,4 @@
 import("productionRules.nools");
+
+// global arrow1 = { bodies: ["sun", "surface"],
+//                   energy: "S(1-α)/4" };
