@@ -1,0 +1,40 @@
+
+define Problem {
+    name: null,
+    subgoal: null,
+    constructor: function(name) {
+        this.name = name;
+        this.subgoal = "";
+    }
+}
+
+define InterfaceElement {
+    name: null,
+    value: null,
+    constructor: function(n, v) {
+        this.name = n;
+        this.value = v;
+    }
+}
+
+define StudentValues {
+    selection: null,
+    action: null,
+    input: null,
+    constructor: function(s, a, i) {
+        this.selection = s;
+        this.action = a;
+        this.input = i;
+    }
+}
+
+define TPA {
+    selection: null,
+    action: null,
+    input: null,
+    constructor: function(s, a, i) {
+        this.selection = s;
+        this.action = a;
+        this.input = i;
+    }
+}

@@ -5,20 +5,13 @@ rule Bootstrap {
         bool : Boolean bool == false from false;
     }
     then {
-        console.log("*** bootstrap ***");
+        // Interface elements
+        let sunButton = assert(new InterfaceElement("sun-button"));
+        let layer2Button = assert(new InterfaceElement("layer2-button"));
+        let layer1Button = assert(new InterfaceElement("layer1-button"));
+        let surfaceButton = assert(new InterfaceElement("surface-button"));
         
-        // // interface elements first, may help with the order of the hints
-        // let ieOption1amt = assert(new TextInput("option1amt", ""));
-        // let ieOption1cost = assert(new TextInput("option1cost", ""));
-        // let ieOption1end = assert(new TextInput("option1end", ""));
-        // let ieOption1radio = assert(new RadioButton("option1radio", "option1radio: Option 1", null, "radioGroup"));
-        // let ieOption2amt = assert(new TextInput("option2amt", ""));
-        // let ieOption2cost = assert(new TextInput("option2cost", ""));
-        // let ieOption2end = assert(new TextInput("option2end", ""));
-        // let ieOption2radio = assert(new RadioButton("option2radio", "option2radio: Option 2", null, "radioGroup"));
-        // let commonAmountIE = assert(new TextInput("commonamt", ""));
-
-        // // create Problem and Options
+        // Create Problem and Options
         // let option1 = assert(new Option(givenOption1.label,
         //                                 [givenOption1.amount, givenOption1.cost],
         //                                 [ieOption1amt.name, ieOption1cost.name, ieOption1end.name, ieOption1radio.name]));
@@ -34,19 +27,10 @@ rule Bootstrap {
         //                    [option1.name, option2.name],
         //                    commonAmountIE.name));
 
-        // // set start state values in the interface
-        // assert(new TPA("problemstatement", "UpdateTextArea", probtxt));
-        // assert(new TPA("optionone", "UpdateTextArea", givenOption1.label));
-        // assert(new TPA("optiontwo", "UpdateTextArea", givenOption2.label));
-        // assert(new TPA("itemlabel", "UpdateTextArea", aLabel));
-        // assert(new TPA("costlabel", "UpdateTextArea", cLabel));
-        // assert(new TPA("questionone", "UpdateTextArea", q1));
-        // assert(new TPA("questiontwo", "UpdateTextArea", q2));
-        // assert(new TPA("questionthree", "UpdateTextArea", q3));
 
-        // setProblemAttribute("use_backtracking", true);
-        // setProblemAttribute("prune_old_activations", true);
-        // // setProblemAttribute("substitute_input", true);
+        setProblemAttribute("use_backtracking", true);
+        setProblemAttribute("prune_old_activations", true);
+        // setProblemAttribute("substitute_input", true);
         halt();
     }
 }
