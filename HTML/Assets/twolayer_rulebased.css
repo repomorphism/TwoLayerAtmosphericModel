@@ -1,6 +1,8 @@
 body {
-  padding-bottom: 520px;
-  padding-right: 520px;
+  /* padding-bottom: 540px;
+  padding-right: 250px; */
+  width: 1350px;
+  height: 1350px;
 }
 
 .header-title {
@@ -186,14 +188,29 @@ a.disabled {
   width: 537px;
   height: 493px;
   left: 30px;
-  top: 84px;
+  top: 43px;
+}
+
+#space {
+  position: absolute;
+  background-image: url("space-inactive.png");
+  width: 538px;
+  height: 113px;
+  left: 0px;
+  top: 0px;
+}
+
+#space.CTAT-button--clicked {
+  background-image: url("space-active.png");
 }
 
 #sun {
   position: absolute;
   background-image: url("sun-inactive.png");
-  width: 537px;
-  height: 58px;
+  width: 164px;
+  height: 138px;
+  left: 40.5px;
+  top: 3px;
 }
 
 #sun.CTAT-button--clicked {
@@ -205,7 +222,7 @@ a.disabled {
   background-image: url("layer2-inactive.png");
   width: 537px;
   height: 45px;
-  top: 178px;
+  top: 219px;
 }
 
 #layer2.CTAT-button--clicked {
@@ -217,7 +234,7 @@ a.disabled {
   background-image: url("layer1-inactive.png");
   width: 537px;
   height: 45px;
-  top: 303px;
+  top: 344px;
 }
 
 #layer1.CTAT-button--clicked {
@@ -229,7 +246,7 @@ a.disabled {
   background-image: url("surface-inactive.png");
   width: 537px;
   height: 73px;
-  top: 428px;
+  top: 469px;
 }
 
 #surface.CTAT-button--clicked {
@@ -240,15 +257,126 @@ a.disabled {
   position: absolute;
   background-image: url("arrow1.png");
   width: 16px;
-  height: 391px;
-  left: 70px;
-  top: 37px;
+  height: 343px;
+  left: 76px;
+  top: 126px;
 }
 
 #arrow1-energy-combo-box {
   position: absolute;
-  left: 84px;
-  top: 110px;
+  left: 90px;
+  top: 170px;
+}
+
+#arrow1-energy-textfield {
+  position: absolute;
+  left: 90px;
+  top: 170px;
+}
+
+#arrow2 {
+  position: absolute;
+  background-image: url("arrow2.png");
+  width: 16px;
+  height: 86px;
+  left: 183px;
+  top: 383px;
+}
+
+#arrow2-energy-combo-box {
+  position: absolute;
+  left: 196px;
+  top: 419px;
+}
+
+#arrow2-energy-textfield {
+  position: absolute;
+  left: 196px;
+  top: 419px;
+}
+
+#arrow3 {
+  position: absolute;
+  background-image: url("arrow3.png");
+  width: 16px;
+  height: 86px;
+  left: 298px;
+  top: 382px;
+}
+
+#arrow3-energy-combo-box {
+  position: absolute;
+  left: 311px;
+  top: 419px;
+}
+
+#arrow3-energy-textfield {
+  position: absolute;
+  left: 311px;
+  top: 419px;
+}
+
+#arrow4 {
+  position: absolute;
+  background-image: url("arrow4.png");
+  width: 16px;
+  height: 86px;
+  left: 298px;
+  top: 258px;
+}
+
+#arrow4-energy-combo-box {
+  position: absolute;
+  left: 311px;
+  top: 295px;
+}
+
+#arrow4-energy-textfield {
+  position: absolute;
+  left: 311px;
+  top: 295px;
+}
+
+#arrow5 {
+  position: absolute;
+  background-image: url("arrow5.png");
+  width: 16px;
+  height: 86px;
+  left: 412px;
+  top: 258px;
+}
+
+#arrow5-energy-combo-box {
+  position: absolute;
+  left: 425px;
+  top: 295px;
+}
+
+#arrow5-energy-textfield {
+  position: absolute;
+  left: 425px;
+  top: 295px;
+}
+
+#arrow6 {
+  position: absolute;
+  background-image: url("arrow6.png");
+  width: 16px;
+  height: 86px;
+  left: 412px;
+  top: 133px;
+}
+
+#arrow6-energy-combo-box {
+  position: absolute;
+  left: 425px;
+  top: 170px;
+}
+
+#arrow6-energy-textfield {
+  position: absolute;
+  left: 425px;
+  top: 170px;
 }
 
 .ctat-pane {

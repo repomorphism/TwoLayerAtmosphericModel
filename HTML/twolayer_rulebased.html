@@ -54,7 +54,6 @@
         // initTutor();
         // $('#problem-statement-part-1').on('CTAT_EXECUTE_SAI', function (e) {
         //     MathJax.Hub.Queue(['Typeset', MathJax.Hub, $('#problem-statement-part-1')[0]]);
-        //     console.log("aoeuaoeuaoeu");
         // });
       }
     </script>
@@ -135,6 +134,11 @@
       <p>Interactive diagram</p>
       <div class="diagram-graphic">
         <div
+          id="space"
+          data-ctat-show-feedback="false"
+          class="CTATImageButton"
+        ></div>
+        <div
           id="sun"
           data-ctat-show-feedback="false"
           class="CTATImageButton"
@@ -171,6 +175,192 @@
           <option>T2</option>
           <option>σT2^4</option>
         </div>
+        <div id="arrow1-energy-textfield" class="CTATTextField">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+              <mrow>
+                <mfrac linethickness="1">
+                  <mrow>
+                    <mi>S</mi>
+                    <mrow>
+                      <mo form="prefix">(</mo>
+                      <mn>1</mn>
+                      <mo>-</mo>
+                      <mi>&#x003B1;</mi>
+                      <mo form="postfix">)</mo>
+                    </mrow>
+                  </mrow>
+                  <mn>4</mn>
+                </mfrac>
+              </mrow>
+            </math>
+        </div>
+
+        <div
+          id="arrow2"
+          data-ctat-show-feedback="false"
+          data-ctat-enabled="false"
+          class="CTATImageButton"
+        ></div>
+        <div id="arrow2-energy-combo-box" class="CTATComboBox">
+          <option>Energy?</option>
+          <option>S</option>
+          <option>S(1-α)/4</option>
+          <option>Ts</option>
+          <option>σTs^4</option>
+          <option>T1</option>
+          <option>σT1^4</option>
+          <option>T2</option>
+          <option>σT2^4</option>
+        </div>
+        <div id="arrow2-energy-textfield" class="CTATTextField">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <mrow>
+              <mi>&#x003C3;</mi>
+              <msup>
+                <mrow>
+                  <msub>
+                    <mi>T</mi>
+                    <mi>S</mi>
+                  </msub>
+                </mrow>
+                <mn>4</mn>
+              </msup>
+            </mrow>
+          </math>
+        </div>
+        <div
+          id="arrow3"
+          data-ctat-show-feedback="false"
+          data-ctat-enabled="false"
+          class="CTATImageButton"
+        ></div>
+        <div id="arrow3-energy-combo-box" class="CTATComboBox">
+          <option>Energy?</option>
+          <option>S</option>
+          <option>S(1-α)/4</option>
+          <option>Ts</option>
+          <option>σTs^4</option>
+          <option>T1</option>
+          <option>σT1^4</option>
+          <option>T2</option>
+          <option>σT2^4</option>
+        </div>
+        <div id="arrow3-energy-textfield" class="CTATTextField">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <mrow>
+              <mi>&#x003C3;</mi>
+              <msup>
+                <mrow>
+                  <msub>
+                    <mi>T</mi>
+                    <mi>1</mi>
+                  </msub>
+                </mrow>
+                <mn>4</mn>
+              </msup>
+            </mrow>
+          </math>
+        </div>
+        <div
+          id="arrow4"
+          data-ctat-show-feedback="false"
+          data-ctat-enabled="false"
+          class="CTATImageButton"
+        ></div>
+        <div id="arrow4-energy-combo-box" class="CTATComboBox">
+          <option>Energy?</option>
+          <option>S</option>
+          <option>S(1-α)/4</option>
+          <option>Ts</option>
+          <option>σTs^4</option>
+          <option>T1</option>
+          <option>σT1^4</option>
+          <option>T2</option>
+          <option>σT2^4</option>
+        </div>
+        <div id="arrow4-energy-textfield" class="CTATTextField">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <mrow>
+              <mi>&#x003C3;</mi>
+              <msup>
+                <mrow>
+                  <msub>
+                    <mi>T</mi>
+                    <mi>1</mi>
+                  </msub>
+                </mrow>
+                <mn>4</mn>
+              </msup>
+            </mrow>
+          </math>
+        </div>
+        <div
+          id="arrow5"
+          data-ctat-show-feedback="false"
+          data-ctat-enabled="false"
+          class="CTATImageButton"
+        ></div>
+        <div id="arrow5-energy-combo-box" class="CTATComboBox">
+          <option>Energy?</option>
+          <option>S</option>
+          <option>S(1-α)/4</option>
+          <option>Ts</option>
+          <option>σTs^4</option>
+          <option>T1</option>
+          <option>σT1^4</option>
+          <option>T2</option>
+          <option>σT2^4</option>
+        </div>
+        <div id="arrow5-energy-textfield" class="CTATTextField">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <mrow>
+              <mi>&#x003C3;</mi>
+              <msup>
+                <mrow>
+                  <msub>
+                    <mi>T</mi>
+                    <mi>2</mi>
+                  </msub>
+                </mrow>
+                <mn>4</mn>
+              </msup>
+            </mrow>
+          </math>
+        </div>
+        <div
+          id="arrow6"
+          data-ctat-show-feedback="false"
+          data-ctat-enabled="false"
+          class="CTATImageButton"
+        ></div>
+        <div id="arrow6-energy-combo-box" class="CTATComboBox">
+          <option>Energy?</option>
+          <option>S</option>
+          <option>S(1-α)/4</option>
+          <option>Ts</option>
+          <option>σTs^4</option>
+          <option>T1</option>
+          <option>σT1^4</option>
+          <option>T2</option>
+          <option>σT2^4</option>
+        </div>
+        <div id="arrow6-energy-textfield" class="CTATTextField">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <mrow>
+              <mi>&#x003C3;</mi>
+              <msup>
+                <mrow>
+                  <msub>
+                    <mi>T</mi>
+                    <mi>2</mi>
+                  </msub>
+                </mrow>
+                <mn>4</mn>
+              </msup>
+            </mrow>
+          </math>
+        </div>
+      </div>
       </div>
     </section>
 

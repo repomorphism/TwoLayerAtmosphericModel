@@ -15,14 +15,16 @@ define Arrow {
     fromBody: null,
     toBody: null,
     energy: null,
-    ieEnergy: null,
+    ieEnergyBox: null,
+    ieEnergyText: null,
     completed: false,
     constructor: function(name, fromBody, toBody, energy) {
         this.name = name;
         this.fromBody = fromBody;
         this.toBody = toBody;
         this.energy = energy;
-        this.ieEnergy = name + "-energy-combo-box";
+        this.ieEnergyBox = name + "-energy-combo-box";
+        this.ieEnergyText = name + "-energy-textfield";
     }
 }
 

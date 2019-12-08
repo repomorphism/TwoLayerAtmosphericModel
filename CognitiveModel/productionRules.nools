@@ -2,12 +2,13 @@
 
 import("types.nools");
 
+global SPACE = "space";
 global SUN = "sun";
 global LAYER1 = "layer1";
 global LAYER2 = "layer2";
 global SURFACE = "surface";
 
-global diagramButtons = [SUN, LAYER1, LAYER2, SURFACE];
+global diagramButtons = [SUN, SPACE, LAYER1, LAYER2, SURFACE];
 
 function getImageName(label, active) {
     if (active) {
@@ -26,27 +27,28 @@ rule Bootstrap {
         assert(new Problem("twoLayers"));
 
         // Step 1 diagram buttons
+        assert(new InterfaceElement(SPACE));
         assert(new InterfaceElement(SUN));
         assert(new InterfaceElement(LAYER2));
         assert(new InterfaceElement(LAYER1));
         assert(new InterfaceElement(SURFACE));
 
         // Step 1 all arrows
-        assert(new Arrow("arrow1", SUN, SURFACE, "S(1-α)/4" )); 
-        assert(new Arrow("arrow2", SURFACE, LAYER1, "σTs^4" )); 
-        assert(new Arrow("arrow3", LAYER1, SURFACE, "σT1^4" )); 
-        assert(new Arrow("arrow4", LAYER1, LAYER2, "σT1^4" )); 
-        assert(new Arrow("arrow5", LAYER2, LAYER1, "σT2^4" )); 
-        assert(new Arrow("arrow6", LAYER2, SUN, "σT2^4" )); 
-        assert(new InterfaceElement("arrow1-energy-combo-box"));
-        assert(new InterfaceElement("arrow2-energy-combo-box"));
-        assert(new InterfaceElement("arrow3-energy-combo-box"));
-        assert(new InterfaceElement("arrow4-energy-combo-box"));
-        assert(new InterfaceElement("arrow5-energy-combo-box"));
-        assert(new InterfaceElement("arrow6-energy-combo-box"));
-
-        assert(new TPA("arrow1", "SetVisible", false));
-        assert(new TPA("arrow1-energy-combo-box", "SetVisible", false));
+        let arrows = [
+            assert(new Arrow("arrow1", SUN, SURFACE, "S(1-α)/4" )),
+            assert(new Arrow("arrow2", SURFACE, LAYER1, "σTs^4" )),
+            assert(new Arrow("arrow3", LAYER1, SURFACE, "σT1^4" )),
+            assert(new Arrow("arrow4", LAYER1, LAYER2, "σT1^4" )),
+            assert(new Arrow("arrow5", LAYER2, LAYER1, "σT2^4" )),
+            assert(new Arrow("arrow6", LAYER2, SPACE, "σT2^4" ))
+        ];
+        for (arrow of arrows) {
+            assert(new InterfaceElement(arrow.ieEnergyBox));
+            assert(new InterfaceElement(arrow.ieEnergyText));
+            assert(new TPA(arrow.name, "SetVisible", false));
+            assert(new TPA(arrow.ieEnergyBox, "SetVisible", false));
+            assert(new TPA(arrow.ieEnergyText, "SetVisible", false));
+        }
 
         // CTAT settings
         setProblemAttribute("use_backtracking", true);
@@ -72,7 +74,7 @@ rule SelectTransferFromBody {
     }
 }
 
-// Problem: can't click on the same button twice, even after TPA unlock
+// Problem: sometimes can't click on the same button twice, even using TPA unlock
 // rule UnselectTransferFromBody {
 //     when {
 //         p: Problem p.subgoal == "selectTransferBodies" && p.selectedFromBody {selectedFromBody: selection};
@@ -102,7 +104,7 @@ rule SelectTransferToBody {
             modify(p, "subgoal", "enterArrowEnergy");
             assert(new TPA(selection, "assignImage", getImageName(selection, true)));
             assert(new TPA(arrow.name, "SetVisible", true));
-            assert(new TPA(arrow.ieEnergy, "SetVisible", true));
+            assert(new TPA(arrow.ieEnergyBox, "SetVisible", true));
             halt();
         } else {
             backtrack();
@@ -125,9 +127,7 @@ rule DuplicateSelectTransferToBody {
             assert(new TPA(fromBody, "assignImage", getImageName(fromBody, false)));
             setSuccessOrBugMsg("This arrow is already done.");
             assert(new TPA(fromBody, "unlock"));
-            console.log("unlock", fromBody);
             assert(new TPA(selection, "unlock"));
-            console.log("unlock", selection);
             // backtrack();
             halt();
         }
@@ -147,9 +147,7 @@ rule BuggySelectTransferToBody {
             assert(new TPA(fromBody, "assignImage", getImageName(fromBody, false)));
             setSuccessOrBugMsg("There's no energy transfer between " + fromBody + " and " + selection + " in this model.");
             assert(new TPA(fromBody, "unlock"));
-            console.log("unlock", fromBody);
             assert(new TPA(selection, "unlock"));
-            console.log("unlock", selection);
             // backtrack();
             halt();
         }
@@ -161,7 +159,7 @@ rule EnterArrowEnergy {
         p: Problem p.subgoal == "enterArrowEnergy" && p.selectedFromBody
             && selectedToBody {selectedFromBody: fromBody, selectedToBody: toBody};
         arrow: Arrow arrow.fromBody == fromBody && arrow.toBody == toBody;
-        ie: InterfaceElement ie.name == arrow.ieEnergy {name: selection};
+        ie: InterfaceElement ie.name == arrow.ieEnergyBox {name: selection};
     }
     then {
         if (checkSAI({selection: selection, action: "UpdateComboBox", input: arrow.energy})) {
@@ -169,12 +167,12 @@ rule EnterArrowEnergy {
             modify(p, "selectedFromBody", null);
             modify(p, "selectedToBody", null);
             modify(arrow, "completed", true);
+            assert(new TPA(arrow.ieEnergyBox, "SetVisible", false));
+            assert(new TPA(arrow.ieEnergyText, "SetVisible", true));
             assert(new TPA(fromBody, "assignImage", getImageName(fromBody, false)));
             assert(new TPA(toBody, "assignImage", getImageName(toBody, false)));
             assert(new TPA(fromBody, "unlock"));
-            console.log("unlock", fromBody);
             assert(new TPA(toBody, "unlock"));
-            console.log("unlock", toBody);
             halt();
         } else {
             backtrack();
