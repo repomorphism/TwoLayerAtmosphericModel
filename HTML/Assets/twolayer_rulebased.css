@@ -163,6 +163,13 @@ a.disabled {
   opacity: 0.75;
 }
 
+.problem-tabs {
+  position: absolute;
+  width: 100%;
+  height: 691px;
+  top: 54px;
+}
+
 .twolayer-diagram {
   position: absolute;
   width: 593px;
@@ -431,4 +438,24 @@ a.disabled {
   flex-grow: 1;
   flex-basis: 0;
   /* margin-bottom: -10px; */
+}
+
+.step1-main {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.step1-main > p {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+#step1-finish {
+  position: absolute;
+  background-image: url("step1-finish.png");
+  width: 111px;
+  height: 38px;
+  left: 1000px;
+  top: 600px;
 }

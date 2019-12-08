@@ -141,7 +141,7 @@ rule BuggySelectTransferToBody {
         not(arrow: Arrow arrow.fromBody == fromBody && arrow.toBody == selection {toBody: toBody});
     }
     then {
-        if (checkSAI({selection: selection, action: "ButtonPressed", input: -1})) {
+        if (checkSAI({selection: selection, action: "ButtonPressed", input: -1}, null, true)) {
             // Reset the "from" selection
             modify(p, "selectedFromBody", null);
             assert(new TPA(fromBody, "assignImage", getImageName(fromBody, false)));
@@ -175,6 +175,33 @@ rule EnterArrowEnergy {
             assert(new TPA(toBody, "unlock"));
             halt();
         } else {
+            backtrack();
+        }
+    }
+}
+
+rule CompleteStep1 {
+    when {
+        p: Problem p.subgoal == "selectTransferBodies";
+        not(arrow: Arrow !arrow.completed);
+    }
+    then {
+        if (checkSAI({selection: "step1-finish", action: "ButtonPressed", input: -1})) {
+            setSuccessOrBugMsg("Great, you have identified all the energy transfers.");
+        } else {
+            backtrack();
+        }
+    }
+}
+
+rule BuggyCompleteStep1 {
+    when {
+        p: Problem p.subgoal == "selectTransferBodies";
+        arrow: Arrow !arrow.completed;
+    }
+    then {
+        if (checkSAI({selection: "step1-finish", action: "ButtonPressed", input: -1}, null, true)) {
+            setSuccessOrBugMsg("I'm sorry, but you haven't identified all the transfers.");
             backtrack();
         }
     }
