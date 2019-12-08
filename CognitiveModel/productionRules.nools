@@ -180,7 +180,7 @@ rule EnterArrowEnergy {
     }
 }
 
-rule CompleteStep1 {
+rule ConfirmIdentifiedAllTransfers {
     when {
         p: Problem p.subgoal == "selectTransferBodies";
         not(arrow: Arrow !arrow.completed);
@@ -194,7 +194,7 @@ rule CompleteStep1 {
     }
 }
 
-rule BuggyCompleteStep1 {
+rule BuggyConfirmIdentifiedAllTransfers {
     when {
         p: Problem p.subgoal == "selectTransferBodies";
         arrow: Arrow !arrow.completed;

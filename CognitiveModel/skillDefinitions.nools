@@ -1,0 +1,32 @@
+//  these counts ignore that each problem has its own count ... 
+
+global skill_definitions = [
+    {
+        ruleName: "SelectTransferToBody",
+        skillName: "IdentifyValidTransfer",
+        category: "skills",
+        opportunities: 6,
+        label: "Identify Valid Transfer"
+    },
+    {
+        ruleName: "EnterArrowEnergy",
+        skillName: "EnterArrowEnergy",
+        category: "skills",
+        opportunities: 6,
+        label: "Enter Arrow Energy"
+    },
+    {
+        ruleName: "ConfirmIdentifiedAllTransfers",
+        skillName: "IdentifyAllTransfers",
+        category: "skills",
+        opportunities: 1,
+        label: "Identify All Transfers"
+    },
+    {
+        ruleName: "BuggyConfirmIdentifiedAllTransfers",
+        skillName: "IdentifyAllTransfers",
+        category: "skills",
+        opportunities: 1,
+        label: "Identify All Transfers"
+    },
+];
