@@ -145,7 +145,7 @@ rule BuggySelectTransferToBody {
             // Reset the "from" selection
             modify(p, "selectedFromBody", null);
             assert(new TPA(fromBody, "assignImage", getImageName(fromBody, false)));
-            setSuccessOrBugMsg("There's no energy transfer between " + fromBody + " and " + selection + " in this model.");
+            setSuccessOrBugMsg("There's no energy transfer from " + fromBody + " to " + selection + " in this model.");
             assert(new TPA(fromBody, "unlock"));
             assert(new TPA(selection, "unlock"));
             // backtrack();
