@@ -35,16 +35,24 @@ function switchToTab(tabNumber) {
 }
 
 function setupStep2() {
-    for (element of diagramButtons) {
+    for (let element of diagramButtons) {
         assert(new TPA(element, "lock"));
+        $("#" + element).removeClass("step1");
     }
+    $(".arrow").addClass("arrow-step2");
+
+    assert(new TPA("control-volume-surface", "SetVisible", true));
+    assert(new TPA("control-volume-layer1", "SetVisible", true));
+    assert(new TPA("control-volume-layer2", "SetVisible", true));
 }
 
-// Debugging
-function fakeStep2(problem, arrows) {
+// For debugging
+function fakeCompleteStep1(problem, arrows) {
     modify(problem, "subgoal", "selectTransferBodies");
     for (arrow of arrows) {
         modify(arrow, "completed", true);
+        assert(new TPA(arrow.name, "SetVisible", true));
+        assert(new TPA(arrow.ieEnergyText, "SetVisible", true));
     }
 }
 
@@ -86,13 +94,18 @@ rule Bootstrap {
             assert(new TPA(arrow.ieEnergyText, "SetVisible", false));
         }
 
+        // Step 2 elements
+        assert(new TPA("control-volume-surface", "SetVisible", false));
+        assert(new TPA("control-volume-layer1", "SetVisible", false));
+        assert(new TPA("control-volume-layer2", "SetVisible", false));
+
         // CTAT settings
         setProblemAttribute("use_backtracking", true);
         setProblemAttribute("prune_old_activations", true);
         // setProblemAttribute("substitute_input", true);
 
         // Debug: skip steps
-        fakeStep2(problem, arrows);
+        fakeCompleteStep1(problem, arrows);
 
 
         switchToTab(1);
