@@ -18,13 +18,29 @@ function getImageName(label, active) {
     }
 }
 
+function switchToTab(tabNumber) {
+    for (let i = 1; i <= 3; i += 1) {
+        let labelName = ".tab-label.tab" + i;
+        let mainName = ".step" + i + "-main";
+        if (i == tabNumber) {
+            $(mainName).show();
+            $(labelName).removeClass("disabled");
+            $(".current-tab-bottombar").addClass("tab" + i);
+        } else {
+            $(mainName).hide();
+            $(labelName).addClass("disabled");
+            $(".current-tab-bottombar").removeClass("tab" + i);
+        }
+    }
+}
+
 rule Bootstrap {
     when {
         bool : Boolean bool == false from false;
     }
     then {
         // Create Problem
-        assert(new Problem("twoLayers"));
+        let problem = assert(new Problem("twoLayers"));
 
         // Step 1 diagram buttons
         assert(new InterfaceElement(SPACE));
@@ -32,6 +48,11 @@ rule Bootstrap {
         assert(new InterfaceElement(LAYER2));
         assert(new InterfaceElement(LAYER1));
         assert(new InterfaceElement(SURFACE));
+
+        // Step 1 other buttons
+        assert(new InterfaceElement("step1-finish"));
+        assert(new InterfaceElement("step1-go-to-step2"));
+        assert(new TPA("step1-go-to-step2", "SetVisible", false));
 
         // Step 1 all arrows
         let arrows = [
@@ -54,6 +75,13 @@ rule Bootstrap {
         setProblemAttribute("use_backtracking", true);
         setProblemAttribute("prune_old_activations", true);
         // setProblemAttribute("substitute_input", true);
+
+        // Debug: skip steps
+        modify(problem, "subgoal", "selectTransferBodies");
+        for (arrow of arrows) {
+            modify(arrow, "completed", true);
+        }
+
         halt();
     }
 }
@@ -188,6 +216,10 @@ rule ConfirmIdentifiedAllTransfers {
     then {
         if (checkSAI({selection: "step1-finish", action: "ButtonPressed", input: -1})) {
             setSuccessOrBugMsg("Great, you have identified all the energy transfers.");
+            modify(p, "subgoal", "goToStep2");
+            assert(new TPA("step1-finish", "SetVisible", false));
+            assert(new TPA("step1-go-to-step2", "SetVisible", true));
+            halt();
         } else {
             backtrack();
         }
@@ -202,6 +234,23 @@ rule BuggyConfirmIdentifiedAllTransfers {
     then {
         if (checkSAI({selection: "step1-finish", action: "ButtonPressed", input: -1}, null, true)) {
             setSuccessOrBugMsg("I'm sorry, but you haven't identified all the transfers.");
+            backtrack();
+        }
+    }
+}
+
+rule GoFromStep1ToStep2 {
+    when {
+        p: Problem p.subgoal == "goToStep2";
+    }
+    then {
+        if (checkSAI({selection: "step1-go-to-step2", action: "ButtonPressed", input: -1})) {
+            modify(p, "subgoal", "someStep2Subgoal");
+            // modify HTML
+            switchToTab(2);
+
+            halt();
+        } else {
             backtrack();
         }
     }

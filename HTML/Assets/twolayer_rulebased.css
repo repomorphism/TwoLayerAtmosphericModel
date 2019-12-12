@@ -111,7 +111,7 @@ p {
   /* background-color: aquamarine; */
 }
 
-a.tablink {
+.tab-label {
   position: absolute;
   width: 106.16px;
   height: 17.84px;
@@ -125,19 +125,19 @@ a.tablink {
   line-height: 19px;
 }
 
-a.tab1 {
+.tab-label.tab1 {
   left: 173.09px;
 }
 
-a.tab2 {
+.tab-label.tab2 {
   left: 549.27px;
 }
 
-a.tab3 {
+.tab-label.tab3 {
   left: 930.09px;
 }
 
-a.disabled {
+.tab-label.disabled {
   color: gray;
 }
 
@@ -151,6 +151,16 @@ a.disabled {
   background: #0681ff;
   border-radius: 3px;
   transform: matrix(1, 0, 0, -1, 0, 0);
+}
+
+.current-tab-bottombar.tab1 {
+  left: 102px;
+}
+.current-tab-bottombar.tab2 {
+  left: 478px;
+}
+.current-tab-bottombar.tab3 {
+  left: 859px;
 }
 
 .tabbar-bottom-border {
@@ -458,4 +468,13 @@ a.disabled {
   height: 38px;
   left: 1000px;
   top: 600px;
+}
+
+#step1-go-to-step2 {
+  position: absolute;
+  width: 111px;
+  height: 38px;
+  left: 1000px;
+  top: 600px;
+  background-color: blue;
 }
