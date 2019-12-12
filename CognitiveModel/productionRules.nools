@@ -8,9 +8,16 @@ global LAYER1 = "layer1";
 global LAYER2 = "layer2";
 global SURFACE = "surface";
 
-global diagramButtons = [SUN, SPACE, LAYER1, LAYER2, SURFACE];
+global DIAGRAM_BUTTONS = [SUN, SPACE, LAYER1, LAYER2, SURFACE];
 
-function getImageName(label, active) {
+global CV_SURFACE = "control-volume-surface";
+global CV_LAYER1 = "control-volume-layer1";
+global CV_LAYER2 = "control-volume-layer2";
+
+global CONTROL_VOLUMES = [CV_SURFACE, CV_LAYER1, CV_LAYER2];
+global ARROWS = ["arrow1", "arrow2", "arrow3", "arrow4", "arrow5", "arrow6"];
+
+function getBodyImageName(label, active) {
     if (active) {
         return "Assets/" + label + "-active.png";
     } else {
@@ -35,15 +42,31 @@ function switchToTab(tabNumber) {
 }
 
 function setupStep2() {
-    for (let element of diagramButtons) {
+    for (let element of DIAGRAM_BUTTONS) {
         assert(new TPA(element, "lock"));
         $("#" + element).removeClass("step1");
     }
     $(".arrow").addClass("arrow-step2");
 
-    assert(new TPA("control-volume-surface", "SetVisible", true));
-    assert(new TPA("control-volume-layer1", "SetVisible", true));
-    assert(new TPA("control-volume-layer2", "SetVisible", true));
+    assert(new TPA(CV_SURFACE, "SetVisible", true));
+    assert(new TPA(CV_LAYER1, "SetVisible", true));
+    assert(new TPA(CV_LAYER2, "SetVisible", true));
+}
+
+function setStep2ControlVolumesSelectable(selectable) {
+    if (selectable) {
+        $(".control-volume-box").addClass("selection-target");
+    } else {
+        $(".control-volume-box").removeClass("selection-target");
+    }
+}
+
+function setStep2ArrowsSelectable(selectable) {
+    if (selectable) {
+        $(".arrow").addClass("selection-target");
+    } else {
+        $(".arrow").removeClass("selection-target");
+    }
 }
 
 // For debugging
@@ -95,9 +118,12 @@ rule Bootstrap {
         }
 
         // Step 2 elements
-        assert(new TPA("control-volume-surface", "SetVisible", false));
-        assert(new TPA("control-volume-layer1", "SetVisible", false));
-        assert(new TPA("control-volume-layer2", "SetVisible", false));
+        assert(new ControlVolumeElement(CV_SURFACE));
+        assert(new ControlVolumeElement(CV_LAYER1));
+        assert(new ControlVolumeElement(CV_LAYER2));
+        assert(new TPA(CV_SURFACE, "SetVisible", false));
+        assert(new TPA(CV_LAYER1, "SetVisible", false));
+        assert(new TPA(CV_LAYER2, "SetVisible", false));
 
         // CTAT settings
         setProblemAttribute("use_backtracking", true);
@@ -105,7 +131,7 @@ rule Bootstrap {
         // setProblemAttribute("substitute_input", true);
 
         // Debug: skip steps
-        fakeCompleteStep1(problem, arrows);
+        // fakeCompleteStep1(problem, arrows);
 
 
         switchToTab(1);
@@ -114,15 +140,19 @@ rule Bootstrap {
     }
 }
 
+//////////////////////////
+//        Step 1        //
+//////////////////////////
+
 rule SelectTransferFromBody {
     when {
         p: Problem p.subgoal == "selectTransferBodies" && !p.selectedFromBody;
-        ie: InterfaceElement ie.name in diagramButtons {name: selection};
+        ie: InterfaceElement ie.name in DIAGRAM_BUTTONS {name: selection};
     }
     then {
         if (checkSAI({selection: selection, action: "ButtonPressed", input: -1})) {
             modify(p, "selectedFromBody", selection);
-            assert(new TPA(selection, "assignImage", getImageName(selection, true)));
+            assert(new TPA(selection, "assignImage", getBodyImageName(selection, true)));
             halt();
         } else {
             backtrack();
@@ -130,27 +160,11 @@ rule SelectTransferFromBody {
     }
 }
 
-// Problem: sometimes can't click on the same button twice, even using TPA unlock
-// rule UnselectTransferFromBody {
-//     when {
-//         p: Problem p.subgoal == "selectTransferBodies" && p.selectedFromBody {selectedFromBody: selection};
-//     }
-//     then {
-//         if (checkSAI({selection: selection, action: "ButtonPressed", input: -1})) {
-//             modify(p, "selectedFromBody", null);
-//             assert(new TPA(selection, "assignImage", getImageName(selection, false)));
-//             halt();
-//         } else {
-//             backtrack();
-//         }
-//     }
-// }
-
 rule SelectTransferToBody {
     when {
         p: Problem p.subgoal == "selectTransferBodies" && p.selectedFromBody
             && !p.selectedToBody {selectedFromBody: fromBody};
-        ie: InterfaceElement ie.name in diagramButtons {name: selection};
+        ie: InterfaceElement ie.name in DIAGRAM_BUTTONS {name: selection};
         arrow: Arrow arrow.fromBody == fromBody && arrow.toBody == selection
             && !arrow.completed {toBody: toBody};
     }
@@ -158,7 +172,7 @@ rule SelectTransferToBody {
         if (checkSAI({selection: selection, action: "ButtonPressed", input: -1})) {
             modify(p, "selectedToBody", selection);
             modify(p, "subgoal", "enterArrowEnergy");
-            assert(new TPA(selection, "assignImage", getImageName(selection, true)));
+            assert(new TPA(selection, "assignImage", getBodyImageName(selection, true)));
             assert(new TPA(arrow.name, "SetVisible", true));
             assert(new TPA(arrow.ieEnergyBox, "SetVisible", true));
             halt();
@@ -172,7 +186,7 @@ rule DuplicateSelectTransferToBody {
     when {
         p: Problem p.subgoal == "selectTransferBodies" && p.selectedFromBody
             && !p.selectedToBody {selectedFromBody: fromBody};
-        ie: InterfaceElement ie.name in diagramButtons {name: selection};
+        ie: InterfaceElement ie.name in DIAGRAM_BUTTONS {name: selection};
         arrow: Arrow arrow.fromBody == fromBody && arrow.toBody == selection
             && arrow.completed {toBody: toBody};
     }
@@ -180,7 +194,7 @@ rule DuplicateSelectTransferToBody {
         if (checkSAI({selection: selection, action: "ButtonPressed", input: -1})) {
             // Reset selections
             modify(p, "selectedFromBody", null);
-            assert(new TPA(fromBody, "assignImage", getImageName(fromBody, false)));
+            assert(new TPA(fromBody, "assignImage", getBodyImageName(fromBody, false)));
             setSuccessOrBugMsg("This arrow is already done.");
             assert(new TPA(fromBody, "unlock"));
             assert(new TPA(selection, "unlock"));
@@ -193,14 +207,14 @@ rule DuplicateSelectTransferToBody {
 rule BuggySelectTransferToBody {
     when {
         p: Problem p.subgoal == "selectTransferBodies" && p.selectedFromBody {selectedFromBody: fromBody};
-        ie: InterfaceElement ie.name in diagramButtons {name: selection};
+        ie: InterfaceElement ie.name in DIAGRAM_BUTTONS {name: selection};
         not(arrow: Arrow arrow.fromBody == fromBody && arrow.toBody == selection {toBody: toBody});
     }
     then {
         if (checkSAI({selection: selection, action: "ButtonPressed", input: -1}, null, true)) {
             // Reset the "from" selection
             modify(p, "selectedFromBody", null);
-            assert(new TPA(fromBody, "assignImage", getImageName(fromBody, false)));
+            assert(new TPA(fromBody, "assignImage", getBodyImageName(fromBody, false)));
             setSuccessOrBugMsg("There's no energy transfer from " + fromBody + " to " + selection + " in this model.");
             assert(new TPA(fromBody, "unlock"));
             assert(new TPA(selection, "unlock"));
@@ -225,8 +239,8 @@ rule EnterArrowEnergy {
             modify(arrow, "completed", true);
             assert(new TPA(arrow.ieEnergyBox, "SetVisible", false));
             assert(new TPA(arrow.ieEnergyText, "SetVisible", true));
-            assert(new TPA(fromBody, "assignImage", getImageName(fromBody, false)));
-            assert(new TPA(toBody, "assignImage", getImageName(toBody, false)));
+            assert(new TPA(fromBody, "assignImage", getBodyImageName(fromBody, false)));
+            assert(new TPA(toBody, "assignImage", getBodyImageName(toBody, false)));
             assert(new TPA(fromBody, "unlock"));
             assert(new TPA(toBody, "unlock"));
             halt();
@@ -267,13 +281,13 @@ rule BuggyConfirmIdentifiedAllTransfers {
     }
 }
 
-rule GoFromStep1ToStep2 {
+rule AdvanceFromStep1ToStep2 {
     when {
         p: Problem p.subgoal == "goToStep2";
     }
     then {
         if (checkSAI({selection: "step1-go-to-step2", action: "ButtonPressed", input: -1})) {
-            modify(p, "subgoal", "someStep2Subgoal");
+            modify(p, "subgoal", "selectControlVolume");
             // modify HTML
             switchToTab(2);
             setupStep2();
@@ -285,4 +299,28 @@ rule GoFromStep1ToStep2 {
     }
 }
 
+//////////////////////////
+//        Step 1        //
+//////////////////////////
+
+rule SelectControlVolume {
+    when {
+        p: Problem p.subgoal == "selectControlVolume" && !p.selectedControlVolume;
+        volume: ControlVolumeElement !volume.completed {name: selection};
+    }
+    then {
+        if (checkSAI({selection: selection, action: "ButtonPressed", input: -1})) {
+            modify(p, "selectedControlVolume", selection);
+            assert(new TPA(selection, "assignImage", "Assets/control-volume-box-active.png"));
+            // Put volume label in table, and allow selecting arrows
+
+            setStep2ControlVolumesSelectable(false);
+            setStep2ArrowsSelectable(true);
+
+            halt();
+        } else {
+            backtrack();
+        }
+    }
+}
 
