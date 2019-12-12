@@ -41,7 +41,7 @@
       async
     ></script>
 
-    <!-- <script src="Assets/steps.js"></script> -->
+    <script src="Assets/steps.js"></script>
 
     <script>
       var myVars = {
@@ -140,6 +140,23 @@
       </nav>
       <section class="twolayer-diagram">
         <p>Interactive diagram</p>
+        <div class="control-volumes">
+          <div
+            id="control-volume-layer2"
+            data-ctat-show-feedback="false"
+            class="CTATImageButton control-volume-box"
+          ></div>
+          <div
+            id="control-volume-layer1"
+            data-ctat-show-feedback="false"
+            class="CTATImageButton control-volume-box"
+          ></div>
+          <div
+            id="control-volume-surface"
+            data-ctat-show-feedback="false"
+            class="CTATImageButton control-volume-box"
+          ></div>
+        </div>
         <div id="sun-and-space">
           <div
             id="space"
@@ -371,7 +388,7 @@
         </div>
       </section>
       <section class="problem-tabs">
-        <article class="step1-main">
+        <article class="steps-main step1">
           <div>
             <p>
               Let's complete the diagram by identify all the heat transfers
@@ -379,13 +396,35 @@
               transfer arrows in the diagram.
             </p>
             <p>
-              (You may make an arrow by clicking on two of the shapes. Click
-              on the “That’s All” button if you think you have accounted for
-              all of the engery transfers.)
+              (You may make an arrow by clicking on two of the shapes. Click on
+              the “That’s All” button if you think you have accounted for all of
+              the engery transfers.)
             </p>
           </div>
           <div id="step1-finish" class="CTATImageButton"></div>
           <div id="step1-go-to-step2" class="CTATImageButton"></div>
+        </article>
+        <article class="steps-main step2">
+          <div>
+            <p>
+              Please try to complete the following table by clicking on the
+              dotted control volumes and arrows in the diagram.
+            </p>
+            <div class="step2-table">
+              <div class="step2-table-header">
+                <div class="step2-table-labels">
+                  <p>Control<br />Volume</p>
+                  <p>Energy<br />In</p>
+                  <p>Energy<br />Out</p>
+                </div>
+                <div class="step2-table-separators">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </article>
       </section>
     </section>

@@ -292,6 +292,15 @@ p {
   top: 166px;
 }
 
+#arrow1.arrow-step2 {
+  background-image: url("arrow1-step2-inactive.png");
+}
+
+#arrow1.CtAT-button--hover,
+#arrow1.CtAT-button--clicked {
+  background-image: url("arrow1-step2-active.png");
+}
+
 #arrow1-energy-combo-box,
 #arrow1-energy-textfield {
   position: absolute;
@@ -379,6 +388,30 @@ p {
   top: 255px;
 }
 
+.control-volumes {
+  position: absolute;
+  z-index: -2;
+  width: 532px;
+  height: 359px;
+  left: 31px;
+  top: 253px;
+}
+
+.control-volume-box {
+  position: absolute;
+  background-image: url("control-volume-box-inactive.png");
+  width: 532px;
+  height: 112px;
+}
+
+#control-volume-layer1 {
+  top: 117px;
+}
+
+#control-volume-surface {
+  top: 247px;
+}
+
 .ctat-pane {
   position: absolute;
   display: flex;
@@ -433,13 +466,13 @@ p {
   /* margin-bottom: -10px; */
 }
 
-.step1-main {
+.steps-main {
   position: absolute;
   width: 100%;
   height: 100%;
 }
 
-.step1-main div {
+.steps-main > div {
   position: absolute;
   width: 497px;
   top: 79px;
@@ -452,10 +485,7 @@ p {
   line-height: 21px;
 }
 
-.step1-main:first-child {
-}
-
-.step1-main div p:nth-child(2) {
+.steps-main.step1 div p:nth-child(2) {
   color: #979797;
 }
 
@@ -475,4 +505,69 @@ p {
   height: 38px;
   left: 1069px;
   top: 248px;
+}
+
+.step2-table {
+  display: flex;
+  flex-grow: 1;
+  margin-top: 44px;
+}
+
+.step2-table-header {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.step2-table-labels {
+  height: 48px;
+}
+
+.step2-table-labels > p {
+  position: absolute;
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: #001423;
+  margin: 0;
+}
+
+.step2-table-labels > p:nth-child(1) {
+  width: 89px;
+}
+
+.step2-table-labels > p:nth-child(2) {
+  left: 171px;
+}
+
+.step2-table-labels > p:nth-child(3) {
+  left: 364px;
+}
+
+.step2-table-separators {
+  height: 2px;
+}
+
+.step2-table-separators > div {
+  position: absolute;
+  height: 2px;
+  background: #0681ff;
+  border-radius: 3px;
+}
+
+.step2-table-separators > div:nth-child(1) {
+  width: 110px;
+}
+
+.step2-table-separators > div:nth-child(2) {
+  left: 119px;
+  width: 174px;
+}
+
+.step2-table-separators > div:nth-child(3) {
+  left: 317px;
+  width: 174px;
 }

@@ -21,7 +21,7 @@ function getImageName(label, active) {
 function switchToTab(tabNumber) {
     for (let i = 1; i <= 3; i += 1) {
         let labelName = ".tab-label.tab" + i;
-        let mainName = ".step" + i + "-main";
+        let mainName = ".steps-main.step" + i;
         if (i == tabNumber) {
             $(mainName).show();
             $(labelName).removeClass("disabled");
@@ -33,6 +33,21 @@ function switchToTab(tabNumber) {
         }
     }
 }
+
+function setupStep2() {
+    for (element of diagramButtons) {
+        assert(new TPA(element, "lock"));
+    }
+}
+
+// Debugging
+function fakeStep2(problem, arrows) {
+    modify(problem, "subgoal", "selectTransferBodies");
+    for (arrow of arrows) {
+        modify(arrow, "completed", true);
+    }
+}
+
 
 rule Bootstrap {
     when {
@@ -77,10 +92,10 @@ rule Bootstrap {
         // setProblemAttribute("substitute_input", true);
 
         // Debug: skip steps
-        // modify(problem, "subgoal", "selectTransferBodies");
-        // for (arrow of arrows) {
-        //     modify(arrow, "completed", true);
-        // }
+        fakeStep2(problem, arrows);
+
+
+        switchToTab(1);
 
         halt();
     }
@@ -248,6 +263,7 @@ rule GoFromStep1ToStep2 {
             modify(p, "subgoal", "someStep2Subgoal");
             // modify HTML
             switchToTab(2);
+            setupStep2();
 
             halt();
         } else {
