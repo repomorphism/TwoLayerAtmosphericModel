@@ -130,19 +130,28 @@
       </section>
     </section>
 
-    <section class="twolayer-diagram">
-      <p>Interactive diagram</p>
-      <div class="diagram-graphic">
-        <div
-          id="space"
-          data-ctat-show-feedback="false"
-          class="CTATImageButton"
-        ></div>
-        <div
-          id="sun"
-          data-ctat-show-feedback="false"
-          class="CTATImageButton"
-        ></div>
+    <section class="solution-pane">
+      <nav class="steps-tabbar">
+        <div class="tab-label tab1">Step 1</div>
+        <div class="tab-label disabled tab2">Step 2</div>
+        <div class="tab-label disabled tab3">Step 3</div>
+        <div class="current-tab-bottombar tab1"></div>
+        <div class="tabbar-bottom-border"></div>
+      </nav>
+      <section class="twolayer-diagram">
+        <p>Interactive diagram</p>
+        <div id="sun-and-space">
+          <div
+            id="space"
+            data-ctat-show-feedback="false"
+            class="CTATImageButton"
+          ></div>
+          <div
+            id="sun"
+            data-ctat-show-feedback="false"
+            class="CTATImageButton"
+          ></div>
+        </div>
         <div
           id="layer2"
           data-ctat-show-feedback="false"
@@ -162,7 +171,7 @@
           id="arrow1"
           data-ctat-show-feedback="false"
           data-ctat-enabled="false"
-          class="CTATImageButton"
+          class="CTATImageButton arrow"
         ></div>
         <div id="arrow1-energy-combo-box" class="CTATComboBox">
           <option>Energy?</option>
@@ -199,7 +208,7 @@
           id="arrow2"
           data-ctat-show-feedback="false"
           data-ctat-enabled="false"
-          class="CTATImageButton"
+          class="CTATImageButton arrow"
         ></div>
         <div id="arrow2-energy-combo-box" class="CTATComboBox">
           <option>Energy?</option>
@@ -232,7 +241,7 @@
           id="arrow3"
           data-ctat-show-feedback="false"
           data-ctat-enabled="false"
-          class="CTATImageButton"
+          class="CTATImageButton arrow"
         ></div>
         <div id="arrow3-energy-combo-box" class="CTATComboBox">
           <option>Energy?</option>
@@ -265,7 +274,7 @@
           id="arrow4"
           data-ctat-show-feedback="false"
           data-ctat-enabled="false"
-          class="CTATImageButton"
+          class="CTATImageButton arrow"
         ></div>
         <div id="arrow4-energy-combo-box" class="CTATComboBox">
           <option>Energy?</option>
@@ -298,7 +307,7 @@
           id="arrow5"
           data-ctat-show-feedback="false"
           data-ctat-enabled="false"
-          class="CTATImageButton"
+          class="CTATImageButton arrow"
         ></div>
         <div id="arrow5-energy-combo-box" class="CTATComboBox">
           <option>Energy?</option>
@@ -331,7 +340,7 @@
           id="arrow6"
           data-ctat-show-feedback="false"
           data-ctat-enabled="false"
-          class="CTATImageButton"
+          class="CTATImageButton arrow"
         ></div>
         <div id="arrow6-energy-combo-box" class="CTATComboBox">
           <option>Energy?</option>
@@ -360,23 +369,21 @@
             </mrow>
           </math>
         </div>
-      </div>
-    </section>
-
-    <section class="solution-pane">
-      <nav class="steps-tabbar">
-        <div class="tab-label tab1">Step 1</div>
-        <div class="tab-label disabled tab2">Step 2</div>
-        <div class="tab-label disabled tab3">Step 3</div>
-        <div class="current-tab-bottombar tab1"></div>
-        <div class="tabbar-bottom-border"></div>
-      </nav>
+      </section>
       <section class="problem-tabs">
         <article class="step1-main">
-          <p>
-            Let's complete the diagram by identifying all the heat transfers
-            between objects.
-          </p>
+          <div>
+            <p>
+              Let's complete the diagram by identify all the heat transfers
+              between objects. The goal is for you to mark all of the energy
+              transfer arrows in the diagram.
+            </p>
+            <p>
+              (You may make an arrow by clicking on two of the shapes. Click on
+              the “That’sAll” button if you think you have accountfor all of the
+              engery transfers.)
+            </p>
+          </div>
           <div id="step1-finish" class="CTATImageButton"></div>
           <div id="step1-go-to-step2" class="CTATImageButton"></div>
         </article>

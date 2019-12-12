@@ -177,71 +177,76 @@ p {
   position: absolute;
   width: 100%;
   height: 691px;
-  top: 54px;
+  /* top: 54px; */
 }
 
 .twolayer-diagram {
   position: absolute;
   width: 593px;
-  height: 603px;
-  left: 389px;
-  top: 530px;
+  height: 636px;
+  left: 19px;
+  top: 87px;
 
   z-index: 2;
-
   border: 1px solid #e8e8e8;
   border-radius: 4px;
 }
 
 .twolayer-diagram > p {
   position: absolute;
-  left: 19px;
-  top: 12px;
   margin: 0;
+  width: 178px;
+  height: 19px;
+  left: 49px;
+  top: 13px;
 }
 
-.diagram-graphic {
+#sun-and-space {
   position: absolute;
-  width: 537px;
-  height: 493px;
-  left: 30px;
-  top: 43px;
+  width: 495.78px;
+  height: 124.53px;
+  left: 49px;
+  top: 51px;
+}
+
+#sun {
+  background-image: url("sun-inactive.png");
+  position: absolute;
+  width: 144px;
+  height: 123px;
+  left: 37px;
+  top: 3px;
+}
+
+#sun.CTAT-button--hover,
+#sun.CTAT-button--clicked {
+  background-image: url("sun-active.png");
 }
 
 #space {
   position: absolute;
   background-image: url("space-inactive.png");
-  width: 538px;
-  height: 113px;
+  width: 498px;
+  height: 100px;
   left: 0px;
   top: 0px;
 }
 
+#space.CTAT-button--hover,
 #space.CTAT-button--clicked {
   background-image: url("space-active.png");
-}
-
-#sun {
-  position: absolute;
-  background-image: url("sun-inactive.png");
-  width: 164px;
-  height: 138px;
-  left: 40.5px;
-  top: 3px;
-}
-
-#sun.CTAT-button--clicked {
-  background-image: url("sun-active.png");
 }
 
 #layer2 {
   position: absolute;
   background-image: url("layer2-inactive.png");
-  width: 537px;
-  height: 45px;
-  top: 219px;
+  width: 498px;
+  height: 38px;
+  left: 49.46px;
+  top: 291.06px;
 }
 
+#layer2.CTAT-button--hover,
 #layer2.CTAT-button--clicked {
   background-image: url("layer2-active.png");
 }
@@ -249,11 +254,13 @@ p {
 #layer1 {
   position: absolute;
   background-image: url("layer1-inactive.png");
-  width: 537px;
-  height: 45px;
-  top: 344px;
+  width: 498px;
+  height: 38px;
+  left: 49.46px;
+  top: 408.1px;
 }
 
+#layer1.CTAT-button--hover,
 #layer1.CTAT-button--clicked {
   background-image: url("layer1-active.png");
 }
@@ -261,139 +268,115 @@ p {
 #surface {
   position: absolute;
   background-image: url("surface-inactive.png");
-  width: 537px;
-  height: 73px;
-  top: 469px;
+  width: 498px;
+  height: 63px;
+  left: 49.46px;
+  top: 525.14px;
 }
 
+#surface.CTAT-button--hover,
 #surface.CTAT-button--clicked {
   background-image: url("surface-active.png");
+}
+
+.arrow {
+  z-index: -1;
 }
 
 #arrow1 {
   position: absolute;
   background-image: url("arrow1.png");
-  width: 16px;
-  height: 343px;
-  left: 76px;
-  top: 126px;
+  width: 84px;
+  height: 365px;
+  left: 106px;
+  top: 166px;
 }
 
-#arrow1-energy-combo-box {
-  position: absolute;
-  left: 90px;
-  top: 170px;
-}
-
+#arrow1-energy-combo-box,
 #arrow1-energy-textfield {
   position: absolute;
-  left: 90px;
-  top: 170px;
+  left: 169px;
+  top: 221px;
 }
 
 #arrow2 {
   position: absolute;
   background-image: url("arrow2.png");
-  width: 16px;
-  height: 86px;
-  left: 183px;
-  top: 383px;
+  width: 77px;
+  height: 85px;
+  left: 197px;
+  top: 440px;
 }
 
-#arrow2-energy-combo-box {
-  position: absolute;
-  left: 196px;
-  top: 419px;
-}
-
+#arrow2-energy-combo-box,
 #arrow2-energy-textfield {
   position: absolute;
-  left: 196px;
-  top: 419px;
+  left: 257px;
+  top: 485px;
 }
 
 #arrow3 {
   position: absolute;
   background-image: url("arrow3.png");
-  width: 16px;
-  height: 86px;
-  left: 298px;
-  top: 382px;
+  width: 77px;
+  height: 85px;
+  left: 320px;
+  top: 444px;
 }
 
-#arrow3-energy-combo-box {
-  position: absolute;
-  left: 311px;
-  top: 419px;
-}
-
+#arrow3-energy-combo-box,
 #arrow3-energy-textfield {
   position: absolute;
-  left: 311px;
-  top: 419px;
+  left: 379px;
+  top: 465px;
 }
 
 #arrow4 {
   position: absolute;
   background-image: url("arrow4.png");
-  width: 16px;
-  height: 86px;
-  left: 298px;
-  top: 258px;
+  width: 77px;
+  height: 85px;
+  left: 320px;
+  top: 323px;
 }
 
-#arrow4-energy-combo-box {
-  position: absolute;
-  left: 311px;
-  top: 295px;
-}
-
+#arrow4-energy-combo-box,
 #arrow4-energy-textfield {
   position: absolute;
-  left: 311px;
-  top: 295px;
+  left: 379px;
+  top: 373px;
 }
 
 #arrow5 {
   position: absolute;
   background-image: url("arrow5.png");
-  width: 16px;
-  height: 86px;
-  left: 412px;
-  top: 258px;
+  width: 77px;
+  height: 85px;
+  left: 446px;
+  top: 327px;
 }
 
-#arrow5-energy-combo-box {
-  position: absolute;
-  left: 425px;
-  top: 295px;
-}
-
+#arrow5-energy-combo-box,
 #arrow5-energy-textfield {
   position: absolute;
-  left: 425px;
-  top: 295px;
+  left: 505px;
+  top: 342px;
 }
 
 #arrow6 {
   position: absolute;
   background-image: url("arrow6.png");
-  width: 16px;
-  height: 86px;
-  left: 412px;
-  top: 133px;
+  width: 77px;
+  height: 85px;
+  left: 446px;
+  top: 206px;
 }
 
-#arrow6-energy-combo-box {
-  position: absolute;
-  left: 425px;
-  top: 170px;
-}
-
+#arrow6-energy-combo-box,
 #arrow6-energy-textfield {
   position: absolute;
-  left: 425px;
-  top: 170px;
+  left: 505px;
+  top: 255px;
 }
 
 .ctat-pane {
@@ -456,25 +439,40 @@ p {
   height: 100%;
 }
 
-.step1-main > p {
-  margin-top: 20px;
-  margin-left: 20px;
+.step1-main div {
+  position: absolute;
+  width: 497px;
+  top: 79px;
+  left: 676px;
+
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 21px;
+}
+
+.step1-main:first-child {
+}
+
+.step1-main div p:nth-child(2) {
+  color: #979797;
 }
 
 #step1-finish {
-  position: absolute;
   background-image: url("step1-finish.png");
+  position: absolute;
   width: 111px;
   height: 38px;
-  left: 1000px;
-  top: 600px;
+  left: 1069px;
+  top: 248px;
 }
 
 #step1-go-to-step2 {
+  background-image: url("step1-go-to-step2.png");
   position: absolute;
   width: 111px;
   height: 38px;
-  left: 1000px;
-  top: 600px;
-  background-color: blue;
+  left: 1069px;
+  top: 248px;
 }

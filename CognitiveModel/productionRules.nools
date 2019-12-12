@@ -77,10 +77,10 @@ rule Bootstrap {
         // setProblemAttribute("substitute_input", true);
 
         // Debug: skip steps
-        modify(problem, "subgoal", "selectTransferBodies");
-        for (arrow of arrows) {
-            modify(arrow, "completed", true);
-        }
+        // modify(problem, "subgoal", "selectTransferBodies");
+        // for (arrow of arrows) {
+        //     modify(arrow, "completed", true);
+        // }
 
         halt();
     }
