@@ -311,8 +311,10 @@ rule SelectControlVolume {
     then {
         if (checkSAI({selection: selection, action: "ButtonPressed", input: -1})) {
             modify(p, "selectedControlVolume", selection);
+            modify(p, "subgoal", "selectInAndOutArrows");
             assert(new TPA(selection, "assignImage", "Assets/control-volume-box-active.png"));
-            // Put volume label in table, and allow selecting arrows
+
+            // Put volume label in table
 
             setStep2ControlVolumesSelectable(false);
             setStep2ArrowsSelectable(true);

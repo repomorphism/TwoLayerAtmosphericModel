@@ -138,9 +138,9 @@
         <div class="current-tab-bottombar tab1"></div>
         <div class="tabbar-bottom-border"></div>
       </nav>
-      <section class="twolayer-diagram">
+      <section id="twolayer-diagram">
         <p>Interactive diagram</p>
-        <div class="control-volumes">
+        <div id="control-volumes">
           <div
             id="control-volume-layer2"
             data-ctat-show-feedback="false"
@@ -410,18 +410,23 @@
               Please try to complete the following table by clicking on the
               dotted control volumes and arrows in the diagram.
             </p>
-            <div class="step2-table">
-              <div class="step2-table-header">
-                <div class="step2-table-labels">
-                  <p>Control<br />Volume</p>
-                  <p>Energy<br />In</p>
-                  <p>Energy<br />Out</p>
-                </div>
-                <div class="step2-table-separators">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </div>
+            <div id="step2-table">
+              <div id="step2-table-labels">
+                <p>Control<br />Volume</p>
+                <p>Energy<br />In</p>
+                <p>Energy<br />Out</p>
+              </div>
+              <div id="step2-table-separators">
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              <div id="step2-table-rows">
+                <div></div>
+              </div>
+              <div id="step2-table-buttons">
+                <div id="add-equation" class="CTATImageButton"></div>
+                <div id="solve-equations" class="CTATImageButton"></div>
               </div>
             </div>
           </div>

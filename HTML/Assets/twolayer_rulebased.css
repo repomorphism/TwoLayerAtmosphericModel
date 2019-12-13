@@ -180,7 +180,7 @@ p {
   /* top: 54px; */
 }
 
-.twolayer-diagram {
+#twolayer-diagram {
   position: absolute;
   width: 593px;
   height: 636px;
@@ -192,7 +192,7 @@ p {
   border-radius: 4px;
 }
 
-.twolayer-diagram > p {
+#twolayer-diagram > p {
   position: absolute;
   margin: 0;
   width: 178px;
@@ -433,7 +433,7 @@ p {
   top: 255px;
 }
 
-.control-volumes {
+#control-volumes {
   position: absolute;
   z-index: -2;
   width: 532px;
@@ -561,23 +561,18 @@ p {
   top: 248px;
 }
 
-.step2-table {
+#step2-table {
   display: flex;
+  flex-direction: column;
   flex-grow: 1;
   margin-top: 44px;
 }
 
-.step2-table-header {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-.step2-table-labels {
+#step2-table-labels {
   height: 48px;
 }
 
-.step2-table-labels > p {
+#step2-table-labels > p {
   position: absolute;
   font-family: Rubik;
   font-style: normal;
@@ -589,39 +584,68 @@ p {
   margin: 0;
 }
 
-.step2-table-labels > p:nth-child(1) {
+#step2-table-labels > p:nth-child(1) {
   width: 89px;
 }
 
-.step2-table-labels > p:nth-child(2) {
+#step2-table-labels > p:nth-child(2) {
   left: 171px;
 }
 
-.step2-table-labels > p:nth-child(3) {
+#step2-table-labels > p:nth-child(3) {
   left: 364px;
 }
 
-.step2-table-separators {
+#step2-table-separators {
   height: 2px;
 }
 
-.step2-table-separators > div {
+#step2-table-separators > div {
   position: absolute;
   height: 2px;
   background: #0681ff;
   border-radius: 3px;
 }
 
-.step2-table-separators > div:nth-child(1) {
+#step2-table-separators > div:nth-child(1) {
   width: 110px;
 }
 
-.step2-table-separators > div:nth-child(2) {
+#step2-table-separators > div:nth-child(2) {
   left: 119px;
   width: 174px;
 }
 
-.step2-table-separators > div:nth-child(3) {
+#step2-table-separators > div:nth-child(3) {
   left: 317px;
   width: 174px;
+}
+
+#step2-table-rows {
+}
+
+.step2-table-row {
+}
+
+#step2-table-buttons {
+  display: flex;
+  height: 38px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+#step2-table-buttons > .CTATImageButton {
+  margin: 0px 8px 0px 8px;
+}
+
+#add-equation {
+  background-image: url("step2-add-more.png");
+  width: 111px;
+  height: 38px;
+}
+
+#solve-equations {
+  background-image: url("step2-solve.png");
+  width: 111px;
+  height: 38px;
 }
