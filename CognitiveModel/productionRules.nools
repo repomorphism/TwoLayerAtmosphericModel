@@ -72,6 +72,57 @@ function setStep2ArrowsSelectable(selectable) {
     }
 }
 
+// Render in & out MathML
+function renderEquations(arrows, equation) {
+    let inEquation = "<math xmlns=\"http:\/\/www.w3.org\/1998\/Math\/MathML\"><mrow>";
+    let outEquation = "<math xmlns=\"http:\/\/www.w3.org\/1998\/Math\/MathML\"><mrow>";
+
+    let componentDictionary = {
+        "arrow1" : "<mfrac linethickness=\"1\"><mrow><mi>S</mi><mrow><mo form=\"prefix\">(</mo><mn>1</mn><mo>-</mo><mi>&#x003B1;</mi><mo form=\"postfix\">)</mo></mrow></mrow><mn>4</mn></mfrac>",
+        "arrow2" : "<mi>&#x003C3;</mi><msup><mrow><msub><mi>T</mi><mi>S</mi></msub></mrow><mn>4</mn></msup>",
+        "arrow3" : "<mi>&#x003C3;</mi><msup><mrow><msub><mi>T</mi><mi>1</mi></msub></mrow><mn>4</mn></msup>",
+        "arrow4" : "<mi>&#x003C3;</mi><msup><mrow><msub><mi>T</mi><mi>1</mi></msub></mrow><mn>4</mn></msup>",
+        "arrow5" : "<mi>&#x003C3;</mi><msup><mrow><msub><mi>T</mi><mi>2</mi></msub></mrow><mn>4</mn></msup>",
+        "arrow6" : "<mi>&#x003C3;</mi><msup><mrow><msub><mi>T</mi><mi>2</mi></msub></mrow><mn>4</mn></msup>",
+    };
+
+    let inComponents = [];
+    let outComponents = [];
+    for (let arrow of arrows) {
+        if (equation.inArrows.includes(arrow)) {
+            inComponents.push(componentDictionary[arrow]);
+        }
+        if (equation.outArrows.includes(arrow)) {
+            outComponents.push(componentDictionary[arrow]);
+        }
+    }
+
+    if (inComponents.length > 0) {
+        inEquation += inComponents[0];
+        if (inComponents.length == 2) {
+            inEquation += "<mo>+</mo>";
+            inEquation += inComponents[1];
+        }
+    }
+
+    if (outComponents.length > 0) {
+        outEquation += outComponents[0];
+        if (outComponents.length == 2) {
+            outEquation += "<mo>+</mo>";
+            outEquation += outComponents[1];
+        }
+    }
+
+    inEquation += "</mrow></math>";
+    outEquation += "</mrow></math>";
+
+    console.log(inEquation);
+    console.log(outEquation);
+    
+
+    return [inEquation, outEquation];
+}
+
 // For debugging
 function fakeCompleteStep1(problem, arrows) {
     modify(problem, "subgoal", "selectTransferBodies");
@@ -364,13 +415,13 @@ rule SelectArrowForControlVolume {
             arrows.push(selection);
             modify(p, "currentSelectedArrows", arrows);
 
-            console.log(arrows.length);
-            console.log(equation.allArrows.length);
-            
-
             if (arrows.length == equation.allArrows.length) {
                 modify(volume, "completed", true);
             }
+
+            let [inEquation, outEquation] = renderEquations(arrows, equation);
+            assert(new TPA("table-row-energy-in-1", "UpdateTextField", inEquation));
+            assert(new TPA("table-row-energy-out-1", "UpdateTextField", outEquation));
 
             halt();
         } else {
