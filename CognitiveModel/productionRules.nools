@@ -47,6 +47,9 @@ function setupStep2() {
         $("#" + element).removeClass("step1");
     }
     $(".arrow").addClass("arrow-step2");
+    for (let arrow of ARROWS) {
+        assert(new TPA(arrow, "unlock"));
+    }
 
     assert(new TPA(CV_SURFACE, "SetVisible", true));
     assert(new TPA(CV_LAYER1, "SetVisible", true));
@@ -116,6 +119,13 @@ rule Bootstrap {
             assert(new TPA(arrow.ieEnergyBox, "SetVisible", false));
             assert(new TPA(arrow.ieEnergyText, "SetVisible", false));
         }
+
+        // Step 2 all equations
+        let equations = [
+            assert(new BalanceEquation(CV_SURFACE, ["arrow1", "arrow3"], ["arrow2"])),
+            assert(new BalanceEquation(CV_LAYER1, ["arrow2", "arrow5"], ["arrow3", "arrow4"])),
+            assert(new BalanceEquation(CV_LAYER2, ["arrow4"], ["arrow5", "arrow6"]))
+        ];
 
         // Step 2 elements
         assert(new ControlVolumeElement(CV_SURFACE));
@@ -320,15 +330,47 @@ rule SelectControlVolume {
             $(".step2-table-row").removeClass("hidden-row");
 
             // Put volume label in table
-            let labelTextDictionary = {
-                "control-volume-layer1" : "Layer 1",
-                "control-volume-layer2" : "Layer 2",
-                "control-volume-surface" : "Surface"
-            };
-            assert(new TPA("table-row-label-1", "UpdateTextField", labelTextDictionary[selection]));
+            let rowLabel = {
+                [CV_LAYER1] : "Layer 1",
+                [CV_LAYER2] : "Layer 2",
+                [CV_SURFACE] : "Surface"
+            }[selection];
+
+            assert(new TPA("table-row-label-1", "UpdateTextField", rowLabel));
 
             setStep2ControlVolumesSelectable(false);
             setStep2ArrowsSelectable(true);
+
+            halt();
+        } else {
+            backtrack();
+        }
+    }
+}
+
+rule SelectArrowForControlVolume {
+    when {
+        p: Problem p.subgoal == "selectInAndOutArrows" && p.selectedControlVolume;
+        volume: ControlVolumeElement volume.name == p.selectedControlVolume &&
+            !volume.completed;
+        equation: BalanceEquation equation.name == volume.name;
+        arrow: Arrow arrow.name in equation.allArrows {name: selection};
+    }
+    then {
+        if (checkSAI({selection: selection, action: "ButtonPressed", input: -1})) {
+            assert(new TPA(selection, "assignImage", "Assets/" + selection + ".png"));
+            // check if this volume is completed, set it if so
+            let arrows = p.currentSelectedArrows.slice();
+            arrows.push(selection);
+            modify(p, "currentSelectedArrows", arrows);
+
+            console.log(arrows.length);
+            console.log(equation.allArrows.length);
+            
+
+            if (arrows.length == equation.allArrows.length) {
+                modify(volume, "completed", true);
+            }
 
             halt();
         } else {

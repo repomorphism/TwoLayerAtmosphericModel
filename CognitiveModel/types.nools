@@ -6,6 +6,7 @@ define Problem {
     selectedToBody: null,
     selectedControlVolume: null,
     currentEquationRow: null,
+    currentSelectedArrows: [],
     constructor: function(name) {
         this.name = name;
         this.subgoal = "selectTransferBodies";
@@ -27,6 +28,19 @@ define Arrow {
         this.energy = energy;
         this.ieEnergyBox = name + "-energy-combo-box";
         this.ieEnergyText = name + "-energy-textfield";
+    }
+}
+
+define BalanceEquation {
+    name: null,
+    inArrows: [],
+    outArrows: [],
+    allArrows: [],
+    constructor: function(name, inArrows, outArrows) {
+        this.name = name;
+        this.inArrows = inArrows;
+        this.outArrows = outArrows;
+        this.allArrows = inArrows.concat(outArrows);
     }
 }
 
