@@ -300,7 +300,7 @@ rule AdvanceFromStep1ToStep2 {
 }
 
 //////////////////////////
-//        Step 1        //
+//        Step 2        //
 //////////////////////////
 
 rule SelectControlVolume {
@@ -316,7 +316,16 @@ rule SelectControlVolume {
 
             assert(new TPA(selection, "assignImage", "Assets/control-volume-box-active.png"));
 
+            // Show row
+            $(".step2-table-row").removeClass("hidden-row");
+
             // Put volume label in table
+            let labelTextDictionary = {
+                "control-volume-layer1" : "Layer 1",
+                "control-volume-layer2" : "Layer 2",
+                "control-volume-surface" : "Surface"
+            };
+            assert(new TPA("table-row-label-1", "UpdateTextField", labelTextDictionary[selection]));
 
             setStep2ControlVolumesSelectable(false);
             setStep2ArrowsSelectable(true);

@@ -632,6 +632,10 @@ p {
   height: 62px;
 }
 
+.step2-table-row.hidden-row {
+  display: none;
+}
+
 .step2-table-row > div {
   text-align: center;
 }
@@ -642,11 +646,11 @@ p {
   font-weight: normal;
   font-size: 16px;
 
-  width: 120px;
+  width: 110px;
 }
 
 .table-row-energy-in {
-  width: 172px;
+  width: 182px;
 }
 
 .table-row-equal-sign {
