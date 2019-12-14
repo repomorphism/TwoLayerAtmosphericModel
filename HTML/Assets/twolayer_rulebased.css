@@ -621,10 +621,41 @@ p {
   width: 174px;
 }
 
-#step2-table-rows {
-}
+/* #step2-table-rows {
+  display: flex;
+} */
 
 .step2-table-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 62px;
+}
+
+.step2-table-row > div {
+  text-align: center;
+}
+
+.table-row-label {
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+
+  width: 120px;
+}
+
+.table-row-energy-in {
+  width: 172px;
+}
+
+.table-row-equal-sign {
+  width: 20px;
+  text-align: center;
+}
+
+.table-row-energy-out {
+  width: 180px;
 }
 
 #step2-table-buttons {

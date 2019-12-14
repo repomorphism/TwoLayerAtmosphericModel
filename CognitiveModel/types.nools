@@ -5,6 +5,7 @@ define Problem {
     selectedFromBody: null,
     selectedToBody: null,
     selectedControlVolume: null,
+    currentEquationRow: null,
     constructor: function(name) {
         this.name = name;
         this.subgoal = "selectTransferBodies";

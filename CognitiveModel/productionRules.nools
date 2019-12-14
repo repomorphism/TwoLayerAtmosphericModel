@@ -312,6 +312,8 @@ rule SelectControlVolume {
         if (checkSAI({selection: selection, action: "ButtonPressed", input: -1})) {
             modify(p, "selectedControlVolume", selection);
             modify(p, "subgoal", "selectInAndOutArrows");
+            modify(p, "currentEquationRow", 1);
+
             assert(new TPA(selection, "assignImage", "Assets/control-volume-box-active.png"));
 
             // Put volume label in table
