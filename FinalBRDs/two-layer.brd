@@ -1296,6 +1296,14 @@
             <y>9893</y>
         </dimension>
     </node>
+    <node locked="false" doneState="false">
+        <text>state177</text>
+        <uniqueID>178</uniqueID>
+        <dimension>
+            <x>84</x>
+            <y>2105</y>
+        </dimension>
+    </node>
     <edge>
         <actionLabel preferPathMark="true" minTraversals="1" maxTraversals="1">
             <studentHintRequest></studentHintRequest>
@@ -1469,7 +1477,7 @@
         </actionLabel>
         <preCheckedStatus>No-Applicable</preCheckedStatus>
         <rule>
-            <text>unnamed</text>
+            <text>MeaningOfTheVariables IdentifyAllTheEnergyTransfer</text>
             <indicator>-1</indicator>
         </rule>
         <sourceID>15</sourceID>
@@ -1829,7 +1837,7 @@
         </actionLabel>
         <preCheckedStatus>No-Applicable</preCheckedStatus>
         <rule>
-            <text>unnamed</text>
+            <text>MeaningOfTheVariables IdentifyAllTheEnergyTransfer</text>
             <indicator>-1</indicator>
         </rule>
         <sourceID>14</sourceID>
@@ -1949,7 +1957,7 @@
         </actionLabel>
         <preCheckedStatus>No-Applicable</preCheckedStatus>
         <rule>
-            <text>unnamed</text>
+            <text>MeaningOfTheVariables IdentifyAllTheEnergyTransfer</text>
             <indicator>-1</indicator>
         </rule>
         <sourceID>4</sourceID>
@@ -2069,7 +2077,7 @@
         </actionLabel>
         <preCheckedStatus>No-Applicable</preCheckedStatus>
         <rule>
-            <text>unnamed</text>
+            <text>MeaningOfTheVariables IdentifyAllTheEnergyTransfer</text>
             <indicator>-1</indicator>
         </rule>
         <sourceID>5</sourceID>
@@ -2189,7 +2197,7 @@
         </actionLabel>
         <preCheckedStatus>No-Applicable</preCheckedStatus>
         <rule>
-            <text>unnamed</text>
+            <text>MeaningOfTheVariables IdentifyAllTheEnergyTransfer</text>
             <indicator>-1</indicator>
         </rule>
         <sourceID>6</sourceID>
@@ -2309,7 +2317,7 @@
         </actionLabel>
         <preCheckedStatus>No-Applicable</preCheckedStatus>
         <rule>
-            <text>unnamed</text>
+            <text>MeaningOfTheVariables IdentifyAllTheEnergyTransfer</text>
             <indicator>-1</indicator>
         </rule>
         <sourceID>7</sourceID>
@@ -2669,7 +2677,7 @@
         </actionLabel>
         <preCheckedStatus>No-Applicable</preCheckedStatus>
         <rule>
-            <text>unnamed</text>
+            <text>EnergyIn=EnergyOut EnergyIn=EnergyOut</text>
             <indicator>-1</indicator>
         </rule>
         <sourceID>35</sourceID>
@@ -2789,7 +2797,7 @@
         </actionLabel>
         <preCheckedStatus>No-Applicable</preCheckedStatus>
         <rule>
-            <text>unnamed</text>
+            <text>MeaningOfTheVariables EnergyIn=EnergyOut</text>
             <indicator>-1</indicator>
         </rule>
         <sourceID>31</sourceID>
@@ -2849,7 +2857,7 @@
         </actionLabel>
         <preCheckedStatus>No-Applicable</preCheckedStatus>
         <rule>
-            <text>unnamed</text>
+            <text>EnergyIn=EnergyOut EnergyIn=EnergyOut</text>
             <indicator>-1</indicator>
         </rule>
         <sourceID>39</sourceID>
@@ -2969,7 +2977,7 @@
         </actionLabel>
         <preCheckedStatus>No-Applicable</preCheckedStatus>
         <rule>
-            <text>unnamed</text>
+            <text>EnergyIn=EnergyOut EnergyIn=EnergyOut</text>
             <indicator>-1</indicator>
         </rule>
         <sourceID>32</sourceID>
@@ -3029,7 +3037,7 @@
         </actionLabel>
         <preCheckedStatus>No-Applicable</preCheckedStatus>
         <rule>
-            <text>unnamed</text>
+            <text>EnergyIn=EnergyOut EnergyIn=EnergyOut</text>
             <indicator>-1</indicator>
         </rule>
         <sourceID>50</sourceID>
@@ -3149,7 +3157,7 @@
         </actionLabel>
         <preCheckedStatus>No-Applicable</preCheckedStatus>
         <rule>
-            <text>unnamed</text>
+            <text>EnergyIn=EnergyOut EnergyIn=EnergyOut</text>
             <indicator>-1</indicator>
         </rule>
         <sourceID>49</sourceID>
@@ -4949,7 +4957,7 @@
         </actionLabel>
         <preCheckedStatus>No-Applicable</preCheckedStatus>
         <rule>
-            <text>unnamed</text>
+            <text>EnergyIn=EnergyOut EnergyIn=EnergyOut</text>
             <indicator>-1</indicator>
         </rule>
         <sourceID>83</sourceID>
@@ -5175,7 +5183,7 @@
         </actionLabel>
         <preCheckedStatus>No-Applicable</preCheckedStatus>
         <rule>
-            <text>unnamed</text>
+            <text>EnergyIn=EnergyOut EnergyIn=EnergyOut</text>
             <indicator>-1</indicator>
         </rule>
         <sourceID>79</sourceID>
@@ -5775,7 +5783,7 @@
         </actionLabel>
         <preCheckedStatus>No-Applicable</preCheckedStatus>
         <rule>
-            <text>unnamed</text>
+            <text>EnergyIn=EnergyOut EnergyIn=EnergyOut</text>
             <indicator>-1</indicator>
         </rule>
         <sourceID>91</sourceID>
@@ -6015,7 +6023,7 @@
         </actionLabel>
         <preCheckedStatus>No-Applicable</preCheckedStatus>
         <rule>
-            <text>unnamed</text>
+            <text>EnergyIn=EnergyOut EnergyIn=EnergyOut</text>
             <indicator>-1</indicator>
         </rule>
         <sourceID>113</sourceID>
@@ -6255,7 +6263,7 @@
         </actionLabel>
         <preCheckedStatus>No-Applicable</preCheckedStatus>
         <rule>
-            <text>unnamed</text>
+            <text>EnergyIn=EnergyOut EnergyIn=EnergyOut</text>
             <indicator>-1</indicator>
         </rule>
         <sourceID>117</sourceID>
@@ -6615,7 +6623,7 @@
         </actionLabel>
         <preCheckedStatus>No-Applicable</preCheckedStatus>
         <rule>
-            <text>unnamed</text>
+            <text>EnergyIn=EnergyOut EnergyIn=EnergyOut</text>
             <indicator>-1</indicator>
         </rule>
         <sourceID>122</sourceID>
@@ -6915,7 +6923,7 @@
         </actionLabel>
         <preCheckedStatus>No-Applicable</preCheckedStatus>
         <rule>
-            <text>unnamed</text>
+            <text>EnergyIn=EnergyOut EnergyIn=EnergyOut</text>
             <indicator>-1</indicator>
         </rule>
         <sourceID>131</sourceID>
@@ -7155,7 +7163,7 @@
         </actionLabel>
         <preCheckedStatus>No-Applicable</preCheckedStatus>
         <rule>
-            <text>unnamed</text>
+            <text>EnergyIn=EnergyOut EnergyIn=EnergyOut</text>
             <indicator>-1</indicator>
         </rule>
         <sourceID>136</sourceID>
@@ -7395,7 +7403,7 @@
         </actionLabel>
         <preCheckedStatus>No-Applicable</preCheckedStatus>
         <rule>
-            <text>unnamed</text>
+            <text>EnergyIn=EnergyOut EnergyIn=EnergyOut</text>
             <indicator>-1</indicator>
         </rule>
         <sourceID>142</sourceID>
@@ -7515,7 +7523,7 @@
         </actionLabel>
         <preCheckedStatus>No-Applicable</preCheckedStatus>
         <rule>
-            <text>unnamed</text>
+            <text>EnergyIn=EnergyOut EnergyIn=EnergyOut</text>
             <indicator>-1</indicator>
         </rule>
         <sourceID>143</sourceID>
@@ -7935,7 +7943,7 @@
         </actionLabel>
         <preCheckedStatus>No-Applicable</preCheckedStatus>
         <rule>
-            <text>unnamed</text>
+            <text>EnergyIn=EnergyOut EnergyIn=EnergyOut</text>
             <indicator>-1</indicator>
         </rule>
         <sourceID>148</sourceID>
@@ -8055,7 +8063,7 @@
         </actionLabel>
         <preCheckedStatus>No-Applicable</preCheckedStatus>
         <rule>
-            <text>unnamed</text>
+            <text>EnergyIn=EnergyOut EnergyIn=EnergyOut</text>
             <indicator>-1</indicator>
         </rule>
         <sourceID>150</sourceID>
@@ -8295,7 +8303,7 @@
         </actionLabel>
         <preCheckedStatus>No-Applicable</preCheckedStatus>
         <rule>
-            <text>unnamed</text>
+            <text>EnergyIn=EnergyOut EnergyIn=EnergyOut</text>
             <indicator>-1</indicator>
         </rule>
         <sourceID>154</sourceID>
@@ -8415,7 +8423,7 @@
         </actionLabel>
         <preCheckedStatus>No-Applicable</preCheckedStatus>
         <rule>
-            <text>unnamed</text>
+            <text>EnergyIn=EnergyOut EnergyIn=EnergyOut</text>
             <indicator>-1</indicator>
         </rule>
         <sourceID>164</sourceID>
@@ -8749,7 +8757,7 @@
         </actionLabel>
         <preCheckedStatus>No-Applicable</preCheckedStatus>
         <rule>
-            <text>unnamed</text>
+            <text>MeaningOfTheVariables EnergyIn=EnergyOut</text>
             <indicator>-1</indicator>
         </rule>
         <sourceID>167</sourceID>
@@ -9145,7 +9153,7 @@
         </actionLabel>
         <preCheckedStatus>No-Applicable</preCheckedStatus>
         <rule>
-            <text>unnamed</text>
+            <text>InferGreenHouseEffect InferGreenHouseEffect</text>
             <indicator>-1</indicator>
         </rule>
         <sourceID>173</sourceID>
@@ -9392,6 +9400,87 @@
         <destID>177</destID>
         <traversalCount>0</traversalCount>
     </edge>
+    <edge>
+        <actionLabel preferPathMark="false" minTraversals="1" maxTraversals="1">
+            <studentHintRequest></studentHintRequest>
+            <stepSuccessfulCompletion></stepSuccessfulCompletion>
+            <stepStudentError></stepStudentError>
+            <uniqueID>390</uniqueID>
+            <message>
+                <verb>NotePropertySet</verb>
+                <properties>
+                    <MessageType>InterfaceAction</MessageType>
+                    <transaction_id>fc0cc85d-27dc-c7d2-21a2-4c47ec8010a7</transaction_id>
+                    <Selection>
+                        <value>step1_1</value>
+                    </Selection>
+                    <Action>
+                        <value>UpdateComboBox</value>
+                    </Action>
+                    <Input>
+                        <value>S</value>
+                    </Input>
+                </properties>
+            </message>
+            <buggyMessage>Think again, what is the amount of solar energy acutally absorbed by the surface?</buggyMessage>
+            <successMessage></successMessage>
+            <hintMessage>Please select 'S' from the highlighted menu.</hintMessage>
+            <callbackFn></callbackFn>
+            <actionType>Buggy Action</actionType>
+            <oldActionType>Correct Action</oldActionType>
+            <checkedStatus>Never Checked</checkedStatus>
+            <matchers Concatenation="true">
+                <Selection>
+                    <matcher>
+                        <matcherType>ExactMatcher</matcherType>
+                        <matcherParameter name="single">step1_1</matcherParameter>
+                    </matcher>
+                </Selection>
+                <Action>
+                    <matcher>
+                        <matcherType>ExactMatcher</matcherType>
+                        <matcherParameter name="single">UpdateComboBox</matcherParameter>
+                    </matcher>
+                </Action>
+                <Input>
+                    <matcher>
+                        <matcherType>ExactMatcher</matcherType>
+                        <matcherParameter name="single">S</matcherParameter>
+                    </matcher>
+                </Input>
+                <Actor linkTriggered="false">Student</Actor>
+            </matchers>
+        </actionLabel>
+        <preCheckedStatus>No-Applicable</preCheckedStatus>
+        <rule>
+            <text>MeaningOfTheVariables IdentifyAllTheEnergyTransfer</text>
+            <indicator>-1</indicator>
+        </rule>
+        <sourceID>15</sourceID>
+        <destID>178</destID>
+        <traversalCount>0</traversalCount>
+    </edge>
+    <productionRule opportunities="6">
+        <ruleName>MeaningOfTheVariables</ruleName>
+        <productionSet>IdentifyAllTheEnergyTransfer</productionSet>
+        <label>Meaning of the variables</label>
+        <description>Student understand the meaning of each variables and correctly apply them. </description>
+    </productionRule>
+    <productionRule opportunities="1">
+        <ruleName>InferGreenHouseEffect</ruleName>
+        <productionSet>InferGreenHouseEffect</productionSet>
+        <description>The student is able to infer a simplified world phenomenon from comparing the surface temperature on a planet with no atmosphere to 1-layer of atmosphere to 2-layers of the atmosphere.  </description>
+    </productionRule>
+    <productionRule opportunities="13">
+        <ruleName>EnergyIn=EnergyOut</ruleName>
+        <productionSet>EnergyIn=EnergyOut</productionSet>
+        <label>The energy in = Energy out</label>
+        <description>Students account for the total energy in and total energy out of a given control volume</description>
+    </productionRule>
+    <productionRule opportunities="2">
+        <ruleName>MeaningOfTheVariables</ruleName>
+        <productionSet>EnergyIn=EnergyOut</productionSet>
+    </productionRule>
     <EdgesGroups ordered="true">
         <group name="step1_all" ordered="false" reenterable="true">
             <group name="step1_sub1" ordered="true" reenterable="true">
