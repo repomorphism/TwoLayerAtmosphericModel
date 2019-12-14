@@ -116,10 +116,6 @@ function renderEquations(arrows, equation) {
     inEquation += "</mrow></math>";
     outEquation += "</mrow></math>";
 
-    console.log(inEquation);
-    console.log(outEquation);
-    
-
     return [inEquation, outEquation];
 }
 
@@ -417,6 +413,8 @@ rule SelectArrowForControlVolume {
 
             if (arrows.length == equation.allArrows.length) {
                 modify(volume, "completed", true);
+                // Stopping here for now...
+                setSuccessOrBugMsg("You've got all the arrows for this control volume.  Unfortunately, the tutor is only completed this far, so please click the Done button.");
             }
 
             let [inEquation, outEquation] = renderEquations(arrows, equation);
@@ -430,3 +428,16 @@ rule SelectArrowForControlVolume {
     }
 }
 
+
+// Temporarily for now, we're done when we fill in the first equation.
+rule Done {
+    when {
+        volume: ControlVolumeElement volume.completed;
+    }
+    then {
+        if (checkSAI({selection: "done", action: "ButtonPressed", input: -1})) {
+            halt();
+        }
+        assert(new Hint("Please click the Done button."));
+    }
+}

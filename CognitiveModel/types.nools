@@ -82,3 +82,13 @@ define TPA {
         this.input = i;
     }
 }
+
+define Hint {
+    precedence: 0,
+    msg: "",
+    constructor: function(m, optPrecedence) {
+        this.msg = m;
+        this.precedence = optPrecedence || 0;
+    }
+}
+
