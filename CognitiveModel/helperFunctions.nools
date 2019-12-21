@@ -1,0 +1,128 @@
+global SPACE = "space";
+global SUN = "sun";
+global LAYER1 = "layer1";
+global LAYER2 = "layer2";
+global SURFACE = "surface";
+
+global DIAGRAM_OBJECTS = [SUN, SPACE, LAYER1, LAYER2, SURFACE];
+
+global CV_SURFACE = "control-volume-surface";
+global CV_LAYER1 = "control-volume-layer1";
+global CV_LAYER2 = "control-volume-layer2";
+
+global CONTROL_VOLUMES = [CV_SURFACE, CV_LAYER1, CV_LAYER2];
+global ARROWS = ["arrow1", "arrow2", "arrow3", "arrow4", "arrow5", "arrow6"];
+
+function getBodyImageName(label, active) {
+    if (active) {
+        return "Assets/" + label + "-active.png";
+    } else {
+        return "Assets/" + label + "-inactive.png";
+    }
+}
+
+function switchToTab(tabNumber) {
+    for (let i = 1; i <= 3; i += 1) {
+        let labelName = ".tab-label.tab" + i;
+        let mainName = ".steps-main.step" + i;
+        if (i == tabNumber) {
+            $(mainName).show();
+            $(labelName).removeClass("disabled");
+            $(".current-tab-bottombar").addClass("tab" + i);
+        } else {
+            $(mainName).hide();
+            $(labelName).addClass("disabled");
+            $(".current-tab-bottombar").removeClass("tab" + i);
+        }
+    }
+}
+
+function setupStep2() {
+    for (let element of DIAGRAM_OBJECTS) {
+        assert(new TPA(element, "lock"));
+        $("#" + element)
+          .removeClass("step1")
+          .addClass("no-pointer-event");
+    }
+    $(".arrow").addClass("arrow-step2");
+    for (let arrow of ARROWS) {
+        assert(new TPA(arrow, "unlock"));
+    }
+
+    assert(new TPA(CV_SURFACE, "SetVisible", true));
+    assert(new TPA(CV_LAYER1, "SetVisible", true));
+    assert(new TPA(CV_LAYER2, "SetVisible", true));
+}
+
+function setStep2ControlVolumesSelectable(selectable) {
+    if (selectable) {
+        $(".control-volume-box").addClass("selection-target");
+    } else {
+        $(".control-volume-box").removeClass("selection-target");
+    }
+}
+
+function setStep2ArrowsSelectable(selectable) {
+    if (selectable) {
+        $(".arrow").addClass("selection-target");
+    } else {
+        $(".arrow").removeClass("selection-target");
+    }
+}
+
+// Render in & out MathML
+function renderEquations(arrows, equation) {
+    let inEquation = "<math xmlns=\"http:\/\/www.w3.org\/1998\/Math\/MathML\"><mrow>";
+    let outEquation = "<math xmlns=\"http:\/\/www.w3.org\/1998\/Math\/MathML\"><mrow>";
+
+    let componentDictionary = {
+        "arrow1" : "<mfrac linethickness=\"1\"><mrow><mi>S</mi><mrow><mo form=\"prefix\">(</mo><mn>1</mn><mo>-</mo><mi>&#x003B1;</mi><mo form=\"postfix\">)</mo></mrow></mrow><mn>4</mn></mfrac>",
+        "arrow2" : "<mi>&#x003C3;</mi><msup><mrow><msub><mi>T</mi><mi>S</mi></msub></mrow><mn>4</mn></msup>",
+        "arrow3" : "<mi>&#x003C3;</mi><msup><mrow><msub><mi>T</mi><mi>1</mi></msub></mrow><mn>4</mn></msup>",
+        "arrow4" : "<mi>&#x003C3;</mi><msup><mrow><msub><mi>T</mi><mi>1</mi></msub></mrow><mn>4</mn></msup>",
+        "arrow5" : "<mi>&#x003C3;</mi><msup><mrow><msub><mi>T</mi><mi>2</mi></msub></mrow><mn>4</mn></msup>",
+        "arrow6" : "<mi>&#x003C3;</mi><msup><mrow><msub><mi>T</mi><mi>2</mi></msub></mrow><mn>4</mn></msup>",
+    };
+
+    let inComponents = [];
+    let outComponents = [];
+    for (let arrow of arrows) {
+        if (equation.inArrows.includes(arrow)) {
+            inComponents.push(componentDictionary[arrow]);
+        }
+        if (equation.outArrows.includes(arrow)) {
+            outComponents.push(componentDictionary[arrow]);
+        }
+    }
+
+    if (inComponents.length > 0) {
+        inEquation += inComponents[0];
+        if (inComponents.length == 2) {
+            inEquation += "<mo>+</mo>";
+            inEquation += inComponents[1];
+        }
+    }
+
+    if (outComponents.length > 0) {
+        outEquation += outComponents[0];
+        if (outComponents.length == 2) {
+            outEquation += "<mo>+</mo>";
+            outEquation += outComponents[1];
+        }
+    }
+
+    inEquation += "</mrow></math>";
+    outEquation += "</mrow></math>";
+
+    return [inEquation, outEquation];
+}
+
+// For debugging
+function fakeCompleteStep1(problem, arrows) {
+    modify(problem, "subgoal", "selectTransferBodies");
+    for (arrow of arrows) {
+        modify(arrow, "completed", true);
+        assert(new TPA(arrow.name, "SetVisible", true));
+        assert(new TPA(arrow.ieEnergyText, "SetVisible", true));
+    }
+}

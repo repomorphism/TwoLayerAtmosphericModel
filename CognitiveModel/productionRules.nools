@@ -1,133 +1,5 @@
-// @ts-nocheck
-
 import("types.nools");
-
-global SPACE = "space";
-global SUN = "sun";
-global LAYER1 = "layer1";
-global LAYER2 = "layer2";
-global SURFACE = "surface";
-
-global DIAGRAM_BUTTONS = [SUN, SPACE, LAYER1, LAYER2, SURFACE];
-
-global CV_SURFACE = "control-volume-surface";
-global CV_LAYER1 = "control-volume-layer1";
-global CV_LAYER2 = "control-volume-layer2";
-
-global CONTROL_VOLUMES = [CV_SURFACE, CV_LAYER1, CV_LAYER2];
-global ARROWS = ["arrow1", "arrow2", "arrow3", "arrow4", "arrow5", "arrow6"];
-
-function getBodyImageName(label, active) {
-    if (active) {
-        return "Assets/" + label + "-active.png";
-    } else {
-        return "Assets/" + label + "-inactive.png";
-    }
-}
-
-function switchToTab(tabNumber) {
-    for (let i = 1; i <= 3; i += 1) {
-        let labelName = ".tab-label.tab" + i;
-        let mainName = ".steps-main.step" + i;
-        if (i == tabNumber) {
-            $(mainName).show();
-            $(labelName).removeClass("disabled");
-            $(".current-tab-bottombar").addClass("tab" + i);
-        } else {
-            $(mainName).hide();
-            $(labelName).addClass("disabled");
-            $(".current-tab-bottombar").removeClass("tab" + i);
-        }
-    }
-}
-
-function setupStep2() {
-    for (let element of DIAGRAM_BUTTONS) {
-        assert(new TPA(element, "lock"));
-        $("#" + element).removeClass("step1");
-    }
-    $(".arrow").addClass("arrow-step2");
-    for (let arrow of ARROWS) {
-        assert(new TPA(arrow, "unlock"));
-    }
-
-    assert(new TPA(CV_SURFACE, "SetVisible", true));
-    assert(new TPA(CV_LAYER1, "SetVisible", true));
-    assert(new TPA(CV_LAYER2, "SetVisible", true));
-}
-
-function setStep2ControlVolumesSelectable(selectable) {
-    if (selectable) {
-        $(".control-volume-box").addClass("selection-target");
-    } else {
-        $(".control-volume-box").removeClass("selection-target");
-    }
-}
-
-function setStep2ArrowsSelectable(selectable) {
-    if (selectable) {
-        $(".arrow").addClass("selection-target");
-    } else {
-        $(".arrow").removeClass("selection-target");
-    }
-}
-
-// Render in & out MathML
-function renderEquations(arrows, equation) {
-    let inEquation = "<math xmlns=\"http:\/\/www.w3.org\/1998\/Math\/MathML\"><mrow>";
-    let outEquation = "<math xmlns=\"http:\/\/www.w3.org\/1998\/Math\/MathML\"><mrow>";
-
-    let componentDictionary = {
-        "arrow1" : "<mfrac linethickness=\"1\"><mrow><mi>S</mi><mrow><mo form=\"prefix\">(</mo><mn>1</mn><mo>-</mo><mi>&#x003B1;</mi><mo form=\"postfix\">)</mo></mrow></mrow><mn>4</mn></mfrac>",
-        "arrow2" : "<mi>&#x003C3;</mi><msup><mrow><msub><mi>T</mi><mi>S</mi></msub></mrow><mn>4</mn></msup>",
-        "arrow3" : "<mi>&#x003C3;</mi><msup><mrow><msub><mi>T</mi><mi>1</mi></msub></mrow><mn>4</mn></msup>",
-        "arrow4" : "<mi>&#x003C3;</mi><msup><mrow><msub><mi>T</mi><mi>1</mi></msub></mrow><mn>4</mn></msup>",
-        "arrow5" : "<mi>&#x003C3;</mi><msup><mrow><msub><mi>T</mi><mi>2</mi></msub></mrow><mn>4</mn></msup>",
-        "arrow6" : "<mi>&#x003C3;</mi><msup><mrow><msub><mi>T</mi><mi>2</mi></msub></mrow><mn>4</mn></msup>",
-    };
-
-    let inComponents = [];
-    let outComponents = [];
-    for (let arrow of arrows) {
-        if (equation.inArrows.includes(arrow)) {
-            inComponents.push(componentDictionary[arrow]);
-        }
-        if (equation.outArrows.includes(arrow)) {
-            outComponents.push(componentDictionary[arrow]);
-        }
-    }
-
-    if (inComponents.length > 0) {
-        inEquation += inComponents[0];
-        if (inComponents.length == 2) {
-            inEquation += "<mo>+</mo>";
-            inEquation += inComponents[1];
-        }
-    }
-
-    if (outComponents.length > 0) {
-        outEquation += outComponents[0];
-        if (outComponents.length == 2) {
-            outEquation += "<mo>+</mo>";
-            outEquation += outComponents[1];
-        }
-    }
-
-    inEquation += "</mrow></math>";
-    outEquation += "</mrow></math>";
-
-    return [inEquation, outEquation];
-}
-
-// For debugging
-function fakeCompleteStep1(problem, arrows) {
-    modify(problem, "subgoal", "selectTransferBodies");
-    for (arrow of arrows) {
-        modify(arrow, "completed", true);
-        assert(new TPA(arrow.name, "SetVisible", true));
-        assert(new TPA(arrow.ieEnergyText, "SetVisible", true));
-    }
-}
+import("helperFunctions.nools");
 
 
 rule Bootstrap {
@@ -182,6 +54,12 @@ rule Bootstrap {
         assert(new TPA(CV_LAYER1, "SetVisible", false));
         assert(new TPA(CV_LAYER2, "SetVisible", false));
 
+        // Step 2 other buttons
+        assert(new InterfaceElement("step2-thats-all"));
+        assert(new InterfaceElement("add-equation"));
+        assert(new InterfaceElement("solve-equations"));
+        $("#add-equation").hide();
+
         // CTAT settings
         setProblemAttribute("use_backtracking", true);
         setProblemAttribute("prune_old_activations", true);
@@ -204,7 +82,7 @@ rule Bootstrap {
 rule SelectTransferFromBody {
     when {
         p: Problem p.subgoal == "selectTransferBodies" && !p.selectedFromBody;
-        ie: InterfaceElement ie.name in DIAGRAM_BUTTONS {name: selection};
+        ie: InterfaceElement ie.name in DIAGRAM_OBJECTS {name: selection};
     }
     then {
         if (checkSAI({selection: selection, action: "ButtonPressed", input: -1})) {
@@ -221,7 +99,7 @@ rule SelectTransferToBody {
     when {
         p: Problem p.subgoal == "selectTransferBodies" && p.selectedFromBody
             && !p.selectedToBody {selectedFromBody: fromBody};
-        ie: InterfaceElement ie.name in DIAGRAM_BUTTONS {name: selection};
+        ie: InterfaceElement ie.name in DIAGRAM_OBJECTS {name: selection};
         arrow: Arrow arrow.fromBody == fromBody && arrow.toBody == selection
             && !arrow.completed {toBody: toBody};
     }
@@ -243,7 +121,7 @@ rule DuplicateSelectTransferToBody {
     when {
         p: Problem p.subgoal == "selectTransferBodies" && p.selectedFromBody
             && !p.selectedToBody {selectedFromBody: fromBody};
-        ie: InterfaceElement ie.name in DIAGRAM_BUTTONS {name: selection};
+        ie: InterfaceElement ie.name in DIAGRAM_OBJECTS {name: selection};
         arrow: Arrow arrow.fromBody == fromBody && arrow.toBody == selection
             && arrow.completed {toBody: toBody};
     }
@@ -264,7 +142,7 @@ rule DuplicateSelectTransferToBody {
 rule BuggySelectTransferToBody {
     when {
         p: Problem p.subgoal == "selectTransferBodies" && p.selectedFromBody {selectedFromBody: fromBody};
-        ie: InterfaceElement ie.name in DIAGRAM_BUTTONS {name: selection};
+        ie: InterfaceElement ie.name in DIAGRAM_OBJECTS {name: selection};
         not(arrow: Arrow arrow.fromBody == fromBody && arrow.toBody == selection {toBody: toBody});
     }
     then {
@@ -374,6 +252,7 @@ rule SelectControlVolume {
             assert(new TPA(selection, "assignImage", "Assets/control-volume-box-active.png"));
 
             // Show row
+            // TODO: show the second one etc.
             $(".step2-table-row").removeClass("hidden-row");
 
             // Put volume label in table
@@ -406,15 +285,14 @@ rule SelectArrowForControlVolume {
     then {
         if (checkSAI({selection: selection, action: "ButtonPressed", input: -1})) {
             assert(new TPA(selection, "assignImage", "Assets/" + selection + ".png"));
-            // check if this volume is completed, set it if so
             let arrows = p.currentSelectedArrows.slice();
             arrows.push(selection);
             modify(p, "currentSelectedArrows", arrows);
 
+            // check if this volume is completed, set it if so
             if (arrows.length == equation.allArrows.length) {
                 modify(volume, "completed", true);
-                // Stopping here for now...
-                setSuccessOrBugMsg("You've got all the arrows for this control volume.  Unfortunately, the tutor is only completed this far, so please click the Done button.");
+                modify(p, "subgoal", "confirmCompletedControlVolume")
             }
 
             let [inEquation, outEquation] = renderEquations(arrows, equation);
@@ -426,6 +304,49 @@ rule SelectArrowForControlVolume {
             backtrack();
         }
     }
+}
+
+rule ConfirmCompletedControlVolume {
+    when {
+        p: Problem p.subgoal == "confirmCompletedControlVolume" && p.selectedControlVolume;
+        volume: ControlVolumeElement volume.name == p.selectedControlVolume &&
+            volume.completed;
+        equation: BalanceEquation equation.name == volume.name {allArrows: arrows};
+    }
+    then {
+        if (checkSAI({selection: "step2-thats-all", action: "ButtonPressed", input: -1})) {
+            // Change buttons
+            $("#step2-thats-all").hide();
+            $("#add-equation").show();
+
+            console.log(volume);
+            console.log(equation);
+            console.log(arrows);
+            
+
+            // Reset diagram
+            for (let arrow of arrows) {
+                assert(new TPA(arrow, "assignImage", "Assets/" + arrow + "-step2-inactive.png"));
+            }
+            assert(new TPA(volume.name, "assignImage", "Assets/control-volume-box-inactive.png"));
+            setStep2ControlVolumesSelectable(true);
+            setStep2ArrowsSelectable(false);
+            $("#" + volume.name).delay(500).css("background-image","");
+
+
+            // assert(new TPA(selection, "assignImage", "Assets/" + selection + ".png"));
+            // let arrows = p.currentSelectedArrows.slice();
+            // arrows.push(selection);
+            // modify(p, "currentSelectedArrows", arrows);
+
+            halt();
+                // Stopping here for now...
+                // setSuccessOrBugMsg("You've got all the arrows for this control volume.  Unfortunately, the tutor is only completed this far, so please click the Done button.");
+        } else {
+            backtrack();
+        }
+    }
+
 }
 
 
