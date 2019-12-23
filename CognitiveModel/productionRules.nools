@@ -311,6 +311,22 @@ rule SelectArrowForControlVolume {
     }
 }
 
+rule BuggySelectArrowForControlVolume {
+    when {
+        p: Problem p.subgoal == "selectInAndOutArrows" && p.selectedControlVolume;
+        volume: ControlVolumeElement volume.name == p.selectedControlVolume &&
+            !volume.completed;
+        equation: BalanceEquation equation.name == volume.name;
+        arrow: Arrow arrow.name notIn equation.allArrows {name: selection};
+    }
+    then {
+        if (checkSAI({selection: selection, action: "ButtonPressed", input: -1}, null, true)) {
+            setSuccessOrBugMsg("This arrow doesn't go in or out of the control volume you're working on.");
+            halt();
+        }
+    }
+}
+
 rule ConfirmCompletedControlVolume {
     when {
         p: Problem p.subgoal == "confirmCompletedControlVolume" && p.selectedControlVolume;
