@@ -87,7 +87,7 @@ rule SelectTransferFromBody {
     then {
         if (checkSAI({selection: selection, action: "ButtonPressed", input: -1})) {
             modify(p, "selectedFromBody", selection);
-            assert(new TPA(selection, "assignImage", getBodyImageName(selection, true)));
+            setStep1BodySelected(selection, true);
             halt();
         } else {
             backtrack();
@@ -107,7 +107,7 @@ rule SelectTransferToBody {
         if (checkSAI({selection: selection, action: "ButtonPressed", input: -1})) {
             modify(p, "selectedToBody", selection);
             modify(p, "subgoal", "enterArrowEnergy");
-            assert(new TPA(selection, "assignImage", getBodyImageName(selection, true)));
+            setStep1BodySelected(selection, true);
             assert(new TPA(arrow.name, "SetVisible", true));
             assert(new TPA(arrow.ieEnergyBox, "SetVisible", true));
             halt();
@@ -123,37 +123,42 @@ rule DuplicateSelectTransferToBody {
             && !p.selectedToBody {selectedFromBody: fromBody};
         ie: InterfaceElement ie.name in DIAGRAM_OBJECTS {name: selection};
         arrow: Arrow arrow.fromBody == fromBody && arrow.toBody == selection
-            && arrow.completed {toBody: toBody};
+            && arrow.completed;
     }
     then {
-        if (checkSAI({selection: selection, action: "ButtonPressed", input: -1})) {
-            // Reset selections
+        // Note: making this an error step because if not, the unlock TPA
+        // doesn't behave correctly.  Likely a bug.
+        if (checkSAI({selection: selection, action: "ButtonPressed", input: -1}, null, true)) {
+            // Reset the "from" selection
             modify(p, "selectedFromBody", null);
-            assert(new TPA(fromBody, "assignImage", getBodyImageName(fromBody, false)));
+            setStep1BodySelected(fromBody, false);
             setSuccessOrBugMsg("This arrow is already done.");
             assert(new TPA(fromBody, "unlock"));
             assert(new TPA(selection, "unlock"));
-            // backtrack();
             halt();
         }
     }
 }
 
+// Note: Point of improvements here. There are different reasons of why there's
+// no transfer between two bodies, e.g. model assumes sun energy passes through
+// atmosphere 100%, and atmosphere absorbs other radiations 100%.
+// Can differentiate them in different rules and give tailored feedback.
 rule BuggySelectTransferToBody {
     when {
-        p: Problem p.subgoal == "selectTransferBodies" && p.selectedFromBody {selectedFromBody: fromBody};
+        p: Problem p.subgoal == "selectTransferBodies" && p.selectedFromBody
+            && !p.selectedToBody {selectedFromBody: fromBody};
         ie: InterfaceElement ie.name in DIAGRAM_OBJECTS {name: selection};
-        not(arrow: Arrow arrow.fromBody == fromBody && arrow.toBody == selection {toBody: toBody});
+        not(arrow: Arrow arrow.fromBody == fromBody && arrow.toBody == selection);
     }
     then {
         if (checkSAI({selection: selection, action: "ButtonPressed", input: -1}, null, true)) {
             // Reset the "from" selection
             modify(p, "selectedFromBody", null);
-            assert(new TPA(fromBody, "assignImage", getBodyImageName(fromBody, false)));
+            setStep1BodySelected(fromBody, false);
             setSuccessOrBugMsg("There's no energy transfer from " + fromBody + " to " + selection + " in this model.");
             assert(new TPA(fromBody, "unlock"));
             assert(new TPA(selection, "unlock"));
-            // backtrack();
             halt();
         }
     }
@@ -174,10 +179,10 @@ rule EnterArrowEnergy {
             modify(arrow, "completed", true);
             assert(new TPA(arrow.ieEnergyBox, "SetVisible", false));
             assert(new TPA(arrow.ieEnergyText, "SetVisible", true));
-            assert(new TPA(fromBody, "assignImage", getBodyImageName(fromBody, false)));
-            assert(new TPA(toBody, "assignImage", getBodyImageName(toBody, false)));
             assert(new TPA(fromBody, "unlock"));
             assert(new TPA(toBody, "unlock"));
+            setStep1BodySelected(toBody, false);
+            setStep1BodySelected(fromBody, false);
             halt();
         } else {
             backtrack();
