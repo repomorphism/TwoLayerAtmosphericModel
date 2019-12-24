@@ -288,6 +288,7 @@
   top: 247px;
 }
 
+.control-volume-box.selected,
 .control-volume-box.CTAT-button--hover.selection-target,
 .control-volume-box.CTAT-button--clicked {
   background-image: url("control-volume-box-active.png");

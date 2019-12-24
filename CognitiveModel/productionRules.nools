@@ -254,11 +254,11 @@ rule SelectControlVolume {
             modify(p, "subgoal", "selectInAndOutArrows");
             modify(p, "currentEquationRow", 1);
 
-            assert(new TPA(selection, "assignImage", "Assets/control-volume-box-active.png"));
+            setStep2ControlVolumeSelected(selection, true);
 
             // Show row
             // TODO: show the second one etc.
-            $(".step2-table-row").removeClass("hidden-row");
+            // $(".step2-table-row").removeClass("hidden-row");
 
             // Put volume label in table
             let rowLabel = {
@@ -331,7 +331,7 @@ rule ConfirmCompletedControlVolume {
     when {
         p: Problem p.subgoal == "confirmCompletedControlVolume" && p.selectedControlVolume;
         volume: ControlVolumeElement volume.name == p.selectedControlVolume &&
-            volume.completed;
+            volume.completed {name: selection};
         equation: BalanceEquation equation.name == volume.name {allArrows: arrows};
     }
     then {
@@ -349,8 +349,8 @@ rule ConfirmCompletedControlVolume {
             for (let arrow of arrows) {
                 assert(new TPA(arrow, "assignImage", "Assets/" + arrow + "-step2-inactive.png"));
             }
-            assert(new TPA(volume.name, "assignImage", "Assets/control-volume-box-inactive.png"));
-            setStep2ControlVolumesSelectable(true);
+            setStep2ControlVolumeSelected(selection, false);
+            // setStep2ControlVolumesSelectable(true);
             setStep2ArrowsSelectable(false);
             $("#" + volume.name).delay(500).css("background-image","");
 

@@ -14,17 +14,6 @@ global CONTROL_VOLUMES = [CV_SURFACE, CV_LAYER1, CV_LAYER2];
 global ARROWS = ["arrow1", "arrow2", "arrow3", "arrow4", "arrow5", "arrow6"];
 
 /**
- * CSS manipulations for the 5 diagram objects/bodies.
-*/
-function setStep1BodySelected(element, selected) {
-    if (selected) {
-        $("#" + element).addClass("selected")
-    } else {
-        $("#" + element).removeClass("selected")
-    }
-}
-
-/**
  * DOM and CSS manipulations.
  * Change the tab labels, and show/hide the main step
  * areas.
@@ -42,6 +31,18 @@ function switchToTab(tabNumber) {
             $(labelName).addClass("disabled");
             $(".current-tab-bottombar").removeClass("tab" + i);
         }
+    }
+}
+
+/**
+ * CSS manipulations for the 5 diagram objects/bodies.
+ * Used in Step 1.
+*/
+function setStep1BodySelected(element, selected) {
+    if (selected) {
+        $("#" + element).addClass("selected")
+    } else {
+        $("#" + element).removeClass("selected")
     }
 }
 
@@ -64,6 +65,20 @@ function setupStep2() {
     assert(new TPA(CV_SURFACE, "SetVisible", true));
     assert(new TPA(CV_LAYER1, "SetVisible", true));
     assert(new TPA(CV_LAYER2, "SetVisible", true));
+}
+
+/**
+ * CSS manipulations for the 5 diagram objects/bodies.
+ * Used in Step 2.
+*/
+function setStep2ControlVolumeSelected(element, selected) {
+    console.log(element, selected);
+    
+    if (selected) {
+        $("#" + element).addClass("selected");
+    } else {
+        $("#" + element).removeClass("selected");
+    }
 }
 
 /**
