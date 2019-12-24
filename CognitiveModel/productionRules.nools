@@ -350,7 +350,7 @@ rule ConfirmCompletedControlVolume {
                 setStep2ArrowSelected(arrow, false);
             }
             setStep2ControlVolumeSelected(selection, false);
-            // setStep2ControlVolumesSelectable(true);
+            setStep2ControlVolumesSelectable(true);
             setStep2ArrowsSelectable(false);
 
 

@@ -23,10 +23,12 @@ function switchToTab(tabNumber) {
         let labelName = ".tab-label.tab" + i;
         let mainName = ".steps-main.step" + i;
         if (i == tabNumber) {
+            // Active tab
             $(mainName).show();
             $(labelName).removeClass("disabled");
             $(".current-tab-bottombar").addClass("tab" + i);
         } else {
+            // Inactive tab
             $(mainName).hide();
             $(labelName).addClass("disabled");
             $(".current-tab-bottombar").removeClass("tab" + i);
@@ -44,27 +46,6 @@ function setStep1BodySelected(element, selected) {
     } else {
         $("#" + element).removeClass("selected")
     }
-}
-
-/**
- * Setting up the diagram, specifically going from step 1 to Step 2.
- * A mix of DOM manipulations and TPAs.
- */
-function setupStep2() {
-    for (let element of DIAGRAM_OBJECTS) {
-        assert(new TPA(element, "lock"));
-        $("#" + element)
-          .removeClass("step1")
-          .addClass("no-pointer-event");
-    }
-    $(".arrow").addClass("unselected");
-    for (let arrow of ARROWS) {
-        assert(new TPA(arrow, "unlock"));
-    }
-
-    assert(new TPA(CV_SURFACE, "SetVisible", true));
-    assert(new TPA(CV_LAYER1, "SetVisible", true));
-    assert(new TPA(CV_LAYER2, "SetVisible", true));
 }
 
 /**
@@ -92,7 +73,7 @@ function setStep2ArrowSelected(element, selected) {
 }
 
 /**
- * Visually make the control volumes change appearance on hover, or not.
+ * Make the control volumes change appearance on hover, or not.
  * (Feedforward)
  */
 function setStep2ControlVolumesSelectable(selectable) {
@@ -103,12 +84,43 @@ function setStep2ControlVolumesSelectable(selectable) {
     }
 }
 
+/**
+ * Make the arrows change appearance on hover, or not.
+ * When not selectable, also make them transparent to the pointer so they don't
+ * block the control volumes.
+ */
 function setStep2ArrowsSelectable(selectable) {
     if (selectable) {
-        $(".arrow").addClass("selection-target");
+        $(".arrow").addClass("selection-target")
+            .css("pointer-events", "");
     } else {
-        $(".arrow").removeClass("selection-target");
+        $(".arrow").removeClass("selection-target")
+            .css("pointer-events", "none");
     }
+}
+
+/**
+ * Setting up the diagram, specifically going from step 1 to Step 2.
+ * A mix of DOM manipulations and TPAs.
+ */
+function setupStep2() {
+    for (let element of DIAGRAM_OBJECTS) {
+        assert(new TPA(element, "lock"));
+        $("#" + element)
+          .removeClass("step1")
+          .css("pointer-events", "none");
+    }
+
+    for (let arrow of ARROWS) {
+        assert(new TPA(arrow, "unlock"));
+        setStep2ArrowSelected(arrow, false);
+    }
+    setStep2ArrowsSelectable(false);
+
+    for (let volume of CONTROL_VOLUMES) {
+        assert(new TPA(volume, "SetVisible", true));
+    }
+    setStep2ControlVolumesSelectable(true);
 }
 
 /**

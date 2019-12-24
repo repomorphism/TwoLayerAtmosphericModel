@@ -102,10 +102,6 @@
   background-image: url("surface-active.png");
 }
 
-.no-pointer-event {
-  pointer-events: none;
-}
-
 .arrow {
   z-index: -1;
 }
