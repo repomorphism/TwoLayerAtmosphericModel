@@ -57,7 +57,7 @@ function setupStep2() {
           .removeClass("step1")
           .addClass("no-pointer-event");
     }
-    $(".arrow").addClass("arrow-step2");
+    $(".arrow").addClass("unselected");
     for (let arrow of ARROWS) {
         assert(new TPA(arrow, "unlock"));
     }
@@ -68,16 +68,26 @@ function setupStep2() {
 }
 
 /**
- * CSS manipulations for the 5 diagram objects/bodies.
+ * CSS manipulations for the 3 control volumes.
  * Used in Step 2.
 */
 function setStep2ControlVolumeSelected(element, selected) {
-    console.log(element, selected);
-    
     if (selected) {
         $("#" + element).addClass("selected");
     } else {
         $("#" + element).removeClass("selected");
+    }
+}
+
+/**
+ * CSS manipulations for the 6 arrows.
+ * Used in Step 2.
+*/
+function setStep2ArrowSelected(element, selected) {
+    if (selected) {
+        $("#" + element).removeClass("unselected");
+    } else {
+        $("#" + element).addClass("unselected");
     }
 }
 

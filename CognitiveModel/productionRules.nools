@@ -289,7 +289,7 @@ rule SelectArrowForControlVolume {
     }
     then {
         if (checkSAI({selection: selection, action: "ButtonPressed", input: -1})) {
-            assert(new TPA(selection, "assignImage", "Assets/" + selection + ".png"));
+            setStep2ArrowSelected(selection, true);
             let arrows = p.currentSelectedArrows.slice();
             arrows.push(selection);
             modify(p, "currentSelectedArrows", arrows);
@@ -347,15 +347,13 @@ rule ConfirmCompletedControlVolume {
 
             // Reset diagram
             for (let arrow of arrows) {
-                assert(new TPA(arrow, "assignImage", "Assets/" + arrow + "-step2-inactive.png"));
+                setStep2ArrowSelected(arrow, false);
             }
             setStep2ControlVolumeSelected(selection, false);
             // setStep2ControlVolumesSelectable(true);
             setStep2ArrowsSelectable(false);
-            $("#" + volume.name).delay(500).css("background-image","");
 
 
-            // assert(new TPA(selection, "assignImage", "Assets/" + selection + ".png"));
             // let arrows = p.currentSelectedArrows.slice();
             // arrows.push(selection);
             // modify(p, "currentSelectedArrows", arrows);

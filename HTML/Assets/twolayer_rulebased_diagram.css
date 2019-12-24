@@ -119,7 +119,7 @@
   top: 166px;
 }
 
-#arrow1.arrow-step2 {
+#arrow1.unselected {
   background-image: url("arrow1-step2-inactive.png");
 }
 
@@ -144,7 +144,7 @@
   top: 440px;
 }
 
-#arrow2.arrow-step2 {
+#arrow2.unselected {
   background-image: url("arrow2-step2-inactive.png");
 }
 
@@ -169,7 +169,7 @@
   top: 444px;
 }
 
-#arrow3.arrow-step2 {
+#arrow3.unselected {
   background-image: url("arrow3-step2-inactive.png");
 }
 
@@ -194,7 +194,7 @@
   top: 323px;
 }
 
-#arrow4.arrow-step2 {
+#arrow4.unselected {
   background-image: url("arrow4-step2-inactive.png");
 }
 
@@ -219,7 +219,7 @@
   top: 327px;
 }
 
-#arrow5.arrow-step2 {
+#arrow5.unselected {
   background-image: url("arrow5-step2-inactive.png");
 }
 
@@ -244,7 +244,7 @@
   top: 206px;
 }
 
-#arrow6.arrow-step2 {
+#arrow6.unselected {
   background-image: url("arrow6-step2-inactive.png");
 }
 
