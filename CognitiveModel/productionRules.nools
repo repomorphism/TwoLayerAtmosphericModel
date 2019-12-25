@@ -136,6 +136,8 @@ rule DuplicateSelectTransferToBody {
             assert(new TPA(fromBody, "unlock"));
             assert(new TPA(selection, "unlock"));
             halt();
+        } else {
+            backtrack();
         }
     }
 }
@@ -160,6 +162,8 @@ rule BuggySelectTransferToBody {
             assert(new TPA(fromBody, "unlock"));
             assert(new TPA(selection, "unlock"));
             halt();
+        } else {
+            backtrack();
         }
     }
 }
@@ -216,6 +220,8 @@ rule BuggyConfirmIdentifiedAllTransfers {
     then {
         if (checkSAI({selection: "step1-finish", action: "ButtonPressed", input: -1}, null, true)) {
             setSuccessOrBugMsg("I'm sorry, but you haven't identified all the transfers.");
+            backtrack();
+        } else {
             backtrack();
         }
     }
@@ -323,6 +329,8 @@ rule BuggySelectArrowForControlVolume {
         if (checkSAI({selection: selection, action: "ButtonPressed", input: -1}, null, true)) {
             setSuccessOrBugMsg("This arrow doesn't go in or out of the control volume you're working on.");
             halt();
+        } else {
+            backtrack();
         }
     }
 }
@@ -336,27 +344,23 @@ rule ConfirmCompletedControlVolume {
     }
     then {
         if (checkSAI({selection: "step2-thats-all", action: "ButtonPressed", input: -1})) {
+            modify(p, "subgoal", "addEquationOrSolve");
+            modify(p, "currentSelectedArrows", []);
+            modify(p, "selectedControlVolume", null);
+
             // Change buttons
+            assert(new TPA("add-equation", "unlock"));
             $("#step2-thats-all").hide();
             $("#add-equation").show();
 
-            console.log(volume);
-            console.log(equation);
-            console.log(arrows);
-            
-
             // Reset diagram
             for (let arrow of arrows) {
+                assert(new TPA(arrow, "unlock"));
                 setStep2ArrowSelected(arrow, false);
             }
             setStep2ControlVolumeSelected(selection, false);
-            setStep2ControlVolumesSelectable(true);
             setStep2ArrowsSelectable(false);
-
-
-            // let arrows = p.currentSelectedArrows.slice();
-            // arrows.push(selection);
-            // modify(p, "currentSelectedArrows", arrows);
+            $("#" + selection).hide();
 
             halt();
                 // Stopping here for now...
@@ -365,14 +369,38 @@ rule ConfirmCompletedControlVolume {
             backtrack();
         }
     }
-
 }
 
+rule AddEquationRow {
+    when {
+        p: Problem p.subgoal == "addEquationOrSolve";
+        volume: ControlVolumeElement !volume.completed;
+    }
+    then {
+        if (checkSAI({selection: "add-equation", action: "ButtonPressed", input: -1})) {
+            modify(p, "subgoal", "selectControlVolume");
+
+            setStep2ControlVolumesSelectable(true);
+
+            // Change buttons
+            assert(new TPA("step2-thats-all", "unlock"));
+            $("#step2-thats-all").show();
+            $("#add-equation").hide();
+
+            // TODO: Add a blank row
+
+
+            halt();
+        } else {
+            backtrack();
+        }
+    }
+}
 
 // Temporarily for now, we're done when we fill in the first equation.
 rule Done {
     when {
-        volume: ControlVolumeElement volume.completed;
+        not(volume: ControlVolumeElement !volume.completed);
     }
     then {
         if (checkSAI({selection: "done", action: "ButtonPressed", input: -1})) {
