@@ -346,10 +346,6 @@ p {
   height: 62px;
 }
 
-.step2-table-row.hidden-row {
-  display: none;
-}
-
 .step2-table-row > div {
   text-align: center;
 }

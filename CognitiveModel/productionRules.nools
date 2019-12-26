@@ -251,20 +251,16 @@ rule AdvanceFromStep1ToStep2 {
 
 rule SelectControlVolume {
     when {
-        p: Problem p.subgoal == "selectControlVolume" && !p.selectedControlVolume;
+        p: Problem p.subgoal == "selectControlVolume" && !p.selectedControlVolume
+            {currentEquationRow: row};
         volume: ControlVolumeElement !volume.completed {name: selection};
     }
     then {
         if (checkSAI({selection: selection, action: "ButtonPressed", input: -1})) {
             modify(p, "selectedControlVolume", selection);
             modify(p, "subgoal", "selectInAndOutArrows");
-            modify(p, "currentEquationRow", 1);
 
             setStep2ControlVolumeSelected(selection, true);
-
-            // Show row
-            // TODO: show the second one etc.
-            // $(".step2-table-row").removeClass("hidden-row");
 
             // Put volume label in table
             let rowLabel = {
@@ -273,7 +269,7 @@ rule SelectControlVolume {
                 [CV_SURFACE] : "Surface"
             }[selection];
 
-            assert(new TPA("table-row-label-1", "UpdateTextField", rowLabel));
+            assert(new TPA("table-row-label-" + row, "UpdateTextField", rowLabel));
 
             setStep2ControlVolumesSelectable(false);
             setStep2ArrowsSelectable(true);
@@ -287,7 +283,8 @@ rule SelectControlVolume {
 
 rule SelectArrowForControlVolume {
     when {
-        p: Problem p.subgoal == "selectInAndOutArrows" && p.selectedControlVolume;
+        p: Problem p.subgoal == "selectInAndOutArrows" && p.selectedControlVolume
+            {currentEquationRow: row};
         volume: ControlVolumeElement volume.name == p.selectedControlVolume &&
             !volume.completed;
         equation: BalanceEquation equation.name == volume.name;
@@ -307,8 +304,8 @@ rule SelectArrowForControlVolume {
             }
 
             let [inEquation, outEquation] = renderEquations(arrows, equation);
-            assert(new TPA("table-row-energy-in-1", "UpdateTextField", inEquation));
-            assert(new TPA("table-row-energy-out-1", "UpdateTextField", outEquation));
+            assert(new TPA("table-row-energy-in-" + row, "UpdateTextField", inEquation));
+            assert(new TPA("table-row-energy-out-" + row, "UpdateTextField", outEquation));
 
             halt();
         } else {
@@ -373,12 +370,13 @@ rule ConfirmCompletedControlVolume {
 
 rule AddEquationRow {
     when {
-        p: Problem p.subgoal == "addEquationOrSolve";
+        p: Problem p.subgoal == "addEquationOrSolve" {currentEquationRow: row};
         volume: ControlVolumeElement !volume.completed;
     }
     then {
         if (checkSAI({selection: "add-equation", action: "ButtonPressed", input: -1})) {
             modify(p, "subgoal", "selectControlVolume");
+            modify(p, "currentEquationRow", row + 1);
 
             setStep2ControlVolumesSelectable(true);
 
@@ -387,8 +385,9 @@ rule AddEquationRow {
             $("#step2-thats-all").show();
             $("#add-equation").hide();
 
-            // TODO: Add a blank row
-
+            // Show the next row. Note: although "next row" seems like row + 1,
+            // currentEquationRow is 1-based while js is 0-based
+            $(".step2-table-row").eq(row).show();
 
             halt();
         } else {
@@ -396,6 +395,8 @@ rule AddEquationRow {
         }
     }
 }
+
+// TODO: Rule matching that Step 2 is done
 
 // Temporarily for now, we're done when we fill in the first equation.
 rule Done {

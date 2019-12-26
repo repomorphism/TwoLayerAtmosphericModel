@@ -5,11 +5,12 @@ define Problem {
     selectedFromBody: null,
     selectedToBody: null,
     selectedControlVolume: null,
-    currentEquationRow: null,
+    currentEquationRow: null,   // 1-based
     currentSelectedArrows: [],
     constructor: function(name) {
         this.name = name;
         this.subgoal = "selectTransferBodies";
+        this.currentEquationRow = 1;
     }
 }
 

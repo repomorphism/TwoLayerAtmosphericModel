@@ -121,6 +121,11 @@ function setupStep2() {
         assert(new TPA(volume, "SetVisible", true));
     }
     setStep2ControlVolumesSelectable(true);
+
+    // Hide all table rows except the first
+    $(".step2-table-row")
+        .slice(1)
+        .hide();
 }
 
 /**
