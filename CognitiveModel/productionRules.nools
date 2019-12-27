@@ -396,7 +396,41 @@ rule AddEquationRow {
     }
 }
 
-// TODO: Rule matching that Step 2 is done
+rule ConfirmHasEnoughEquationsToSolve {
+    when {
+        p: Problem p.subgoal == "addEquationOrSolve" && p.currentEquationRow >= 3;
+    }
+    then {
+        backtrack();
+    }
+}
+
+rule BuggyConfirmHasEnoughEquationsToSolve {
+    when {
+        p: Problem p.subgoal == "addEquationOrSolve" && p.currentEquationRow < 3;
+    }
+    then {
+        backtrack();
+    }
+}
+
+// rule AdvanceFromStep2ToStep3 {
+//     when {
+//         p: Problem p.subgoal == "goToStep3";
+//     }
+//     then {
+//         if (checkSAI({selection: "step1-go-to-step2", action: "ButtonPressed", input: -1})) {
+//             modify(p, "subgoal", "selectControlVolume");
+//             // modify HTML
+//             switchToTab(2);
+//             setupStep2();
+
+//             halt();
+//         } else {
+//             backtrack();
+//         }
+//     }
+// }
 
 // Temporarily for now, we're done when we fill in the first equation.
 rule Done {
