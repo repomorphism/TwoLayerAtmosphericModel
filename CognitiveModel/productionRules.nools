@@ -2,6 +2,11 @@ import("types.nools");
 import("helperFunctions.nools");
 
 
+
+// Debugging: Which Step to start at
+// >1 will skip Step 1, >2 will skip Step 1 & 2
+global DEBUG_STEP = 1;
+
 rule Bootstrap {
     when {
         bool : Boolean bool == false from false;
@@ -66,7 +71,9 @@ rule Bootstrap {
         // setProblemAttribute("substitute_input", true);
 
         // Debug: skip steps
-        // fakeCompleteStep1(problem, arrows);
+        if (DEBUG_STEP > 1) {
+            fakeCompleteStep1(problem, arrows);
+        }
 
 
         switchToTab(1);
@@ -238,6 +245,11 @@ rule AdvanceFromStep1ToStep2 {
             switchToTab(2);
             setupStep2();
 
+            // Debug: skip steps
+            if (DEBUG_STEP > 2) {
+                fakeCompleteStep2(p);
+            }
+
             halt();
         } else {
             backtrack();
@@ -404,8 +416,6 @@ rule ConfirmHasEnoughEquationsToSolve {
         if (checkSAI({selection: "solve-equations", action: "ButtonPressed", input: -1})) {
 
             // TODO: UI change to show solved equation!  And button to advance to Step 3.
-            // TODO: fake to this state: need subgoal and currentEquationRow
-            // do this in AdvanceFromStep1ToStep2 maybe?
 
             halt;
         } else {

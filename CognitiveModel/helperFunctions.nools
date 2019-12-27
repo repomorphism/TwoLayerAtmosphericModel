@@ -186,3 +186,9 @@ function fakeCompleteStep1(problem, arrows) {
         assert(new TPA(arrow.ieEnergyText, "SetVisible", true));
     }
 }
+
+function fakeCompleteStep2(problem) {
+    modify(problem, "subgoal", "addEquationOrSolve");
+    modify(problem, "currentEquationRow", 3);
+}
+
