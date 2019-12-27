@@ -401,7 +401,16 @@ rule ConfirmHasEnoughEquationsToSolve {
         p: Problem p.subgoal == "addEquationOrSolve" && p.currentEquationRow >= 3;
     }
     then {
-        backtrack();
+        if (checkSAI({selection: "solve-equations", action: "ButtonPressed", input: -1})) {
+
+            // TODO: UI change to show solved equation!  And button to advance to Step 3.
+            // TODO: fake to this state: need subgoal and currentEquationRow
+            // do this in AdvanceFromStep1ToStep2 maybe?
+
+            halt;
+        } else {
+            backtrack();
+        }
     }
 }
 
@@ -410,7 +419,11 @@ rule BuggyConfirmHasEnoughEquationsToSolve {
         p: Problem p.subgoal == "addEquationOrSolve" && p.currentEquationRow < 3;
     }
     then {
-        backtrack();
+        if (checkSAI({selection: "solve-equations", action: "ButtonPressed", input: -1}, null, true)) {
+            let mathTs = "<math xmlns=\"http:\/\/www.w3.org\/1998\/Math\/MathML\"><mrow><msub><mi>T</mi><mi>S</mi></msub></mrow></math>";
+            setSuccessOrBugMsg("We don't have enough equations to solve for " + mathTs + " yet.");
+            backtrack();
+        }
     }
 }
 
