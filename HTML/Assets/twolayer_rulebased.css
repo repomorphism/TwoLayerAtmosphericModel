@@ -400,3 +400,39 @@ p {
   width: 111px;
   height: 38px;
 }
+
+#step2-answer-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 216px;
+  margin-top: 28px;
+  margin-bottom: 12px;
+
+  border: 2px solid #f7b844;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+#step2-answer-box > div {
+  margin: 0 20px 0 20px;
+}
+
+#step2-answer-box p {
+  margin: 0;
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+}
+#step2-answer-box p:first-child {
+  font-weight: bold;
+}
+
+#step2-go-to-step3 {
+  background-image: url("step2-go-to-step3.png");
+  float: right;
+  width: 111px;
+  height: 38px;
+}
