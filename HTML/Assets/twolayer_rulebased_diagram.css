@@ -36,7 +36,7 @@
   top: 3px;
 }
 
-#sun.selected.step1,
+#sun.selected,
 #sun.CTAT-button--hover.step1,
 #sun.CTAT-button--clicked.step1 {
   background-image: url("sun-active.png");
@@ -51,7 +51,7 @@
   top: 0px;
 }
 
-#space.selected.step1,
+#space.selected,
 #space.CTAT-button--hover.step1,
 #space.CTAT-button--clicked.step1 {
   background-image: url("space-active.png");
@@ -66,7 +66,7 @@
   top: 291.06px;
 }
 
-#layer2.selected.step1,
+#layer2.selected,
 #layer2.CTAT-button--hover.step1,
 #layer2.CTAT-button--clicked.step1 {
   background-image: url("layer2-active.png");
@@ -81,7 +81,7 @@
   top: 408.1px;
 }
 
-#layer1.selected.step1,
+#layer1.selected,
 #layer1.CTAT-button--hover.step1,
 #layer1.CTAT-button--clicked.step1 {
   background-image: url("layer1-active.png");
@@ -96,7 +96,7 @@
   top: 525.14px;
 }
 
-#surface.selected.step1,
+#surface.selected,
 #surface.CTAT-button--hover.step1,
 #surface.CTAT-button--clicked.step1 {
   background-image: url("surface-active.png");

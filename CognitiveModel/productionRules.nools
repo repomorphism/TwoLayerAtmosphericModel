@@ -423,6 +423,8 @@ rule ConfirmHasEnoughEquationsToSolve {
             $("#step2-answer-box").show();
             assert(new TPA("step2-go-to-step3", "SetVisible", true));
 
+            highlightEntireDiagram();
+
             halt();
         } else {
             backtrack();
@@ -452,7 +454,7 @@ rule AdvanceFromStep2ToStep3 {
             // modify(p, "subgoal", "");
 
             // TODO: modify HTML
-            // switchToTab(3);
+            switchToTab(3);
             // setupStep3();
 
             halt();

@@ -123,6 +123,7 @@ p {
   font-weight: normal;
   font-size: 16px;
   line-height: 19px;
+  color: #0681ff;
 }
 
 .tab-label.tab1 {
@@ -138,7 +139,7 @@ p {
 }
 
 .tab-label.disabled {
-  color: gray;
+  color: #001423;
 }
 
 .current-tab-bottombar {
@@ -343,7 +344,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 62px;
+  height: 42px;
 }
 
 .step2-table-row > div {
