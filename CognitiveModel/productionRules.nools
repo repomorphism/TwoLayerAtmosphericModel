@@ -65,6 +65,9 @@ rule Bootstrap {
         assert(new InterfaceElement("solve-equations"));
         $("#add-equation").hide();
 
+        $("#step2-answer-box").hide();
+        assert(new TPA("step2-go-to-step3", "SetVisible", false));
+
         // CTAT settings
         setProblemAttribute("use_backtracking", true);
         setProblemAttribute("prune_old_activations", true);
@@ -414,10 +417,13 @@ rule ConfirmHasEnoughEquationsToSolve {
     }
     then {
         if (checkSAI({selection: "solve-equations", action: "ButtonPressed", input: -1})) {
+            modify(p, "subgoal", "goToStep3");
 
-            // TODO: UI change to show solved equation!  And button to advance to Step 3.
+            // UI change to show solved equation & next button to Step 3.
+            $("#step2-answer-box").show();
+            assert(new TPA("step2-go-to-step3", "SetVisible", true));
 
-            halt;
+            halt();
         } else {
             backtrack();
         }
@@ -437,23 +443,24 @@ rule BuggyConfirmHasEnoughEquationsToSolve {
     }
 }
 
-// rule AdvanceFromStep2ToStep3 {
-//     when {
-//         p: Problem p.subgoal == "goToStep3";
-//     }
-//     then {
-//         if (checkSAI({selection: "step1-go-to-step2", action: "ButtonPressed", input: -1})) {
-//             modify(p, "subgoal", "selectControlVolume");
-//             // modify HTML
-//             switchToTab(2);
-//             setupStep2();
+rule AdvanceFromStep2ToStep3 {
+    when {
+        p: Problem p.subgoal == "goToStep3";
+    }
+    then {
+        if (checkSAI({selection: "step2-go-to-step3", action: "ButtonPressed", input: -1})) {
+            // modify(p, "subgoal", "");
 
-//             halt();
-//         } else {
-//             backtrack();
-//         }
-//     }
-// }
+            // TODO: modify HTML
+            // switchToTab(3);
+            // setupStep3();
+
+            halt();
+        } else {
+            backtrack();
+        }
+    }
+}
 
 // Temporarily for now, we're done when we fill in the first equation.
 rule Done {
