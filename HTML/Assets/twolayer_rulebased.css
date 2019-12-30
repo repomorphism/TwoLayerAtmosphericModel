@@ -437,3 +437,20 @@ p {
   width: 111px;
   height: 38px;
 }
+
+.steps-main.step3 p {
+  margin: 8px 0 8px 0;
+}
+
+#step3-surface-temperatures-block {
+  display: flex;
+  flex-direction: row;
+}
+
+#step3-surface-temperatures-block div {
+  flex-grow: 1;
+}
+
+#step3-surface-temperatures-block div p {
+  margin-bottom: 20px;
+}
