@@ -195,6 +195,13 @@ function renderEquations(arrows, equation) {
     return [inEquation, outEquation];
 }
 
+// Step 3 reflection: anything goes.
+function isNonEmptySAI(studentSAI, modelSAI) {
+    return ((studentSAI.selection === modelSAI.selection)
+        && studentSAI.action === modelSAI.action)
+        && studentSAI.input.length > 0;
+}
+
 // For debugging
 function fakeCompleteStep1(problem, arrows) {
     modify(problem, "subgoal", "selectTransferBodies");

@@ -454,12 +454,8 @@ rule AdvanceFromStep2ToStep3 {
     }
     then {
         if (checkSAI({selection: "step2-go-to-step3", action: "ButtonPressed", input: -1})) {
-            // modify(p, "subgoal", "");
-
-            // TODO: modify HTML
+            modify(p, "subgoal", "enterReflection");
             switchToTab(3);
-            // setupStep3();
-
             halt();
         } else {
             backtrack();
@@ -467,7 +463,20 @@ rule AdvanceFromStep2ToStep3 {
     }
 }
 
-// Temporarily for now, we're done when we fill in the first equation.
+rule EnterReflection {
+    when {
+        p: Problem p.subgoal == "enterReflection";
+    }
+    then {
+        if (checkSAI({selection: "step3-text-response", action: "UpdateTextArea", input: -1}, isNonEmptySAI)) {
+            // modify(p, "subgoal", "");
+            halt();
+        } else {
+            backtrack();
+        }
+    }
+}
+
 rule Done {
     when {
         not(volume: ControlVolumeElement !volume.completed);
