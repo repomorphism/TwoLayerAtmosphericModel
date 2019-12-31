@@ -455,7 +455,7 @@ p {
   margin-bottom: 20px;
 }
 
-#step3-reflection {
+#step3-answer {
   /* display: flex; */
   position: relative;
   height: 123px;
@@ -488,4 +488,26 @@ p {
   background-color: transparent;
   border-radius: 4px;
   border: 0;
+}
+
+#step3-reflection {
+  margin-top: 18px;
+}
+
+#step3-reflection > p {
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 21px;
+  color: #001423;
+  mix-blend-mode: normal;
+  opacity: 0.5;
+}
+
+#step3-model-answer-box {
+  padding: 4px 16px 16px 16px;
+  border: 1px solid #f7b844;
+  box-sizing: border-box;
+  border-radius: 4px;
 }

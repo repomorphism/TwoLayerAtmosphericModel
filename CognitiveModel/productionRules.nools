@@ -470,6 +470,7 @@ rule EnterReflection {
     then {
         if (checkSAI({selection: "step3-text-response", action: "UpdateTextArea", input: -1}, isNonEmptySAI)) {
             // modify(p, "subgoal", "");
+            $("#step3-reflection").show();
             halt();
         } else {
             backtrack();

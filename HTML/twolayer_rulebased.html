@@ -628,10 +628,70 @@
                 </math>
               </div>
             </div>
-            <div id="step3-reflection">
-              <div id="step3-text-response" class="CTATTextArea" data-ctat-tab-on-enter="false" data-ctat-tutor="false"></div>
-              <div id="step3-text-submit" class="CTATSubmitButton" data-ctat-target="step3-text-response"></div>
-            </div >
+            <div id="step3-answer">
+              <div
+                id="step3-text-response"
+                class="CTATTextArea"
+                data-ctat-tab-on-enter="false"
+                data-ctat-tutor="false"
+              ></div>
+              <div
+                id="step3-text-submit"
+                class="CTATSubmitButton"
+                data-ctat-target="step3-text-response"
+              ></div>
+            </div>
+            <div id="step3-reflection" style="display: none;">
+              <p>Professor Vaishnav says...</p>
+              <div id="step3-model-answer-box">
+                <p>
+                  With each additional layer of atmosphere, the surface
+                  temperature of the planet will be higher. The general formula
+                  for the surface temperature
+                  <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <msub><mi>T</mi><mi>S</mi></msub></math>,
+                    with <em>N</em> layers of atmosphere, is:
+                </p>
+                <div style="display: flex; justify-content: center;">
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+
+                  <msub>
+                    <mi>T</mi>
+                    <mi>S</mi>
+                  </msub>
+                  <mo>=</mo>
+                  <mroot>
+                    <mrow>
+                      <mfrac linethickness="1">
+                        <mrow>
+                          <mrow>
+                            <mo form="prefix">(</mo>
+                            <mi>N</mi>
+                            <mo>+</mo>
+                            <mn>1</mn>
+                            <mo form="postfix">)</mo>
+                          </mrow>
+                          <mi>S</mi>
+                          <mrow>
+                            <mo form="prefix">(</mo>
+                            <mn>1</mn>
+                            <mo>-</mo>
+                            <mi>&#x003B1;</mi>
+                            <mo form="postfix">)</mo>
+                          </mrow>
+                        </mrow>
+                        <mrow>
+                          <mn>4</mn>
+                          <mi>&#x003C3;</mi>
+                        </mrow>
+                      </mfrac>
+                    </mrow>
+                    <mn>4</mn>
+                  </mroot>
+                </math>
+                </div>
+              </div>
+            </div>
           </div>
         </article>
       </section>
