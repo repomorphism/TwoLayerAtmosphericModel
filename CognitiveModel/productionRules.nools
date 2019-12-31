@@ -68,6 +68,9 @@ rule Bootstrap {
         $("#step2-answer-box").hide();
         assert(new TPA("step2-go-to-step3", "SetVisible", false));
 
+        // Step 3 elements
+        $("#step3-text-response textarea").attr("placeholder", "Please type your answer here.");
+
         // CTAT settings
         setProblemAttribute("use_backtracking", true);
         setProblemAttribute("prune_old_activations", true);
