@@ -454,7 +454,7 @@ rule AdvanceFromStep2ToStep3 {
     }
     then {
         if (checkSAI({selection: "step2-go-to-step3", action: "ButtonPressed", input: -1})) {
-            modify(p, "subgoal", "enterReflection");
+            modify(p, "subgoal", "enterFinalInference");
             switchToTab(3);
             halt();
         } else {
@@ -463,14 +463,29 @@ rule AdvanceFromStep2ToStep3 {
     }
 }
 
-rule EnterReflection {
+rule EnterFinalInference {
     when {
-        p: Problem p.subgoal == "enterReflection";
+        p: Problem p.subgoal == "enterFinalInference";
     }
     then {
         if (checkSAI({selection: "step3-text-response", action: "UpdateTextArea", input: -1}, isNonEmptySAI)) {
-            // modify(p, "subgoal", "");
+            modify(p, "subgoal", "selectFinalReflection");
             $("#step3-reflection").show();
+            halt();
+        } else {
+            backtrack();
+        }
+    }
+}
+
+rule SelectFinalReflection {
+    when {
+        p: Problem p.subgoal == "selectFinalReflection";
+    }
+    then {
+        if (checkSAI({selection: "final-reflection", action: "UpdateRadioButton", input: -1}, isNonEmptySAI)) {
+            modify(p, "subgoal", "done");
+            setSuccessOrBugMsg("You have completed the tutor! Please click the Done button.");
             halt();
         } else {
             backtrack();
@@ -480,7 +495,7 @@ rule EnterReflection {
 
 rule Done {
     when {
-        not(volume: ControlVolumeElement !volume.completed);
+        p: Problem p.subgoal == "done";
     }
     then {
         if (checkSAI({selection: "done", action: "ButtonPressed", input: -1})) {

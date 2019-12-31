@@ -494,7 +494,7 @@ p {
   margin-top: 18px;
 }
 
-#step3-reflection > p {
+#step3-reflection > p:first-child {
   font-family: Rubik;
   font-style: normal;
   font-weight: normal;
@@ -510,4 +510,13 @@ p {
   border: 1px solid #f7b844;
   box-sizing: border-box;
   border-radius: 4px;
+}
+
+#final-reflection-buttons > * {
+  width: 110px;
+}
+
+#final-reflection-yes > label,
+#final-reflection-no > label {
+  margin-left: 8px;
 }
